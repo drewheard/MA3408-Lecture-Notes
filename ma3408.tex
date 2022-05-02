@@ -1,0 +1,77 @@
+\documentclass[a4paper]{tufte-book}
+
+\usepackage{microtype}
+\usepackage{amsmath,amsthm}
+\usepackage{graphicx}
+\usepackage{cleveref}
+\hypersetup{colorlinks}
+%\geometry{showframe}% for debugging purposes -- displays the margins
+\usepackage{tikz-cd}
+\setcounter{secnumdepth}{2}
+\title{MA3408 - Algebraic Topology II}
+\date{\today}
+\author{Drew Heard}
+\usepackage{amsmath}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fontawesome}
+\usepackage[most]{tcolorbox}
+    \tcbuselibrary{theorems}
+    \newtcbtheorem[number within=section]{exercise}{Exercise}{}{exercise}
+%------------------------------------------------------------------------------
+%----- Commands and macros ----------------------------------------------------
+%------------------------------------------------------------------------------
+
+%----- Thms, Defs, etc. -------------------------------------------------------
+
+\swapnumbers %pour que le numero apparaisse devant le theoreme
+
+\newtheorem{Thm}[equation]{Theorem}
+%\newtheorem{MainThm}[equation]{Main Theorem}
+\newtheorem*{Thm*}{Theorem}
+%\newtheorem*{MainThm*}{Main Theorem}
+%\newtheorem{ThmDef}[equation]{Theorem and Definition}
+\newtheorem{Prop}[equation]{Proposition}
+%\newtheorem{PropDef}[equation]{Proposition and Definition}
+\newtheorem{Lem}[equation]{Lemma}
+%\newtheorem{MainLem}[equation]{Main Lemma}
+\newtheorem{Cor}[equation]{Corollary}
+\newtheorem{CorConj}[equation]{Corollary of Conjecture}
+%\newtheorem*{Cor*}{Corollary}
+\newtheorem{Conj}[equation]{Conjecture}
+\newtheorem{Leap}[equation]{Leap of Faith}
+%\newtheorem{Axiom}[equation]{Axiom}
+
+%\theoremstyle{definition}
+\theoremstyle{remark}
+\newtheorem{Def}[equation]{Definition}
+\newtheorem{Ter}[equation]{Terminology}
+%\newtheorem{Defs}[equation]{Definitions}
+\newtheorem{Not}[equation]{Notation}
+%\newtheorem{Nots}[equation]{Notations}
+%\newtheorem{DefNot}[equation]{Definition-Notation}
+\newtheorem{Ex}[equation]{Exercise}
+\newtheorem{Exas}[equation]{Examples}
+\newtheorem{Exa}[equation]{Example}
+\newtheorem{Cons}[equation]{Construction
+}\newtheorem{Conv}[equation]{Convention}
+\newtheorem{Hyp}[equation]{Hypothesis}
+
+%\theoremstyle{remark}
+\newtheorem{Rem}[equation]{Remark}
+%\newtheorem{Rems}[equation]{Remarks}
+\newtheorem{Que}[equation]{Question}
+%\newtheorem{Baksh}[equation]{Baksheesh}
+\newcommand{\dmo}{\DeclareMathOperator}
+\newcommand{\xr}{\xrightarrow}
+\dmo{\Hom}{Hom}
+\dmo{\im}{im}
+\usepackage{subfiles} 
+\begin{document}
+\maketitle
+\subfile{section1}
+
+\appendix
+\chapter{A nice category of topological spaces}
+
+
+\end{document}
