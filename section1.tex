@@ -8,7 +8,7 @@ We let $I = [0,1]$ denote the unit interval. For a pointed topological space $X$
 \end{Not}
 We recall the following definition. 
 \begin{Def}
-	A homotopy between $f,g \colon X \to Y$ is a continuous function $H \colon X \times I \to Y$ such that $H(x,0) = f(x)$ and $H(x,1) = g(x)$ and $H(x_0,t) = y_0$ for all $t \in I$. We will write $f \simeq g$, or $f \simeq_H g$, if we need to make the choice of homotopy clear. \begin{marginfigure} \centering\includegraphics[scale = 0.5]{path_homotopy}\caption{A homotopy between $f$ and $g$.}\label{fig:marginfig}\end{marginfigure}
+	A homotopy between $f,g \colon X \to Y$ is a continuous function $H \colon X \times I \to Y$ such that $H(x,0) = f(x)$ and $H(x,1) = g(x)$ and $H(x_0,t) = y_0$ for all $t \in I$. We will write $f \simeq g$, or $f \simeq_H g$, if we need to make the choice of homotopy clear. \begin{marginfigure} \centering\includegraphics[scale = 0.5]{path_homotopy}\caption{A homotopy between $f$ and $g$.}\label{fig:homotopy}\end{marginfigure}
 
 	For a subspace $A \subseteq X$, a relative homotopy is a homotopy with $H(a,t) = f(a) = g(a)$ for all $a \in A, t \in I$. 
 	\end{Def}
@@ -50,7 +50,7 @@ Note that if $\alpha = [f] \in [Y,Z]$ and $\beta = [g] \in [X,Y]$, then $\alpha\
 \begin{Rem}
 We now very quickly review a number of standard topological constructions. 
 \begin{itemize}
-	\item Let $X$ be a space and $A \subseteq X$. A map $r \colon X \to A$ such that $r(a) = a$ for all $a \in A$ is called a retraction of $X$ onto $A$, and $A$ is called a retract of $X$. 
+	\item Let $X$ be a space and $A \subseteq X$. A map $r \colon X \to A$ such that $ri(a) = a$ for all $a \in A$ is called a retraction of $X$ onto $A$, and $A$ is called a retract of $X$. 
 	\item Let $i \colon A \hookrightarrow X$ be the inclusion, so that $ri = \text{id}_A$. If $ir \simeq \text{id}_X$, we call this a deformation retraction, and say that $A$ is a deformation retract of $X$. 
 	\item If $f \colon X \to Y$, then a section of $f$ is a map $s \colon Y \to X$ such that $f \circ s = \text{id}_Y$. We can also ask for a \emph{homotopy} section by requiring only that $f \circ s \simeq \text{id}_Y$. 
 \end{itemize}
@@ -187,7 +187,7 @@ i(2t_1-1,2t_2-2,\ldots) & [1/2,1] \times [1/2,1].
 \end{Rem}
 \begin{Rem}
 	Another approach is given by the following visualization: 
-\begin{figure}[h!] \centering\includegraphics[scale = 0.5]{abelian.png}\caption{$f + g \simeq g +f $.}\label{fig:marginfig}\end{figure}
+\begin{figure}[h!] \centering\includegraphics[scale = 0.5]{abelian.png}\caption{$f + g \simeq g +f $.}\label{fig:abelian}\end{figure}
 	That is, so long as $n \ge 2$, we can shrink the domain of $f$ and $g$ to smaller cubes (mapping the remaining region to the base point), slide $f$ and $g$ past each other, and then increase the domains back again. 
 \end{Rem}
 \begin{exercise}{}{}
@@ -195,8 +195,8 @@ i(2t_1-1,2t_2-2,\ldots) & [1/2,1] \times [1/2,1].
 	\textbf{Hint: } Use Eckmann--Hilton, or note the following: A topological group is a group object in the category of topological spaces. What is a group object in the category of groups? 
 \end{exercise}
 \begin{Prop}
-	If $n \ge 1$ and $X$ is path connected then there is an isomorphism $\beta_{\gamma} : \pi_n(X, x_0) \xrightarrow{\simeq} \pi_n(X, x_0)$ given by $\beta_{\gamma}([ f ]) = [\gamma \circ f ]$ where $\gamma$ is a path in $X$ from $x_1$ to $x_0$ and $\gamma \circ f$ is constructed by first shrinking the domain of $f$ to a smaller cube inside of $I^n$, and then inserting the path $\gamma$ radially from $x_1$ to $x_0$ on the boundaries of these cubes.
-	\begin{figure}[h] \centering\includegraphics[scale = 0.5]{path.png}\caption{$\beta_{\gamma}$.}\label{fig:marginfig}\end{figure}
+	If $n \ge 1$ and $X$ is path connected, then there is an isomorphism $\beta_{\gamma} : \pi_n(X, x_0) \xrightarrow{\simeq} \pi_n(X, x_0)$ given by $\beta_{\gamma}([ f ]) = [\gamma \circ f ]$ where $\gamma$ is a path in $X$ from $x_1$ to $x_0$ and $\gamma \circ f$ is constructed by first shrinking the domain of $f$ to a smaller cube inside of $I^n$, and then inserting the path $\gamma$ radially from $x_1$ to $x_0$ on the boundaries of these cubes.
+	\begin{figure}[h] \centering\includegraphics[scale = 0.5]{path.png}\caption{$\beta_{\gamma}$.}\label{fig:path}\end{figure}
 \end{Prop}
 \begin{proof}
 	Observe the following:
@@ -231,10 +231,10 @@ We have the following:
 \phi_*[f+g] = \phi_*[f] + \phi_*[g]. 
 	\]
 \end{enumerate}
+\end{proof}
 \begin{exercise}{}{}
 	If $\phi \colon X \to Y$ is homotopy equivalence (not necessarily base-point preserving), then $\pi_* \colon \pi_n(X,x_0) \to \pi_n(Y,\phi(y_0))$ is an isomorphism.  
 \end{exercise}
-\end{proof}
 \begin{Rem}
 	We recall the following lifting property: Suppose $p \colon (\tilde X,\tilde x_0) \to (X,x_0)$ is a covering, and there is a map $f \colon (Y,y_0) \to (X,x_0)$ with $Y$ path-connected and locally path-connected. Then a lift $\tilde f$ exists if and only if $f_*\pi_1(Y,y_0) \subseteq p_*\pi_1(\tilde X,\tilde x_0)$. 
 	% https://q.uiver.app/?q=WzAsMyxbMCwxLCIoWSxZXzApIl0sWzEsMSwiKFgseF8wKSJdLFsxLDAsIihcXHRpbGRlIFgseF8wKSJdLFswLDEsImYiXSxbMiwxXSxbMCwyLCJcXHRpbGRlIGYiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
@@ -251,7 +251,7 @@ We have the following:
 	If $p$ is a covering, then $p_* \colon \pi_n(\tilde X,\tilde x_0) \to \pi_n(X,x_0)$ is an isomorphism for all $ n \ge 2$. 
 \end{Prop}
 \begin{proof}
-Let us first show surjectivity. To that end, suppose we have a map $f \colon (S^n,s_0) \to (X,x_0)$ where $n \ge 2$. The assumption on  $n$ gives $\pi_1(S^n) = 0$, so $f_*\pi_1(S^n,s_0) \subseteq \pi_*\pi_1(\tilde X,\tilde x_0)$ holds. We therefore find a lift in the following:
+Let us first show surjectivity. To that end, suppose we have a map $f \colon (S^n,s_0) \to (X,x_0)$ where $n \ge 2$. The assumption on  $n$ gives $\pi_1(S^n) = 0$, so $f_*\pi_1(S^n,s_0) \subseteq p_*\pi_1(\tilde X,\tilde x_0)$ holds. We therefore find a lift in the following:
 \[\begin{tikzcd}
 	& {(\tilde X,\tilde x_0)} \\
 	{(S^n,s_0)} & {(X,x_0)}
@@ -261,7 +261,7 @@ Let us first show surjectivity. To that end, suppose we have a map $f \colon (S^
 \end{tikzcd}\]
 Then $p_*[\tilde f] = [f]$, and $p_*$ is surjective. 
 
-To see that $p_*$ is injective, let $[\tilde f] \in \ker(p_*)$, i.e., $p_*[\tilde f] = [p \circ \tilde f] = 0$. Let $f = p \circ \tilde f$, then this is homotopic to the constant map $f \simeq c_{x_0}$ via a homotopy $\phi_t \colon (S^n,s_0) \to (X,x_0)$with $\phi_1 =f $ and $\phi_0 = c_{x_0}$. By the same argument as above, the homotopy $\phi_t$ can be lifted to $\tilde \phi_t$. This satisfies $p \circ \tilde \phi_1 \simeq \phi_1 $ and $p \circ \tilde \phi_0 \simeq \phi_0$. By the uniqueness of lifts, we must have $\tilde \phi_1 \simeq \tilde f$ and $\tilde \phi_0 \simeq c_{x_0}$. In other words, $\tilde \phi_t$ gives a homotopy between $\tilde f$ and $c_{x_0}$, so that $[\tilde f]  = 0$, and $p_*$ is injective. 
+To see that $p_*$ is injective, let $[\tilde f] \in \ker(p_*)$, i.e., $p_*[\tilde f] = [p \circ \tilde f] = 0$. Let $f = p \circ \tilde f$, then this is homotopic to the constant map $f \simeq c_{x_0}$ via a homotopy $\phi_t \colon (S^n,s_0) \to (X,x_0)$ with $\phi_1 =f $ and $\phi_0 = c_{x_0}$. By the same argument as above, the homotopy $\phi_t$ can be lifted to $\tilde \phi_t$. This satisfies $p \circ \tilde \phi_1 \simeq \phi_1 $ and $p \circ \tilde \phi_0 \simeq \phi_0$. By the uniqueness of lifts, we must have $\tilde \phi_1 \simeq \tilde f$ and $\tilde \phi_0 \simeq c_{x_0}$. In other words, $\tilde \phi_t$ gives a homotopy between $\tilde f$ and $c_{x_0}$, so that $[\tilde f]  = 0$, and $p_*$ is injective. 
 \end{proof}
 \begin{Exa}
 	$S^1$ has universal cover $p \colon \mathbb{R} \to S^1$, $p(t) = e^{2\pi i t}$. Then $\pi_n(S^1) \cong \pi_n(\mathbb{R}) \cong 0$ for $n \ge 2$. 
@@ -303,6 +303,9 @@ H \colon (I^{n+1},\partial I^{n+1},J^n) \to (X,A,x_0).
 
 	For all $n \ge 2$, a map of pairs $\phi \colon (X,A,x_0) \to (Y,B,y_0)$ induces homomorphisms $\phi_* \colon \pi_n(X,A,x_0) \to \pi_n(Y,B,y_0)$ for all $n \ge 2$. 
 \end{Prop}
+\begin{proof}
+This is similar to the case of $\pi_n(X)$ itself, and the details are left to the reader. 
+\end{proof}
 \begin{Thm}\label{thm:les_rel}
 	The relative homotopy groups $(X,A,x_0)$ fit into a long exact sequence 
 	\[
@@ -319,6 +322,7 @@ The proof relies on the following.
 
 	Conversely, suppose that $[f]$ represents 0 in $\pi_n(X,A,x_0)$. This means there exists a homotopy, relative to $S^{n-1}$, $F \colon D^n \times I \to X$ with $F \mid_{D^n \times \{0 \}} = f$, $F \mid_{D^n \times 1} = c_{x_0}$ and $F \mid_{S^{n-1} \times I} \subseteq A$. We can restrict $F$ to a family of $n$-disks in $D^n \times I$ starting with $D^n \times \{ 0 \}$ and ending with the disk $D^n \times \{1 \} \cup S^{n-1} \times \{ 1\}$, all the disks in the family having the same boundary, then we get a homotopy from $f$ to a map in $A$, stationary on $S^{n-1}$ (said in other words, we can deformation retract $D^n \times [0,1]$ onto $D^n \times \{1 \} \cup S^{n-1} \times I$). 
 \end{proof}
+We now prove the existence of the long exact sequence.\sidenote{This is the type of proof that is best done by the reader themselves.}
 \begin{proof}[Proof of \Cref{thm:les_rel}]
 	\textbf{Step 1. }Let us first show exactness at $\pi_n(X,x_0)$. \\
 
@@ -328,7 +332,7 @@ The proof relies on the following.
 
 	\textbf{Step 2. } Let us now show exactness at $\pi_n(X,A,x_0)$. \\
 
-	Note that the composite $\partial \circ j_* = 0$ since the restriction of a map $(I^n,\partial I^n,J^{n-1}) \to (X,x_0,x_0)$ to $I^{n-1}$ has image $x_0$ and so represents $0$ in $\pi_{n-1}(A,x_0)$. Therefore, $\im(j_*) \subseteq \ker(\partial)$. For the converse, suppose $[f] \in \ker(\partial)$. This means there exists a basepoint preserving homotopy $H \colon I^{n-1} \times I \to A$ (relative to $\partial I^{n-1}$) from $f \mid_{I^{n-1} \times \{ 0 \}}$ to the constant map where the image of $H$ is contained entirely in $A$. We can then define another homotopy $H$, such that $G_0 = f$, $G_t \mid_{I^{n-1}} = H_t$ and the rest of the image of $G_t$ is $f[I^n]$ union with the image of $H_s$ for $0 \le s \le t$. This homotopy maps $S^{n-1}$ into $A$ at all times, so $[f] = [G_1]$. Morevoer, $G_1$ maps the boundary of $I^n$ to $x_0$, so $[G_1] \in \pi_n(X,x_0)$. Altogether, 
+	Note that the composite $\partial \circ j_* = 0$ since the restriction of a map $(I^n,\partial I^n,J^{n-1}) \to (X,x_0,x_0)$ to $I^{n-1}$ has image $x_0$ and so represents $0$ in $\pi_{n-1}(A,x_0)$. Therefore, $\im(j_*) \subseteq \ker(\partial)$. For the converse, suppose $[f] \in \ker(\partial)$. This means there exists a basepoint preserving homotopy $H \colon I^{n-1} \times I \to A$ (relative to $\partial I^{n-1}$) from $f \mid_{I^{n-1} \times \{ 0 \}}$ to the constant map where the image of $H$ is contained entirely in $A$. We can then define another homotopy $H$, such that $G_0 = f$, $G_t \mid_{I^{n-1}} = H_t$ and the rest of the image of $G_t$ is $f[I^n]$ union with the image of $H_s$ for $0 \le s \le t$. This homotopy maps $S^{n-1}$ into $A$ at all times, so $[f] = [G_1]$. Moreover, $G_1$ maps the boundary of $I^n$ to $x_0$, so $[G_1] \in \pi_n(X,x_0)$. Altogether, 
 	\[
 j_*[G_1] = [j \circ G_1] = [G_1] = [f]
 	\]
@@ -337,7 +341,7 @@ j_*[G_1] = [j \circ G_1] = [G_1] = [f]
 
 \textbf{Step 3:} Exactness at $\pi_n(A,x_0)$.
 	
-	Let $[f] \in \pi_n(X,A,x_0)$ then $i_*\partial \in \pi_{n-1}(X,x_0)$ is the class represented by $f \mid_{I^{n-1}}$ and this is homotopic relative $J^{n-2}$ to the consant map to $x_0$, via $f$ viewed as a homotopy. So this implies $\im(\partial_*) \subseteq \ker(i_*)$. Conversely, let $[f] \in \ker(i_*)$ i.e., $i_*[f]= [i \circ f]= 0$. Therefore, there exists a homotopy $H$ between $f$ and a constant map through a homotopy that has image in $X$ and preserves $x_0$. Since $H_0 = f$ has image in $A$ and $H_1$ has image $\{x_0\}$, and $H_0$ takes the boundary to $\{ x_0 \}$, we see that $[H] \in \pi_n(X,A,x_0)$, and moreover $\partial([H]) \simeq f$. Therefore, $[f] \in \im(\partial)$, and $\im(\partial) = \ker(i_*)$. 
+	Let $[f] \in \pi_n(X,A,x_0)$ then $i_*\partial \in \pi_{n-1}(X,x_0)$ is the class represented by $f \mid_{I^{n-1}}$ and this is homotopic relative $J^{n-2}$ to the constant map to $x_0$, via $f$ viewed as a homotopy. So this implies $\im(\partial_*) \subseteq \ker(i_*)$. Conversely, let $[f] \in \ker(i_*)$ i.e., $i_*[f]= [i \circ f]= 0$. Therefore, there exists a homotopy $H$ between $f$ and a constant map through a homotopy that has image in $X$ and preserves $x_0$. Since $H_0 = f$ has image in $A$ and $H_1$ has image $\{x_0\}$, and $H_0$ takes the boundary to $\{ x_0 \}$, we see that $[H] \in \pi_n(X,A,x_0)$, and moreover $\partial([H]) \simeq f$. Therefore, $[f] \in \im(\partial)$, and $\im(\partial) = \ker(i_*)$. 
 \end{proof}
 \begin{Def}
 	A pair $(X,A)$ with basepoint $x_0$ is said to be $n$-connected if $\pi_i(X,A) = 0$ for all $i \le n$. 
@@ -355,5 +359,259 @@ Let $X$ be a path-connected space, and $CX$ the cone on $X$. Show that
 	\]
 	for $n \ge 1$. 
 \end{exercise}
+\section{Cofibrations and the homotopy extension property}
+\begin{Def}
+Let $\cat C$ be a class of topological spaces. A map $i \colon A \to X$ has the homotopy extension property (HEP) if, for every $Y \in \cat C$, the following extension property has a solution\sidenote{Here $i_0(x) = (x,0)$.}
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJBIl0sWzAsMSwiWCJdLFsxLDAsIkEgXFx0aW1lcyBJIl0sWzEsMSwiWCBcXHRpbWVzIEkiXSxbMiwyLCJYIl0sWzAsMSwiaSIsMl0sWzAsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwzLCJpXzAiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDMsImYgXFx0aW1lcyBcXHRleHR7aWR9Il0sWzIsNCwiSCIsMCx7ImN1cnZlIjotM31dLFsxLDQsImYiLDIseyJjdXJ2ZSI6M31dLFszLDQsIlxcZXhpc3RzIFxcdGlsZGUgSCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	A & {A \times I} \\
+	X & {X \times I} \\
+	&& Y
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["i_0", hook, from=1-1, to=1-2]
+	\arrow["{i_0}"', hook, from=2-1, to=2-2]
+	\arrow["{i \times \text{id}}", from=1-2, to=2-2]
+	\arrow["H", curve={height=-18pt}, from=1-2, to=3-3]
+	\arrow["f"', curve={height=18pt}, from=2-1, to=3-3]
+	\arrow["{\exists \tilde H}", dashed, from=2-2, to=3-3]
+\end{tikzcd}\]
+A map $f \colon A \to X$ is a cofibration if it has the HEP with respect to all spaces $Y$.\sidenote{We will see later that cofibrations are always inclusions, and, if $X$ is Hausdorff, are always closed maps.}
+\end{Def}
+\begin{Rem}
+Note that we do not ask that $\tilde H$ is unique. 
+\end{Rem}
+\begin{Rem}\label{Rem:hep_adjoint}
+If we are in a 'nice' category of topological spaces (see CREF), which we always assume, then we have an adjunction
+\[
+\Hom(X,\Hom(Y,Z)) \cong \Hom(X \otimes Y,Z)
+\]
+of topological spaces, where $\Hom(Y,Z)$ is given the compact open topology. Writing, $Z^Y \coloneqq \Hom(Y,Z)$, the homotopy extension property admits a reformulation in the following diagram
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiWV5JIl0sWzAsMSwiWCJdLFsxLDEsIlkiXSxbMCwxLCJoIl0sWzAsMiwiaSIsMl0sWzIsMywiZiIsMl0sWzEsMywicCJdLFsyLDEsIlxcdGlsZGUgaCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	A & {Y^I} \\
+	X & Y
+	\arrow["h", from=1-1, to=1-2]
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["f"', from=2-1, to=2-2]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["{\exists \tilde h}", dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+where $p \colon Y^I \to Y$ is the evaluation at 0 map. It is often easier to work with this equivalent diagram. 
+\end{Rem}
+\begin{exercise}{}{}
+Let $(X,A)$ have the HEP, and assume moreover that $i \colon A \to X$ is a retract up to homotopy. Show that $A$ is a retract of $X$. 
+\end{exercise}
+\begin{Lem}
+	Let $J = [0,1]$. 
+	\begin{enumerate}[label=(\roman*)]
+		\item The inclusion $i_0 \colon X \to X \times J$ has the homotopy extension property for all $Y$. 
+		\item The inclusion $i_0 \colon X \to CX$ has the homotopy extension property for all $Y$.   
+	\end{enumerate}
+\end{Lem}
+\begin{proof}
+	The proof in both cases is very similar; we do the first case in some detail. We are claiming there exists a lift $\tilde H$ in the following diagram:
+	\[\begin{tikzcd}
+	X & {X \times I} \\
+	X \times J & {X \times J \times I} \\
+	&& Y
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["i_0", hook, from=1-1, to=1-2]
+	\arrow["{i_0}"', hook, from=2-1, to=2-2]
+	\arrow["{i \times \text{id}}", from=1-2, to=2-2]
+	\arrow["H", curve={height=-18pt}, from=1-2, to=3-3]
+	\arrow["f"', curve={height=18pt}, from=2-1, to=3-3]
+	\arrow["{\exists \tilde H}", dashed, from=2-2, to=3-3]
+\end{tikzcd}\]
+Geometrically, we will do this in two parts: we will define a map that "stacks" the two intervals on top of each other, i.e., we construct a map $G \colon X \times J \times I \to X \times [0,2]$. We will then do $H$ on one part of the cylinder, and $f$ on the remaining part. 
 
+For the first part, let $G \colon X \times J \times I \to X \times [0,2]$ be defined as\sidenote{To see what is going on it is worth testing some cases and drawing pictures. For example, when $t = 0$ we have $G(x,0,s) =  (x,0)$. When $t = 1$ we have $G(x,1,s) = (x,1+s)$. When $s = 0$ we have $G(x,t,0) = (x,t)$ and when $s = 1$ we have $G(x,t,1) = (x,2t)$.}
+\[
+G(x,t,s) = (x,t(1+s)). 
+\]
+We then define $F \colon X \times [0,2] \to Y$ by
+\[
+F(x,k) = \begin{cases}
+	f(x,k) & 0 \le k \le 1 \\
+	H(x,k/2) & 1 \le k \le 2. 
+\end{cases}
+\]
+Putting these together and defining $\tilde H \coloneqq F \circ G$, we see that\sidenote{Again, it is worthwhile to consider some cases. For example, if $t = 0$, then $(1-t)(1+s) = (1+s) \ge 1$ for all $s$, so $\tilde H((x,0),s) = H(x,s)$. At the other extreme, if $t =1$, then $(1-t)(1+s) = 0 \le 1$ for all $s$, so $\tilde H((x,1),s) = f(x,1)$. }
+\[
+\tilde H((x,t),s) = \begin{cases}
+f(x,1-(1-t)(1+s)), & (1-t)(1+s) \le 1 \\
+H(x,(1-t)(1+s)-1), & (1-t)(1+s) \ge 1. 
+\end{cases}
+\]
+One verifies directly that this gives the required extension. 
+\end{proof}
+\begin{Rem}
+We recall that given a map $f \colon X \to Y$, the mapping cylinder (see \Cref{fig_mapping_cylinder}) is the pushout\begin{marginfigure}[5\baselineskip] \centering\includegraphics[scale = 0.2]{map_cylinder.png}\caption{The mapping cylinder.}\label{fig_mapping_cylinder}\end{marginfigure}
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJYIl0sWzAsMSwiWSJdLFsxLDEsIk1fZiJdLFsxLDAsIlggXFx0aW1lcyBJIl0sWzAsMSwiZiIsMl0sWzEsMl0sWzAsMywiaV8xIl0sWzMsMl0sWzIsMCwiIiwxLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lci1pbnZlcnNlIn19XV0=
+\[\begin{tikzcd}
+	X & {X \times I} \\
+	Y & {M_f}
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{i_0}", from=1-1, to=1-2]
+	\arrow[from=1-2, to=2-2]
+	\arrow["\ulcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+\end{tikzcd}\]
+In formulas, 
+\[
+M_f = ((X \times I) \coprod Y)/((0,x) \sim f(x), \hspace{1mm} \forall x \in X)
+\]
+
+Note that $M_f$ deformation retracts on $Y$ by sliding each point $(x,t) \in M_f$ to the end-point. Note that we have a natural map $j \colon X \to M_f$ sending $x$ to $(x,1)$.
+\end{Rem}
+\begin{Lem}
+The map $j \colon X \to M_f$ has the HEP for all spaces $Y$.
+\end{Lem}
+\begin{proof}
+The proof is similar to the previous lemma; one just has to modify the end point by defining
+\[
+\tilde H|_{Y \times I}(y,s) = f(y,0). 
+\]
+\end{proof}
+\begin{Cor}\label{cor:spheres_are_cofibrations}
+The inclusion $S^{n-1} \to D^n$ is a cofibration. 
+\end{Cor}
+\begin{proof}
+	Simply note that $D^n \simeq CS^{n-1}$. 
+\end{proof}
+There is a universal test space for cofibrations. 
+\begin{Prop}\label{prop:universal_cofibration}
+	Let $i \colon A \to X$, and let $M_i$ be the mapping cylinder. Then $i \colon A \to X$ is a cofibration if and only if there exists a map $r \colon X \times I \to M_i$ making the diagram
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJBIl0sWzAsMiwiWCJdLFsyLDIsIk1faSJdLFsyLDAsIkEgXFx0aW1lcyBJIl0sWzEsMSwiWCBcXHRpbWVzIEkiXSxbMCwxLCJpIiwyXSxbMSwyXSxbMCwzLCJpXzAiXSxbMywyXSxbMiwwLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyLWludmVyc2UifX1dLFsxLDQsImlfMCIsMl0sWzMsNCwiaSBcXHRpbWVzIFxcdGV4dHtpZH0iLDJdLFs0LDIsIlxcZXhpc3RzIHIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	A && {A \times I} \\
+	& {X \times I} \\
+	X && {M_i}
+	\arrow["i"', from=1-1, to=3-1]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{i_0}", from=1-1, to=1-3]
+	\arrow[from=1-3, to=3-3]
+	\arrow["\ulcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=3-3, to=1-1]
+	\arrow["{i_0}"', from=3-1, to=2-2]
+	\arrow["{i \times \text{id}}"', from=1-3, to=2-2]
+	\arrow["{\exists r}", dashed, from=2-2, to=3-3]
+\end{tikzcd}\]
+commute. 
+\end{Prop}
+\begin{proof}
+If $i$ is a cofibration, then the map $r$ exists as a consequence of the HEP. 
+
+For the other direction, if $r$ exists, then for any maps $f \colon X \to Y$ and $H \colon A \times I \to Y$ making the obvious diagram commute, the universal property of the pushout gives us a map $H' \colon M_i \to Y$. Then let $\tilde H = H' \circ r$, and we are done. 
+\end{proof}
+\begin{Cor}\label{cor:cofibration_retract}
+If $A \subseteq X$, then $I \colon A \to X$ is a cofibration if and only if $X \times I$ is a retract of $M_i = X \times \{ 0 \} \cup A \times I$. 
+\end{Cor}
+\begin{Cor}
+A cofibration $i \colon A \to X$ is an injection. If $X$ is Hausdorff, then $i(A)$ is closed in $X$. 
+\end{Cor}
+\begin{proof}
+Let $J \colon A \times I \to M_i$ be the canonical map (arising from the definition of $M_i$ as a pushout). Then, $J(a,1) = r(i(a),1)$, and observe that $J\mid_{A \times \{ 1 \}}$ is the identity, as it is the top of the mapping cylinder. So, $i(a) \ne i(a')$ if $a \ne a'$, i.e., $i$ is injective. 
+
+Because $i \colon A \to X$ is a cofibration, so is $i(A) \to X$. Hence $X \times I$ retracts onto $X \times \{ 0 \} \cup i(A) \times I$ (\Cref{cor:cofibration_retract}). For a Hausdorff space, the image of a retract is closed, and so $X \times \{ 0 \} \cup i(A) \times I$ is a closed subspace of $X \times I$. Intersecting with $X \times \{ 1 \}$, we see that $i(A) \times \{ 1 \}$ is closed in $X \times \{ 1 \}$, i.e, $i(A)$ is closed in $X$.  
+\end{proof}
+The following (rather pathological) example shows that $i$ is not always a closed map if $X$ is not Hausdorff. 
+\begin{exercise}{}{}
+Let $A = \{ a \}$ and $X = \{ a , b\}$ with the trivial topology. Show that the inclusion $A \to X$ is a cofibration whose image is not closed. 
+\end{exercise}
+\begin{Rem}
+The next goal is to show that CW-complexes $(X,A)$ are always cofibrations. The key is the following exercise. 
+\end{Rem}
+\begin{exercise}{}{}
+\begin{enumerate}[label=(\alph*)]
+  	\item Suppose $\{ (X_i,A_i)\}$ are a collection of spaces satisfying the HEP, then so does $\{ (\coprod X_i, \coprod A_i) \}$.
+  	\item Suppose $(X,A)$ satisfies the HEP, and $f \colon A \to B$ is a continuous map. Let $Y = X \cup_f B$ be the pushout, then $(Y,B)$ satisfies the HEP. 
+  	\item Suppose $A = X_0 \subseteq X_1 \subseteq \cdots \subseteq X_n \subseteq X_{n+1} \subseteq \cdots$.
+
+  	Let $X = \colim X_i$. If each $(X_i,X_{i-1})$ satisfies the HEP, then so does $(X,A)$. 
+  \end{enumerate}  
+\end{exercise}
+
+\begin{Thm}
+A relative $CW$-complex $(X,A)$ satisfies the HEP. 
+\end{Thm}
+\begin{proof}
+Using \Cref{cor:spheres_are_cofibrations} and the previous exercise we see that $(S^{n-1},D^n)$ satisfies the HEP $\implies (\coprod S^{n-1},\coprod D^n)$ satisfies the HEP. Inductively, $(X_{n-1},A)$ satisfies the HEP and by the exercise $(X,A)$ satisfies the HEP. 
+\end{proof}
+\begin{Rem}
+One can also prove this directly by constructing a deformation retract $r \colon X \times I \to X \times \{ 0 \} \cup A \times I$. 
+\end{Rem}
+\begin{Rem}
+One can consider the following question: Suppose that $A \subset X$ with $A$ contractible, then is $X \simeq X/A$? Surprisingly, this is not true in general. Indeed, let $A = S^1 \setminus \{ (1,0) \}$ and consider $A \to S^1$. Then $S^1/A \cong T$, the $T = \{ a ,b \}$ the two point space with open sets $\emptyset, \{ a \}, \{ a, b\}$ (this is the Sierpi\'nski space). One can check that this space is contractible.\sidenote{See \url{https://math.stackexchange.com/a/264789/64273}.} The exact condition we need is that $A \to X$ is a cofibration. 
+\end{Rem}
+\begin{Def}
+A contracting homotopy is a map $H \colon X \times I \to X$ such that $H(x,0) = \text{id}_X$ and $H(x,1) = c_{x_0}$, the constant map at $x_0$. 
+\end{Def}
+\begin{Prop}\label{prop:quotient_contractible}
+Suppose $A \subseteq X$ and $x_0 \in A$. Suppose there exists a map $H \colon X \times I \to X$ such that $H \mid_{X \times \{ 0 \}} = \text{id}_X$ and $H \mid_{A \times I}$ has image in $A$ and is a contacting homotopy for $A$. Then $q \colon X \to X/A$ is a homotopy equivalence. 
+\end{Prop}
+\begin{proof}
+We need to find $p \colon X/A \to X$ such that $q \circ p \simeq \text{id}_{X/A}$ and $p \circ q \simeq \text{id}_X$. The quotient map has a set-theoretic section given by 
+\[
+s(\overline x) = \begin{cases}
+	x & x \not\in A\\
+	x_0 & x \in A
+\end{cases}
+\]
+Define $p \colon X/A \to X$ by the following diagram
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJYIl0sWzEsMCwiWC9BIl0sWzIsMCwiWCJdLFsyLDEsIlgiXSxbMCwxLCJxIl0sWzEsMiwicyJdLFsyLDMsIkggXFxtaWRfe1ggXFx0aW1lcyBcXHsgMSBcXH19Il0sWzEsMywicCIsMl1d
+\[\begin{tikzcd}
+	X & {X/A} & X \\
+	&& X
+	\arrow["q", from=1-1, to=1-2]
+	\arrow["s", from=1-2, to=1-3]
+	\arrow["{H \mid_{X \times \{ 1 \}}}", from=1-3, to=2-3]
+	\arrow["p"', from=1-2, to=2-3]
+\end{tikzcd}\]
+Assume for a moment that $p$ is continuous. Then $p \circ q = H\mid_{X \times \{ 1 \}}$, and so $H$ gives a homotopy between $\text{id}_X$ and $p \circ q = H \mid_{X \times \{ 1 \}}$. Likewise, if we define $G$ by 
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJYL0EgXFx0aW1lcyBJIl0sWzEsMCwiWCBcXHRpbWVzIEkiXSxbMiwwLCJYIl0sWzIsMSwiWC9BIl0sWzAsMSwicyBcXHRpbWVzIFxcdGV4dHtpZH0iXSxbMSwyLCJIIl0sWzIsMywicSJdLFswLDMsIkciLDJdXQ==
+\[\begin{tikzcd}
+	{X/A \times I} & {X \times I} & X \\
+	&& {X/A}
+	\arrow["{s \times \text{id}}", from=1-1, to=1-2]
+	\arrow["H", from=1-2, to=1-3]
+	\arrow["q", from=1-3, to=2-3]
+	\arrow["G"', from=1-1, to=2-3]
+\end{tikzcd}\]
+and assume that $G$ is continuous, then 
+\[
+G(\overline x,1) = q \circ (H\mid_{X \times \{ 1 \}} \circ s) = q \circ p,
+\]
+so that $G$ is a homotopy between $\text{id}_{X/A}$ and $q \circ p$. To see that $p$ is continuous, let $U \subset X$ be open, then 
+\[
+q^{-1}p^{-1}(U) = (p \circ q)^{-1}(U) = (H \mid_{X \times \{ 1\}})^{-1}(U)
+\]
+is open in $X$ by the continuity of $H \mid_{X \times \{ 1\}}$, hence $p^{-1}(U)$ is open in $X/A$ by the definition of the quotient topology, and so $p$ is continuous. We leave the proof of continuity of $G$ to the reader. 
+\end{proof}
+\begin{Thm}
+Let $A \subseteq X$ be a subspace with $A$ contractible. Suppose that the inclusion $i \colon A \to X$ is a cofibration, then $X \to X/A$ is a homotopy equivalence. 
+\end{Thm}
+\begin{proof}
+	Let $h \colon A \to I \to A$ be a contracting homotopy. Let $H \colon A \times I \to X$ be the composition of $h$ with the inclusion map of $A$ into $X$, i.e., the following diagram commutes:
+	\[\begin{tikzcd}
+	A & {A \times I} \\
+	X & {X \times I} \\
+	&& X
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["i_0", hook, from=1-1, to=1-2]
+	\arrow["{i_0}"', hook, from=2-1, to=2-2]
+	\arrow["{i \times \text{id}}", from=1-2, to=2-2]
+	\arrow["H", curve={height=-18pt}, from=1-2, to=3-3]
+	\arrow["\text{id}_X"', curve={height=18pt}, from=2-1, to=3-3]
+	\arrow["{\exists \tilde H}", dashed, from=2-2, to=3-3]
+\end{tikzcd}\]
+By the HEP, the dotted map $\tilde H$ exists as in the diagram. This map satisfies the conditions of \Cref{prop:quotient_contractible}:
+\begin{enumerate}[label=(\roman*)]
+	\item $\tilde H \colon X \times \{ 0 \} \to X$ is the identity. 
+	\item $\tilde H(A \times I) = H(A \times I) = h(A \times I) \subseteq A$.
+	\item $\tilde H(A \times \{ 1 \}) = x_0$. 
+\end{enumerate}
+Therefore, $q \colon X \to X/A$ is a homotopy equivalence, as claimed. 
+\end{proof}
+\begin{exercise}{Cofibrations are pushout closed.}{}
+Let $i \colon A \to X$ be a cofibration, and $g \colon A \to B$ any map ,then the induced map $B \to B \cup_g X$ is a fibration. 
+\end{exercise}
 \end{document}

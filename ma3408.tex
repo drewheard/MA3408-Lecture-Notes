@@ -1,10 +1,11 @@
 \documentclass[a4paper]{tufte-book}
-
-\usepackage{microtype}
+\usepackage{subfiles} 
+\usepackage{microtype,mathrsfs}
 \usepackage{amsmath,amsthm}
 \usepackage{graphicx}
 \usepackage{cleveref}
 \hypersetup{colorlinks}
+\usepackage{quiver,mathtools}
 %\geometry{showframe}% for debugging purposes -- displays the margins
 \usepackage{tikz-cd}
 \setcounter{secnumdepth}{2}
@@ -16,13 +17,13 @@
 \usepackage{fontawesome}
 \usepackage[most]{tcolorbox}
     \tcbuselibrary{theorems}
-    \newtcbtheorem[number within=section]{exercise}{Exercise}{}{exercise}
+    \newtcbtheorem{exercise}{Exercise}{}{exercise}
 %------------------------------------------------------------------------------
 %----- Commands and macros ----------------------------------------------------
 %------------------------------------------------------------------------------
 
 %----- Thms, Defs, etc. -------------------------------------------------------
-
+\numberwithin{equation}{section}
 \swapnumbers %pour que le numero apparaisse devant le theoreme
 
 \newtheorem{Thm}[equation]{Theorem}
@@ -63,9 +64,12 @@
 %\newtheorem{Baksh}[equation]{Baksheesh}
 \newcommand{\dmo}{\DeclareMathOperator}
 \newcommand{\xr}{\xrightarrow}
+
 \dmo{\Hom}{Hom}
 \dmo{\im}{im}
-\usepackage{subfiles} 
+\dmo{\colim}{colim}
+
+\newcommand{\cat}[1]{\mathcal{#1}}%or: 
 \begin{document}
 \maketitle
 \subfile{section1}
