@@ -611,7 +611,360 @@ By the HEP, the dotted map $\tilde H$ exists as in the diagram. This map satisfi
 \end{enumerate}
 Therefore, $q \colon X \to X/A$ is a homotopy equivalence, as claimed. 
 \end{proof}
-\begin{exercise}{Cofibrations are pushout closed.}{}
-Let $i \colon A \to X$ be a cofibration, and $g \colon A \to B$ any map ,then the induced map $B \to B \cup_g X$ is a fibration. 
+\begin{exercise}[label=ex:cofibratonpushout]{Cofibrations are pushout closed.}{}
+Let $i \colon A \to X$ be a cofibration, and $g \colon A \to B$ any map, then the induced map $B \to B \cup_g X$ is a fibration. 
 \end{exercise}
+\section{Fibrations and the homotopy lifting property}
+The dual notion of a cofibration is a fibration, where the homotopy extension property is replaced by the homotopy lifting property. 
+\begin{Def}
+	Let $\mathcal{E}$ be a class of topological spaces. Assume that $p \colon E \to B$ is a continuous map, then we say that $p$ has the homotopy lifting property (with respect to $\cal E$) if for every $X \in \cal E$, and map $f \colon X \to E$ and every homotopy $H \colon X \times I \to B$ that begins with $p \circ f$, we can lift it to a homotopy $\tilde H \colon X \times I \to E$ that begins with $f$, i.e., $p \circ \tilde H = H$ and $\tilde H(x,0) = f(x)$. In a diagram, we require the lift $\tilde H$ in the following:
+% https://q.uiver.app/?q=WzAsNCxbMSwwLCJFIl0sWzEsMSwiQiJdLFswLDAsIlgiXSxbMCwxLCJYIFxcdGltZXMgSSJdLFswLDEsInAiXSxbMiwwLCJmIl0sWzMsMSwiSCIsMl0sWzIsMywiaV8wIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMywwLCJcXGV4aXN0cyBcXHRpbGRlIEgiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	X & E \\
+	{X \times I} & B
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["H"', from=2-1, to=2-2]
+	\arrow["{i_0}"', hook', from=1-1, to=2-1]
+	\arrow["{\exists \tilde H}", dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+If $\cal E$ is the class of all topological spaces, then $p$ is called a (Hurewicz) fibration, while if $\mathcal{E} = \{ I^{n} \}$ (or equivalently, the class of CW-complexes), then $p$ is called a Serre fibration.  
+\end{Def}
+\begin{Rem}
+As in \Cref{Rem:hep_adjoint}, there is an equivalent way to present the homotopy lifting property: we ask for the lift $\tilde h$ as shown in the following
+% https://q.uiver.app/?q=WzAsNSxbMiwxLCJFIl0sWzIsMiwiQiJdLFsxLDEsIkVeSSJdLFsxLDIsIkJeSSJdLFswLDAsIlgiXSxbMCwxLCJwIl0sWzIsMCwiZXZfMCJdLFszLDEsImV2XzAiLDJdLFsyLDMsInBfKiIsMl0sWzQsMiwiXFxleGlzdHMgXFx0aWxkZSBoIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzQsMywiaCIsMix7ImN1cnZlIjoyfV0sWzQsMCwiZiIsMCx7ImN1cnZlIjotMn1dXQ==
+\[\begin{tikzcd}
+	X \\
+	& {E^I} & E \\
+	& {B^I} & B
+	\arrow["p", from=2-3, to=3-3]
+	\arrow["{ev_0}", from=2-2, to=2-3]
+	\arrow["{ev_0}"', from=3-2, to=3-3]
+	\arrow["{p_*}"', from=2-2, to=3-2]
+	\arrow["{\exists \tilde h}", dashed, from=1-1, to=2-2]
+	\arrow["h"', curve={height=12pt}, from=1-1, to=3-2]
+	\arrow["f", curve={height=-12pt}, from=1-1, to=2-3]
+\end{tikzcd}\]
+This makes it clear how the homotopy lifting property is dual to the homotopy extension property. 
+\end{Rem}
+\begin{Rem}
+	We can also talk about the homotopy lifting property with respect to a pair $(X,A)$: namely, a map $p \colon E \to B$ has the homotopy lifting property with respect to a pair $(X,A)$ if each homotopy $H \colon X \times I \to B$ lifts to a homotopy $\tilde H \colon X \times I \to E$ which agrees with a given homotopy $H_A$ on $A \times I$. In a diagram, we ask for the lift $\tilde H$ in the following:
+% https://q.uiver.app/?q=WzAsNCxbMSwwLCJFIl0sWzEsMSwiQiJdLFswLDAsIlggXFxjdXAgKEEgXFx0aW1lcyBJKSJdLFswLDEsIlggXFx0aW1lcyBJIl0sWzAsMSwicCJdLFsyLDAsImYgXFxjdXAgSF9BIl0sWzMsMSwiSCIsMl0sWzIsMywiaV8wIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMywwLCJcXGV4aXN0cyBcXHRpbGRlIEgiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	{X \cup (A \times I)} & E \\
+	{X \times I} & B
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["{f \cup H_A}", from=1-1, to=1-2]
+	\arrow["H"', from=2-1, to=2-2]
+	\arrow["{i_0}"', hook', from=1-1, to=2-1]
+	\arrow["{\exists \tilde H}", dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+\end{Rem}
+\begin{Thm}
+	The following are equivalent:
+	\begin{enumerate}[label=(\roman*)]
+		\item $p$ is a Serre fibration. 
+		\item $p$ has the homotopy lifting property with respect to all $n$-discs $D^n$. 
+		\item $p$ has relative homotopy property with respect to all pairs $(D^n,S^{m-1})$
+		\item $p$ has the relative homotopy property with respect to all CW-pairs $(X,A)$. 
+	\end{enumerate}
+\end{Thm}
+\begin{proof}[Proof sketch]
+	$(i) \implies (ii)$ is immediate from the definitions. 
+
+	$(ii) \implies (iii)$ follows because the pairs $(D^n \times I,D^n \times \{ 0 \})$ and $(D^n \times I,D^n \times \{ 0 \} \cup S^{n-1} \times I)$ are homeomorphic. 
+
+	$(iii) \implies (iv)$ by induction over the skeleton of $X$; one reduces to the case (iii). 
+
+	$(iv) \implies (i)$ by taking $A = \emptyset$. \qedhere
+
+
+
+\end{proof}
+\begin{exercise}{}{}
+Show that the composition of fibrations is a fibration. 
+\end{exercise}
+
+\begin{Def}
+We recall the construction of pullbacks in topological spaces: given maps $p \colon E \to B$ and $f \colon B' \to B$, we let 
+\[
+E' = \{(b',e) \in B' \times E \mid p(e) = f(b') \}.
+\]
+This comes with natural projection maps $f' \colon E' \to E$ and $p' \colon E' \to B'$. Then $E'$ is the pull-back in topological spaces, and so we often also denote it by $f^*E$. 
+\end{Def}
+The following is dual to \Cref{ex:cofibratonpushout}.
+\begin{Lem}
+If $p \colon E \to B$ satisfies the HLP with respect to the class $\cal E$, then so does $p' \colon E' \to B'$. 
+\end{Lem}
+\begin{proof}
+Consider the following diagram:
+% https://q.uiver.app/?q=WzAsNixbMiwwLCJFIl0sWzIsMSwiQiJdLFswLDAsIlgiXSxbMCwxLCJYIFxcdGltZXMgSSJdLFsxLDAsIkUnIl0sWzEsMSwiQiciXSxbMCwxLCJwIl0sWzIsMywiaV8wIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbNSwxLCJmIiwyXSxbNCwwLCJmJyJdLFs0LDUsInAnIiwyXSxbNCwxLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbMiw0XSxbMyw1XV0=
+\[\begin{tikzcd}
+	X & {E'} & E \\
+	{X \times I} & {B'} & B
+	\arrow["p", from=1-3, to=2-3]
+	\arrow["{i_0}"', hook', from=1-1, to=2-1]
+	\arrow["f"', from=2-2, to=2-3]
+	\arrow["{f'}", from=1-2, to=1-3]
+	\arrow["{p'}"', from=1-2, to=2-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-2, to=2-3]
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+Because $p \colon E \to B$ satisfies the HLP, there is a lift $\tilde H' \colon X \times I \to E$ of $X \times I \to B$. Then, by the universal property of the pullback, we get a map $\tilde H \colon X \times I \to E'$ satisfying the desired properties. 
+\end{proof}
+\begin{Def}
+	If $p \colon E \to B$ is a fibration, then $F \coloneqq p^{-1}(\ast)$ is called the fiber, $E$ is called the total space, and $B$ is the base space. We write this as 
+	\[
+F \to E \to B.
+	\]
+\end{Def}
+\begin{Exa}\label{ex:loops_fibration}
+	Given a based space $X$, let 
+	\[
+PX = \Hom_*(I,X) = \{ f \colon I \to X \mid f(0) = \ast \}
+	\]
+	be the space of paths starting at the base-point. Then $PX \xrightarrow{p_1} X$ is a fibration with fiber $\Omega X$, the loop space in $X$ (i.e., $f(0) = f(1) = \ast$). To see this, consider our test diagram, where we must show that $\tilde H$ exists: 
+	\[\begin{tikzcd}
+	A & PX \\
+	{A \times I} & X
+	\arrow["p_1", from=1-2, to=2-2]
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["H"', from=2-1, to=2-2]
+	\arrow["{i_0}"', hook', from=1-1, to=2-1]
+	\arrow["{\exists \tilde H}", dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+Note that for each $a \in A$, $g(a)$ is a path in $X$ which ends at $p_1g(a) = H(a,0)$. This point is the start of the path $H(a,-)$. % https://q.uiver.app/?q=WzAsMyxbMCwxLCJcXGJ1bGxldCJdLFsxLDAsIlxcc3RhY2tyZWx7SChhLDApfXtcXGJ1bGxldH0iXSxbMiwxLCJcXGJ1bGxldCJdLFswLDEsImcoYSkiLDAseyJjdXJ2ZSI6MSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFsxLDIsIkgoYSwtKSIsMCx7ImN1cnZlIjoxLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn19fV1d
+\[\begin{tikzcd}
+	& {\stackrel{H(a,0)}{\bullet}} \\
+	\bullet && \bullet
+	\arrow["{g(a)}", curve={height=6pt}, start anchor={[xshift=-1ex]}, end anchor={[xshift=1ex]},from=2-1, to=1-2]
+	\arrow["{H(a,-)}", curve={height=6pt}, end anchor={[xshift=1ex]}, from=1-2, to=2-3]
+\end{tikzcd}\]
+We will define $\tilde H(a,s)(t)$ to be a path running along $g(a)$ and then part-way along $H(a,-)$ ending at $H(a,s)$. In symbols, 
+\[
+\tilde H(a,s)(t) = \begin{cases}
+	g(a)((1+s)t) & 0 \le t \le 1/(1+s) \\
+	H(a,(1+s)t-1) & 1/(1+s) \le t \le 1. 
+\end{cases}
+\]
+Then $\tilde H(a,0) = g(a)$ and $p_1\tilde H(a,s) = \tilde H(a,s)(1) = H(a,s)$, as required. 
+
+The same argument shows that there is a fibration 
+\[
+p_*Y \to Y^I \xrightarrow{p_1} Y
+\]
+where $p_*Y$ is the space of paths with end-point $\ast$. 
+\end{Exa}
+\begin{Def}
+	Given $f \colon X \to Y$ the mapping path space $P_f$ (or mapping cocylinder), is the pullback of $f$ along $Y^I \xrightarrow{p_1}Y$, i.e., 
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJQX2YiXSxbMCwxLCJYIl0sWzEsMCwiWV5JIl0sWzEsMSwiWSJdLFsyLDMsInBfMSJdLFsxLDMsImYiLDJdLFswLDEsInAnIiwyXSxbMCwyXSxbMCwzLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
+\[\begin{tikzcd}
+	{P_f} & {Y^I} \\
+	X & Y
+	\arrow["{p_1}", from=1-2, to=2-2]
+	\arrow["f"', from=2-1, to=2-2]
+	\arrow["{p'}"', from=1-1, to=2-1]
+	\arrow[from=1-1, to=1-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+Note that $P_f \simeq X$. 
+\end{Def}
+\begin{Prop}
+The map $p \colon P_f \to Y$ given by $p(x,\alpha) = \alpha(1)$ is a fibration. 
+\end{Prop}
+\begin{proof}
+	This is very similar to \Cref{ex:loops_fibration}. Our test diagram is the following: 
+		\[\begin{tikzcd}
+	A & P_f \\
+	{A \times I} & Y
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["H"', from=2-1, to=2-2]
+	\arrow["{i_0}"', hook', from=1-1, to=2-1]
+	\arrow["{\exists \tilde H}", dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+Note that $g(a) \in P_f \subset X \times Y^I$, so we can write $g(a) = (g_1(a),g_2(a))$. Here $g_1(a)$ maps via $f$ to the starting point of the path $g_2(a)$ and the commutativity of the  diagram implies that the endpoint of the path $g_2(a)$ is the starting point of $H(a,-)$. The lift $\tilde H$ will have two components. The $x$ component will be constant in $s$, i.e., $\tilde H_1(a,s) = g_1(a)$. Overall, we define
+\[
+\tilde H(a,s) = (g_1(a),\tilde H_2(a,s)(-)) \in P_f
+\]
+where\sidenote{Compare this to the formula in \Cref{ex:loops_fibration}.}
+\[
+\tilde H_2(a,s)(t) = \begin{cases}
+	g_2(a)((1+s)t) & 0 \le t \le 1/(1+s) \\
+	H(a,(1+s)t-1) & 1/(1+s) \le t \le 1. 
+\end{cases}
+\]
+One check directly that $\tilde H(a,s)$ has the required properties. 
+\end{proof}
+As with the homotopy extension property, we have a universal test space. The details (which are dual to \Cref{prop:universal_cofibration}) are left to the reader. 
+\begin{Prop}
+	Let $f \colon E \to B$ be a continuous map, then $f$ is a fibration if and only if there exists $s \colon P_f \to E^I$ making the following diagram commute:
+	\[\begin{tikzcd}
+	P_f \\
+	& {E^I} & E \\
+	& {B^I} & B
+	\arrow["f", from=2-3, to=3-3]
+	\arrow["{ev_0}", from=2-2, to=2-3]
+	\arrow["{ev_0}"', from=3-2, to=3-3]
+	\arrow["{f_*}"', from=2-2, to=3-2]
+	\arrow["{\exists s}", dashed, from=1-1, to=2-2]
+	\arrow["\pi_{B_I}"', curve={height=12pt}, from=1-1, to=3-2]
+	\arrow["\pi_E", curve={height=-12pt}, from=1-1, to=2-3]
+\end{tikzcd}\]
+where $\pi_{B_I}$ and $\pi_E$ are the projection maps coming from the construction of $P_f$ as a pullback. 
+\end{Prop}
+\begin{Rem}
+One property of cofibrations that does not dualize to fibrations is that cofibrations are inclusions, but fibrations need not be surjective. Indeed, given $p \colon E \to B$ a fibration, then the composite
+\[
+E \xrightarrow{p} B \hookrightarrow B \coprod \ast
+\]
+is also a fibration, but is not surjective. 
+\end{Rem}
+\begin{Rem}
+	We will want to talk about exact sequences where the terms appearing may not have a group structure, but are rather only sets with base-points. Therefore, given a sequence of functions
+	\[
+A \xrightarrow{f} B \xrightarrow{g} C
+	\]
+	of sets with base-points, we say that this is exact at $B$ if $f(A) = g^{-1}(c_0)$ where $c_0$ is the base-point of $C$. Note that if $A,B,C$ are groups with base-points the identity elements of the group, then exactness of sets corresponds to exactness of groups. 
+\end{Rem}
+\begin{Thm}\label{thm:fibration_ses}
+	Let $p \colon E \to B$ be a fibration with fiber $F$ and $B$ path-connected. Let $Y$ be any space, then
+	\[
+[Y,F] \xrightarrow{i_*} [Y,E] \xrightarrow{p_*} [Y,B]
+	\]
+	is exact. 
+\end{Thm}
+\begin{proof}
+	For one direction, it is clear that $p_*(i_*[g])) = 0$.
+
+	 Suppose $f \in [Y,E]$ is such that $p_*[f] = [\text{const}]$, i.e., $p \circ f$ is null-homotopic. Let $G \colon Y \times I \to B$ be a null-homotopy, and let $H \colon Y \times I \to E$ be a solution to the lifting problem indicated in the following diagram, using that $p$ is a fibration:
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJZIFxcdGltZXMgXFx7MFxcfSJdLFswLDEsIlkgXFx0aW1lcyBJIl0sWzEsMSwiQiJdLFsxLDAsIkUiXSxbMSwyLCJHIiwyXSxbMywyLCJwIl0sWzAsMSwiaV8wIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMCwzXSxbMSwzLCJIIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	{Y \times \{0\}} & E \\
+	{Y \times I} & B
+	\arrow["G"', from=2-1, to=2-2]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["{i_0}"', hook', from=1-1, to=2-1]
+	\arrow["f",from=1-1, to=1-2]
+	\arrow["H", dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+Note now that $p \circ H(y,1) = G(y,1) = b_0$, so that $H(y,1) \in F \coloneqq p^{-1}(b_0)$. It follows that $[f] = i_*[H(-,1)]$. 
+\end{proof}
+We have an analogous result for cofibration. 
+\begin{Thm}
+	Let $i \colon A \to X$ be a cofibration, and $q \colon X \to X/A$ the quotient map. Let $Y$ be any path-connected space, then the sequence of pointed sets
+	\[
+[X/A,Y] \xrightarrow{q^*} [X,Y] \xrightarrow{i^*} [A,Y]
+	\]
+	is exact. 
+\end{Thm}
+\begin{proof}
+	Again, one inclusion is clear: we have $i^*(g^*([g])) = [g \circ q \circ i] = [\text{const}]$. 
+
+	Now suppose that $f \colon X \to Y$ is a map with $f\mid_{A} \colon A \to Y$ null-homotopic. Let $h \colon A \times I \to Y$ be a hull-homotopy, and let $F \colon X \times I \to Y$ be the extension as shown in the following diagram:
+	\[\begin{tikzcd}
+	A & {A \times I} \\
+	X & {X \times I} \\
+	&& Y
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["i_0", hook, from=1-1, to=1-2]
+	\arrow["{i_0}"', hook, from=2-1, to=2-2]
+	\arrow["{i \times \text{id}}", from=1-2, to=2-2]
+	\arrow["H", curve={height=-18pt}, from=1-2, to=3-3]
+	\arrow["f"', curve={height=18pt}, from=2-1, to=3-3]
+	\arrow["{F}", dashed, from=2-2, to=3-3]
+\end{tikzcd}\]
+Let $f' \coloneqq F(-,1)$. Then, $f \sim f'$ and $f'(A) = F(A,1) = y_0$. By the universal property of the quotient, we can find $g \colon X/A \to Y$ making the following diagram commute:
+% https://q.uiver.app/?q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiWSciXSxbMCwxLCJYL0EiXSxbMCwyLCJxIiwyXSxbMCwxLCJmJyJdLFsyLDEsImcnIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	X & {Y} \\
+	{X/A}
+	\arrow["q"', from=1-1, to=2-1]
+	\arrow["{f'}", from=1-1, to=1-2]
+	\arrow["{g'}"', dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+Therefore $[f] = [f'] = q^*[g']$.
+\end{proof}
+As an extension of \Cref{thm:fibration_ses} we have the following. 
+\begin{Thm}\label{thm:les_fibration}
+	Given a (Serre) fibration $p \colon E \to B$, and base points $b \in B$ and $e \in F \coloneqq f^{-1}(b)$, then there is an isomorphism $p_* \colon \pi_n(E,F,e) \xrightarrow{\simeq} \pi_n(B,b)$ for all $n \ge 1$. Hence, if $B$ is path-connected, there is a long exact sequence of homotopy groups
+	\[
+	\begin{split}
+\cdots \pi_n(F,e) \to \pi_n(E,e) \xrightarrow{p_*} \pi_n(B,b) \to \pi_{n-1}(F,e) \to \cdots \\ \cdots \to \pi_0(E,e) \to 0. 
+\end{split}
+	\]
+\end{Thm}
+\begin{proof}
+	We first show that $p_*$ is surjective. Let $[f] \in \pi_n(B,b)$, represented by a map $f \colon (I^n, \partial I^n) \to (B,b)$. Note that $I^{n-1} \times \{ 0 \} \subseteq \partial I^n$, so we can form the diagram
+% https://q.uiver.app/?q=WzAsNCxbMCwxLCJJXm4iXSxbMSwxLCJCIl0sWzEsMCwiRSJdLFswLDAsIklee24tMX0gXFx0aW1lcyBcXHsgMCBcXH0iXSxbMCwxLCJmIiwyXSxbMiwxLCJwIl0sWzMsMF0sWzMsMiwiXFxhc3QiXSxbMCwyLCJmIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	{I^{n-1} \times \{ 0 \}} & E \\
+	{I^n} & B
+	\arrow["f"', from=2-1, to=2-2]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["\ast", from=1-1, to=1-2]
+	\arrow["\tilde f", dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+where the lift $\tilde f$ exists because $p$ is a Serre fibration. Because $f(\partial I^n) = b$, we have $\tilde f(\partial I^n) \subseteq F$. So $\tilde f $ represents an element of $\pi_n(E,F,e)$ with $p_*([\tilde f]) = [p \circ \tilde f] =[f]$. 
+
+To show injectivity, let $\tilde f_0,\tilde f_1 \colon (I^n,\partial I^n,J^{n-1}) \to (E,F,e)$ be such that $p_*(\tilde f_0) = p_*(\tilde f_1)$. Let $H \colon (I^n 
+\times I,\partial I^n \times I) \to (B,b)$ be a homotopy from $p\tilde f_0$ to $p \tilde f_1$. We can find a lift in the following diagram:
+% https://q.uiver.app/?q=WzAsNCxbMCwxLCJJXm4gXFx0aW1lcyBJIl0sWzEsMSwiQiJdLFsxLDAsIkUiXSxbMCwwLCJXIl0sWzAsMSwiSCIsMl0sWzIsMSwicCJdLFszLDBdLFszLDIsImYiXSxbMCwyLCJcXHRpbGRlIEgiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	W & E \\
+	{I^n \times I} & B
+	\arrow["H"', from=2-1, to=2-2]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["{\tilde H}", dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+where $W = I^n \times \{ 0 \} \cup I^n \times \{ 1 \} \cup \partial I^n \times I$, and $f$ is $\tilde f_0$ on $I^n \times \{ 0 \}$, $\tilde f_1$ on $I^n \times \{ 1 \}$ and $f$ is constant on $\partial I^n \times I$. The homotopy lifting property gives $\tilde H$ defining a homotopy between $\tilde f_0$ and $\tilde f_1$. 
+
+The result then follows (modulo some noise in the low homotopy groups, which can be checked by hand) from \Cref{thm:les_rel}. 
+\end{proof}
+\begin{Exa}[Hopf fibrations]
+	Let $\mathbb{F} = \mathbb{R},\mathbb{C}$ or $\mathbb{H}$ and fix an integer $d = 1,2$ or $4$, respectively. 
+
+	Let 
+	\[
+\mathbb{F}^{n+1} = \begin{cases}
+	\mathbb{R}^{n+1} & \mathbb{F} = \mathbb{R} \\
+	\mathbb{C}^{n+1} \cong \mathbb{R}^{2(n+1)} & \mathbb{F} = \mathbb{C} \\
+	\mathbb{H}^{n+1} \cong \mathbb{R}^{4(n+1)} & \mathbb{F} = \mathbb{H}.
+\end{cases}
+\]
+
+In other words, $\mathbb{F}^{n+1} \cong \mathbb{R}^{d(n+1)}$. We define the $d(n+1)-1$ dimensional sphere inside $\mathbb{F}^{n+1}$:
+\[
+S^{d(n+1)-1} = \{ (u_0,\ldots,u_n) \mid u_i \in \mathbb{F}, \sum_{k=0}^n |u_k|^2 = 1 \}.
+\]
+We define the $\mathbb{F}$-projective space by
+\[
+\mathbb{F}P^n \coloneqq \mathbb{F}^{n+1} \setminus \{ 0 \} / \sim
+\]
+where $(u_0,\ldots,u_n) \simeq (v_0,\ldots,v_n)$ if and only if there exists $\lambda \in \mathbb{F} \setminus \{ 0 \}$ such that $v_i = \lambda u_i$ for $i = 0,\ldots,n$. 
+
+Now we have a map $\phi \colon S^{d(n+1)-1} \to \mathbb{F}P^n$ that sends $(u_0,\ldots,u_n)$ to its equivalence class $[u_0,\ldots,u_n]$. Let $F = \phi^{-1}[1,\ldots,0] = \{ (\lambda, 0,\ldots,0) \mid \lambda \in \mathbb{F},|\lambda| = 1 \} \cong S^{d-1}$. 
+
+We will see later in the course that $S^{d-1} \to S^{d(n+1)-1} \to \mathbb{R}P^n$ is a fibration. Explicitly, the fibrations are
+\[
+\begin{split}
+S^0 &\to S^n \to \mathbb{R}P^n \\
+S^1 &\to S^{2n+1} \to \mathbb{C}P^n \\
+S^3 &\to S^{4n+3} \to \mathbb{H}P^n.
+\end{split}
+\]
+The case $n = 1$ is of interest, as then projective spaces are just spheres, and we obtain the following Hopf fibrations 
+\[
+\begin{split}
+S^0 &\to S^1 \to S^1 \\
+S^1 &\to S^{3} \to S^2\\
+S^3 &\to S^{7} \to S^4.
+\end{split}
+\]
+There is also a fibration $S^7 \to S^{15} \to S^8$. It is a difficult theorem of Adams that these are the only fibrations between spheres. 
+\end{Exa}
 \end{document}
