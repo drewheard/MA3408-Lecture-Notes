@@ -79,7 +79,7 @@ F([x,t],0) = [x,t] \quad \text{ and } \quad F([x,t],1) = [x,1]. \qedhere
 \]
 
 \end{proof}
-\begin{Lem}
+\begin{Lem}\label{lem:extend_over_cone}
 The following are equivalent:
 \begin{enumerate}[label=(\roman*)]
 	\item $f \colon X \to Y$ is null-homotopic. 
@@ -314,7 +314,7 @@ This is similar to the case of $\pi_n(X)$ itself, and the details are left to th
 	where the map $\partial_n$ is defined by $\partial_n([f]) = [f\mid_{I^{n-1}}]$. 
 \end{Thm}
 The proof relies on the following.
-\begin{Lem}[Compression criterion]
+\begin{Lem}[Compression criterion]\label{lem:compression}
 	A map $f \colon (D^n,S^{n-1},x_0) \to (X,A,x_0)$ represents 0 in $\pi_n(X,A,x_0)$ if and only if $f \sim g \text{ rel } S^{n-1}$, where $g$ is a map whose image is contained entirely in $A$. 
 \end{Lem}
 \begin{proof}
@@ -344,7 +344,7 @@ j_*[G_1] = [j \circ G_1] = [G_1] = [f]
 	Let $[f] \in \pi_n(X,A,x_0)$ then $i_*\partial \in \pi_{n-1}(X,x_0)$ is the class represented by $f \mid_{I^{n-1}}$ and this is homotopic relative $J^{n-2}$ to the constant map to $x_0$, via $f$ viewed as a homotopy. So this implies $\im(\partial_*) \subseteq \ker(i_*)$. Conversely, let $[f] \in \ker(i_*)$ i.e., $i_*[f]= [i \circ f]= 0$. Therefore, there exists a homotopy $H$ between $f$ and a constant map through a homotopy that has image in $X$ and preserves $x_0$. Since $H_0 = f$ has image in $A$ and $H_1$ has image $\{x_0\}$, and $H_0$ takes the boundary to $\{ x_0 \}$, we see that $[H] \in \pi_n(X,A,x_0)$, and moreover $\partial([H]) \simeq f$. Therefore, $[f] \in \im(\partial)$, and $\im(\partial) = \ker(i_*)$. 
 \end{proof}
 \begin{Def}
-	A pair $(X,A)$ with basepoint $x_0$ is said to be $n$-connected if $\pi_i(X,A) = 0$ for all $i \le n$. 
+	A pair $(X,A)$ with basepoint $x_0$ is said to be $n$-connected if $\pi_i(X,A) = 0$ for all $i \le n$.\footnote{A 0-connected space is exactly a path-connected space.}
 \end{Def}
 \begin{Lem}
 	A pair $(X,A)$ is $n$-connected if and only if $\pi_i(A) \xr{i_*} \pi_i(X)$ is an isomorphism for $i < n$ and a surjection for $i = n$. 
@@ -756,7 +756,7 @@ p_*Y \to Y^I \xrightarrow{p_1} Y
 \]
 where $p_*Y$ is the space of paths with end-point $\ast$. 
 \end{Exa}
-\begin{Def}
+\begin{Def}\label{def:mapping_path_space}
 	Given $f \colon X \to Y$ the mapping path space $P_f$ (or mapping cocylinder), is the pullback of $f$ along $Y^I \xrightarrow{p_1}Y$, i.e., 
 % https://q.uiver.app/?q=WzAsNCxbMCwwLCJQX2YiXSxbMCwxLCJYIl0sWzEsMCwiWV5JIl0sWzEsMSwiWSJdLFsyLDMsInBfMSJdLFsxLDMsImYiLDJdLFswLDEsInAnIiwyXSxbMCwyXSxbMCwzLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
 \[\begin{tikzcd}
@@ -967,4 +967,395 @@ S^3 &\to S^{7} \to S^4.
 \]
 There is also a fibration $S^7 \to S^{15} \to S^8$. It is a difficult theorem of Adams that these are the only fibrations between spheres. 
 \end{Exa}
+\section{The homotopy extension and lifting property}
+We recall that given $f \colon X \to Y$ we defined the mapping path space $P_f$ in \Cref{def:mapping_path_space}, and that $P_f \to Y$ is a fibration.
+\begin{Def}
+	The homotopy fiber $F_f$ of $f \colon X \to Y$ is the fiber of the fibration $P_f \to Y$. This is well-defined up to homotopy. 
+\end{Def}
+The following is an extremely useful definition in homotopy theory; as we will see later, any weak equivalence between CW-complexes is in fact a homotopy equivalence.
+\begin{Def}
+	A map $f \colon (X,x_0) \to (Y,y_0)$ is a weak equivalence if $f_0 \colon \pi_0(X,x_0) \to \pi_0(Y,y_0)$ is a bijection and $f_* \colon \pi_k(X,x_0) \to \pi_k(Y,y_i)$ is an isomorphism for all $k \ge 1$. 
+\end{Def}
+\begin{Lem}
+	If $f \colon X \to Y$ is a weak-equivalence, then $\pi_k(F_f) = 0$ for all $k \ge 0$. 
+\end{Lem}
+\begin{proof}
+	This follows from the long exact sequence of a fibration (\Cref{thm:les_fibration}).
+\end{proof}
+\begin{Rem}
+We now make a series of remarks about a map $f \colon X \to Y$ with homotopy fiber $F_f$.
+\begin{enumerate}[label=(\roman*)]
+	\item  A map $\phi \colon S^{n-1} \to F_f$ corresponds to a diagram
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJTXntuLTF9Il0sWzAsMSwiRF5uIl0sWzEsMCwiWCJdLFsxLDEsIlkiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFswLDIsImciXSxbMiwzLCJmIl0sWzEsMywiaCIsMl1d
+\begin{equation}\label{dia:comm_square}
+\begin{tikzcd}
+	{S^{n-1}} & X \\
+	C(S^{n-1}) \cong {D^n} & Y
+	\arrow[hook', from=1-1, to=2-1]
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=2-2]
+	\arrow["h"', from=2-1, to=2-2]
+\end{tikzcd}
+\end{equation}
+where $g$ is the composite $S^{n-1} \xrightarrow{\phi} F_f \to X$ (use \Cref{lem:extend_over_cone}). 
+\item The boundary map $\pi_n(Y) \to \pi_{n-1}(F_f)$ in the long exact sequence corresponds to the map sending the class of $\overline{h} \colon S^n \to Y$ to the class of $\pi_{n-1}(F_f)$ represented by the diagram
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJTXntuLTF9Il0sWzAsMSwiRF5uIl0sWzEsMCwiWCJdLFsxLDEsIlkiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFswLDIsImMiXSxbMiwzLCJmIl0sWzEsMywiaCIsMl1d
+\[\begin{tikzcd}
+	{S^{n-1}} & X \\
+	{D^n} & Y
+	\arrow[hook', from=1-1, to=2-1]
+	\arrow["c", from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=2-2]
+	\arrow["h"', from=2-1, to=2-2]
+\end{tikzcd}\]
+where $c = c_{x_0}$ is the constant map, and $h$ is the composite $D^n \to D^n/S^{n-1} \cong S^n \xrightarrow{\overline{h}} Y$.
+\item Similarly, the map $\pi_{n-1}(F_f) \to \pi_{n-1}(X)$ corresponds to sending the diagram \eqref{dia:comm_square} to the class $[g]$. 
+
+\item In particular, $\pi_{n-1}(F_f) = 0$ is equivalent to completing the diagram \eqref{dia:comm_square} in the following way:
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJTXntuLTF9Il0sWzAsMywiRF5uIl0sWzIsMCwiWCJdLFsyLDMsIlkiXSxbMSwxLCJDKFNee24tMX0pIl0sWzEsMiwiQyhEXm4pIl0sWzAsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMCwyLCJnIl0sWzIsMywiZiJdLFsxLDMsImgiLDJdLFswLDRdLFs0LDUsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzUsMSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiYXJyb3doZWFkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCwyLCJHIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsMywiSCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{S^{n-1}} && X \\
+	& {C(S^{n-1})} \\
+	& {C(D^n)} \\
+	{D^n} && Y
+	\arrow[hook', from=1-1, to=4-1]
+	\arrow["g", from=1-1, to=1-3]
+	\arrow["f", from=1-3, to=4-3]
+	\arrow["h"', from=4-1, to=4-3]
+	\arrow[from=1-1, to=2-2]
+	\arrow[hook, from=2-2, to=3-2]
+	\arrow[tail reversed, no head, from=3-2, to=4-1]
+	\arrow["G", dashed, from=2-2, to=1-3]
+	\arrow["H", dashed, from=3-2, to=4-3]
+\end{tikzcd}\]
+\end{enumerate}
+\end{Rem}
+We can restate the last remark in the following lemma. 
+\begin{Lem}
+	Suppose $f \colon X \to Y$ is a map with homotopy fiber $F_f$. Then $\pi_{n-1}(F_f) = 0$ if and only if each diagram
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJTXntuLTF9IFxcdGltZXMgXFx7IDEgXFx9Il0sWzEsMCwiWCJdLFsxLDEsIlkiXSxbMCwxLCJTXntuLTF9IFxcdGltZXMgSSBcXGN1cCBEXm4gXFxjdXAgXFx7IDAgXFx9Il0sWzAsMSwiZyJdLFsxLDIsImYiXSxbMCwzLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDIsImgiLDJdXQ==
+\[\begin{tikzcd}
+	{S^{n-1} \times \{ 1 \}} & X \\
+	{S^{n-1} \times I \cup D^n \times \{ 0 \}} & Y
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=2-2]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow["h"', from=2-1, to=2-2]
+\end{tikzcd}\]
+can be completed to a diagram
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJTXntuLTF9IFxcdGltZXMgXFx7IDEgXFx9Il0sWzIsMCwiWCJdLFsyLDMsIlkiXSxbMCwzLCJTXntuLTF9IFxcdGltZXMgSSBcXGN1cCBEXm4gXFxjdXAgXFx7IDAgXFx9Il0sWzEsMSwiRF5uIFxcdGltZXMgXFx7IDEgXFx9Il0sWzEsMiwiRF5uIFxcdGltZXMgSSJdLFswLDEsImciXSxbMSwyLCJmIl0sWzAsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMywyLCJoIiwyXSxbMCw0LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs0LDUsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsNSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNCwxLCJHIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsMiwiSCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{S^{n-1} \times \{ 1 \}} && X \\
+	& {D^n \times \{ 1 \}} \\
+	& {D^n \times I} \\
+	{S^{n-1} \times I \cup D^n \cup \{ 0 \}} && Y
+	\arrow["g", from=1-1, to=1-3]
+	\arrow["f", from=1-3, to=4-3]
+	\arrow[hook, from=1-1, to=4-1]
+	\arrow["h"', from=4-1, to=4-3]
+	\arrow[hook, from=1-1, to=2-2]
+	\arrow[hook, from=2-2, to=3-2]
+	\arrow[hook, from=4-1, to=3-2]
+	\arrow["G", dashed, from=2-2, to=1-3]
+	\arrow["H", dashed, from=3-2, to=4-3]
+\end{tikzcd}\]
+\end{Lem}
+\begin{proof}
+	For any disk we have a homeomorphism $CD^n \cong D^n \times I$ which sends the cone point to the center of $D^n \times \{ 1 \}, D^n$ to $S^{n-1} \times I \cup D^n\{ 0\}, S^{n-1}$ to $S^{n-1} \times \{ 1 \}$ and $CS^{n-1}$ to $D^n \times \{ 1 \}$. Thus the statement follows from the last part of the remark. 
+\end{proof}
+This extends to relative CW-complexes.\footnote{The following result is perhaps difficult to remember, but very useful!}
+\begin{Thm}[Homotopy extension and lifting property (HELP)]
+	Let $(X,A)$ be a relative CW-pair and $f \colon Y \to Z$ a weak equivalence. Then every diagram
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJBIFxcdGltZXMgXFx7IDEgXFx9Il0sWzAsMSwiQSBcXHRpbWVzIFxceyAwXFx9IFxcY3VwIFggXFx0aW1lcyBcXHsgMFxcfSJdLFsxLDAsIlkiXSxbMSwxLCJaIl0sWzAsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMCwyLCJnIl0sWzIsMywiZiJdLFsxLDMsImgiLDJdXQ==
+\[\begin{tikzcd}
+	{A \times \{ 1 \}} & Y \\
+	{A \times I  \cup X \times \{ 0\}} & Z
+	\arrow[hook', from=1-1, to=2-1]
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=2-2]
+	\arrow["h"', from=2-1, to=2-2]
+\end{tikzcd}\]
+can be completed to a diagram
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJBIFxcdGltZXMgXFx7IDEgXFx9Il0sWzIsMCwiWSJdLFsyLDMsIloiXSxbMCwzLCJBIFxcdGltZXMgSSBcXGN1cCBYIFxcdGltZXMgXFx7IDAgXFx9Il0sWzEsMSwiWCBcXHRpbWVzIFxceyAxIFxcfSJdLFsxLDIsIlggXFx0aW1lcyBJIl0sWzAsMSwiZyJdLFsxLDIsImYiXSxbMCwzLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDIsImgiLDJdLFswLDQsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzQsNSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMyw1LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs0LDEsIkciLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNSwyLCJIIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	{A \times \{ 1 \}} && Y \\
+	& {X \times \{ 1 \}} \\
+	& {X \times I} \\
+	{A \times I \cup X \times \{ 0 \}} && Z
+	\arrow["g", from=1-1, to=1-3]
+	\arrow["f", from=1-3, to=4-3]
+	\arrow[hook, from=1-1, to=4-1]
+	\arrow["h"', from=4-1, to=4-3]
+	\arrow[hook, from=1-1, to=2-2]
+	\arrow[hook, from=2-2, to=3-2]
+	\arrow[hook, from=4-1, to=3-2]
+	\arrow["G", dashed, from=2-2, to=1-3]
+	\arrow["H", dashed, from=3-2, to=4-3]
+\end{tikzcd}\]
+\end{Thm}
+\begin{proof}
+	The proof is by induction over the $n$-skeleton, with the base case being straightforward. For the inductive step, one reduces to attaching a single cell using the diagram
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJYX3tuLTF9IFxcdGltZXMgXFx7IDEgXFx9Il0sWzIsMCwiWSJdLFsyLDMsIloiXSxbMCwzLCJYX3tuLTF9IFxcdGltZXMgSSBcXGN1cCBYX24gXFx0aW1lcyBcXHsgMCBcXH0iXSxbMSwxLCJYX24gXFx0aW1lcyBcXHsgMSBcXH0iXSxbMSwyLCJYX24gXFx0aW1lcyBJIl0sWzAsMSwiR197bi0xfSJdLFsxLDIsImYiXSxbMCwzLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDIsIkhfe24tMX0gXFxjdXAgaCIsMl0sWzAsNCwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNCw1LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDUsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzQsMSwiR19uIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsMiwiSF9uIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	{X_{n-1} \times \{ 1 \}} && Y \\
+	& {X_n \times \{ 1 \}} \\
+	& {X_n \times I} \\
+	{X_{n-1} \times I \cup X_n \times \{ 0 \}} && Z 
+	\arrow["{G_{n-1}}", from=1-1, to=1-3]
+	\arrow["f", from=1-3, to=4-3]
+	\arrow[hook, from=1-1, to=4-1]
+	\arrow["{H_{n-1} \cup h}"', from=4-1, to=4-3]
+	\arrow[hook, from=1-1, to=2-2]
+	\arrow[hook, from=2-2, to=3-2]
+	\arrow[hook, from=4-1, to=3-2]
+	\arrow["{G_n}", dashed, from=2-2, to=1-3]
+	\arrow["{H_n}", dashed, from=3-2, to=4-3]
+\end{tikzcd}\]\qedhere
+\end{proof}
+\begin{Rem}\label{Rem:relative_help}
+	If $(X,A)$ is a relative CW-complex of dimension $n$, and $f \colon Y \to Z$ is an $n$-equivalence\sidenote{That is, the homotopy fiber of $f$ is $(n-1)$-conneceted}, the same argument goes through to show that the conclusion of HELP also holds in this case. 
+\end{Rem}
+\begin{exercise}{}{}
+Show that if $f = \text{id}$ in HELP, then we recover the homotopy extension property. 
+\end{exercise}
+Our first application of this will be Whitehead's theorem. We start with the folliwing lemma. 
+\begin{Lem}\label{lem:whitehead_lemma}
+	For any weak equivalence $f \colon Y \to Z$ and any CW-complex $X$, the induced map $f_* \colon [X,Y] \to [X,Z]$ is a bijection. 
+\end{Lem}
+\begin{proof}
+	We first show surjectivity. The pair $X = (X,\emptyset)$ is a relative CW-complex, and so we can apply HELP. Then, for any $h \colon X \to Z$ we have a diagram
+	% https://q.uiver.app/?q=WzAsNixbMCwwLCJcXGFzdCJdLFsyLDAsIlkiXSxbMiwzLCJaIl0sWzAsMywiIFggXFx0aW1lcyBcXHsgMCBcXH0iXSxbMSwxLCJYIFxcdGltZXMgXFx7IDEgXFx9Il0sWzEsMiwiWCBcXHRpbWVzIEkiXSxbMCwxXSxbMSwyLCJmIl0sWzAsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMywyLCJoIiwyXSxbMCw0LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs0LDUsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsNSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNCwxLCJHIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsMiwiSCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	\ast && Y \\
+	& {X \times \{ 1 \}} \\
+	& {X \times I} \\
+	{ X \times \{ 0 \}} && Z
+	\arrow[from=1-1, to=1-3]
+	\arrow["f", from=1-3, to=4-3]
+	\arrow[hook, from=1-1, to=4-1]
+	\arrow["h"', from=4-1, to=4-3]
+	\arrow[hook, from=1-1, to=2-2]
+	\arrow[hook, from=2-2, to=3-2]
+	\arrow[hook, from=4-1, to=3-2]
+	\arrow["G", dashed, from=2-2, to=1-3]
+	\arrow["H", dashed, from=3-2, to=4-3]
+\end{tikzcd}\]
+The homotopy $H \colon X \times I \to Z$ satisfies $H_0 = h$ and $H_1 = f \circ G$. Therefore, $[h] = f_*[G]$. 
+
+Now assume that $g_0,g_1 \in [X,Y]$ with $f_*[g_0] = f_*[g_1]$. Let $F \colon X \times I \to Z$ be a homotopy between $f \circ g_0$ and $f \circ g_1$. Consider the pair $(X \times I,X \times \partial I)$. This is a relative CW-pair, and HELP gives a diagram
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJYIFxcdGltZXMgXFxwYXJ0aWFsIEkgXFx0aW1lcyBcXHsxIFxcfSJdLFsyLDAsIlkiXSxbMiwzLCJaIl0sWzAsMywiIFggXFx0aW1lcyBcXHBhcnRpYWwgSSBcXHRpbWVzIEogXFxjdXAgWCBcXHRpbWVzIEkgXFx0aW1lcyBcXHsgMCBcXH0iXSxbMSwxLCJYIFxcdGltZXMgSSBcXHRpbWVzIFxceyAxIFxcfSJdLFsxLDIsIlggXFx0aW1lcyBJIFxcdGltZXMgSiJdLFswLDEsImciXSxbMSwyLCJmIl0sWzAsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMywyLCJoIiwyXSxbMCw0LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs0LDUsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsNSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNCwxLCJHIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsMiwiSCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{X \times \partial I \times \{1 \}} && Y \\
+	& {X \times I \times \{ 1 \}} \\
+	& {X \times I \times J} \\
+	{ X \times \partial I \times J \cup X \times I \times \{ 0 \}} && Z
+	\arrow["g", from=1-1, to=1-3]
+	\arrow["f", from=1-3, to=4-3]
+	\arrow[hook, from=1-1, to=4-1]
+	\arrow["h"', from=4-1, to=4-3]
+	\arrow[hook, from=1-1, to=2-2]
+	\arrow[hook, from=2-2, to=3-2]
+	\arrow[hook, from=4-1, to=3-2]
+	\arrow["G", dashed, from=2-2, to=1-3]
+	\arrow["H", dashed, from=3-2, to=4-3]
+\end{tikzcd}\]
+Here $g \colon X \times \partial I \to Y$ sends $(X,\nu)$ to $g_{\nu}(x)$ for $\nu = 1,2$ and $h \colon X \times \partial I \times J \to Z$ sends $(x,\nu,s)$ to $f \circ g_{\nu}(x)$. The lift $G \colon X \times I \to Y$ gives a homotopy between $g_0$ and $g_1$, i.e., $[g_0] = [g_1]$, and so $f_*$ is injective. 
+\end{proof}
+\begin{Rem}
+Using \Cref{Rem:relative_help} we have the following variant of \Cref{lem:whitehead_lemma}: If $f \colon Y \to Z$ is $n$-connected, then for any CW-complex $X$, the induced map $f_* \colon [X,Y] \to [X,Z]$ is an isomorphism if $n < \dim(X)$ and is surjective if $n = \dim(X)$. 
+\end{Rem}
+\begin{Thm}[Whitehead theorem]
+	If $f \colon X \to Y$ is weak-equivalence between CW-complexes, then it is a homotopy equivalence. 
+\end{Thm}
+\begin{proof}
+	Suppose $f \colon X \to Y$ is a weak equivalence, so $f_* \colon [Y,X] \xrightarrow{\simeq} [Y,Y]$. In other words, there exists a $g \colon Y \to X$ such that $f_*[g] = [f \circ g] = [\text{id}_Y]$, i.e., $f \circ g \simeq \text{id}_Y$. Then, $f \circ g \circ f \simeq f$ as well. But, we also have $f_* \colon [X,X] \xrightarrow{\simeq} [X,Y]$, which sends $\text{id}_X$ to $f$ and $g \circ f$ to $f \circ g \circ f \simeq f$. Therefore, $\text{id}_X \simeq g \circ f$, and so $X \simeq Y$. 
+\end{proof}
+\begin{Cor}If $X$ is a CW-complex with $\pi_i(X) = 0$ for all $i$, then $X$ is contractible. 
+\end{Cor}
+\begin{proof}
+	Apply Whitehead's theorem to the unique map $X \to \ast$. 
+\end{proof}
+\begin{Rem}
+	We cannot drop any assumptions from this theorem, as the following examples show:
+	\begin{enumerate}[label=(\roman*)]
+	\item We must have a map inducing the weak equivalence; the homotopy groups cannot be abstractly isomorphism, e.g., consider $\mathbb{R}P^2 \times S^3$ and $\mathbb{R}P^3 \times S^2$. 
+\item The Warsaw circle\footnote{See, for example, \url{https://wildtopology.com/bestiary/warsaw-circle/}} is an example of a space with $\pi_nX = 0$ for all $n$, but for which $X$ is not contractible. 
+\end{enumerate}
+\begin{exercise}{}{}
+Use Whitehead’s theorem to show that a CW complex is contractible if it is the union of an increasing
+sequence of sub-complexes $X_1 \subseteq X_2 \subseteq \cdots$ such that each inclusion $X_i \to X_{i+1}$ is null-homotopic.
+\end{exercise}
+\begin{exercise}{}{}
+	Let $f \colon X \to Y$ be a weak homotopy equivalence. Assuming $X$ is a CW-complex, and $Y$ has the homotopy type of a CW-complex, show that $f$ is a homotopy equivalence.
+\end{exercise}
+\end{Rem}
+\section{The cellular approximation theorem}
+The next important theorem is the cellular approximation theorem. 
+\begin{Def}
+If $X$ and $Y$ are CW-complexes, and $g \colon X \to Y$ a map, then $g$ is cellular if $g$ carries the $n$-skeleton of $X$ into the $n$-skeleton of $Y$, i.e., $f(X^n) \subseteq Y^n$ for all $n \ge 0$. Similarly, for relative CW-complexes $(X,A)$ and $(Y,B)$ a map $g \colon (X,A) \to (Y,B)$ is cellular if $g((X,A)^n) \subseteq (Y,B)^n$ for all $n \ge 0$. 
+\end{Def}
+The main result of this section is the following. 
+\begin{Thm}[Cellular approximation theorem]\label{Thm:cellular_approx}
+Suppose $f \colon (X,A) \to (Y,B)$ is a map of relative CW-complexes, then $f$ is homotopic rel $A$ to a cellular map of pairs. 
+\end{Thm}
+We will use the following lemma. 
+\begin{Lem}\label{lem:cellular_approximation_lemma}
+If $Z$ is obtained from $Y$ by attaching cells of dimension $>n$, then $\pi_k(Z,Y) = 0$ for all $k \le n$, i.e., $(Z,Y)$ is $n$-connected. 
+\end{Lem}
+\begin{proof}
+	We can reduce to the case where $Z = Y \cup_{\alpha} D^r$ for $\alpha \colon S^{r-1} \to Y, r \ge n+1$. Then $\pi_{k}(Z,Y)$ corresponds to a map of pairs $g \colon (D^k,S^{k-1}) \to (Z,Y)$. By smooth or simplicial approximation,\footnote{See \url{https://ncatlab.org/nlab/show/simplicial+approximation+theorem}} we can find a map $g' \colon D^k \to Z$ such that $g' = g$ on $S^{k-1}$ and $g'$ misses a point $p$ in the interior of $D^k$. We can deform $X \setminus \{ p \}$ onto $A$ and so deform $g'$ to a map in $Y$. 
+\end{proof}
+\begin{proof}[Proof of \Cref{Thm:cellular_approx}]
+	The proof is by induction, with the base case left to the reader. So, by induction, we have $g_{n-1} \colon X^{n-1} \to Y^{n-1}$ and a homotopy $H_{n-1} \colon X^{n-1} \times I \to Y$ such that $H_0 = f$ and $H_1 = g_{n-1}$. Now consider the diagram  
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJYXntuLTF9IFxcdGltZXMgXFx7MSBcXH0iXSxbMCwzLCJYXntuLTF9IFxcdGltZXMgSSBcXGN1cCBYXm4gXFx0aW1lcyBcXHswXFx9Il0sWzEsMSwiWF5uIFxcdGltZXMgXFx7IDEgXFx9Il0sWzEsMiwiWF5uIFxcdGltZXMgSSJdLFsyLDAsIllebiJdLFsyLDMsIlkiXSxbMCwxXSxbMCwyLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCw0LCJcXGlvdGFfbiBcXGNpcmMgZ197bi0xfSJdLFs0LDVdLFsxLDUsIkhfe24tMX0gXFxjdXAgZiJdLFsyLDQsImdebiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFszLDUsIkhfbiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{X^{n-1} \times \{1 \}} && {Y^n} \\
+	& {X^n \times \{ 1 \}} \\
+	& {X^n \times I} \\
+	{X^{n-1} \times I \cup X^n \times \{0\}} && Y
+	\arrow[from=1-1, to=4-1]
+	\arrow[hook, from=1-1, to=2-2]
+	\arrow[hook, from=4-1, to=3-2]
+	\arrow[hook, from=2-2, to=3-2]
+	\arrow["{\iota_n \circ g_{n-1}}", from=1-1, to=1-3]
+	\arrow[from=1-3, to=4-3]
+	\arrow["{H_{n-1} \cup f}", from=4-1, to=4-3]
+	\arrow["{g^n}", dashed, from=2-2, to=1-3]
+	\arrow["{H_n}", dashed, from=3-2, to=4-3]
+\end{tikzcd}\]
+Here $\iota_n \colon Y^{n-1} \to Y^n$ is the inclusion map. We can apply the version of HELP given in \Cref{Rem:relative_help} since $Y^n \hookrightarrow Y$ is an $n$-equivalence by \Cref{lem:cellular_approximation_lemma}, which gives the required extensions $g_n$ and $H_n$. 
+\end{proof}
+There is also a relative version, whose proof we omit. 
+\begin{Thm}
+Suppose $f \colon (X,A) \to (Y,B)$ is a map of relative CW-complexes which is cellular on a subspace $(X',A')$ of $(X,A)$, then there is a cellular map $g \colon (X,A) \to (Y,B)$ homotopic to $f$ relative to $Y$ such that $g\mid_{X'} = f$. 
+\end{Thm}
+\begin{Exa}\label{exa:cellular_sphere}
+	Suppose $i < n$. Taking the standard CW structure on the $k$-sphere with one 0-cell and one $k$-cell, we see that any map $S^i \to S^n$ can be made cellular. Because the $i$-skeleton of $S^n$ is a point, we see that such a map is null-homotopic, and deduce that $\pi_i(S^n) = 0$ for $i<n$. 
+\end{Exa}
+\begin{Cor}
+	Let $A \subseteq X$ be CW-complexes, and suppose that all cells of $X \setminus A$ have dimension $>n$. Then $\pi_i(X,A) = 0$ for $i \le n$. 
+\end{Cor}
+\begin{proof}
+	Let $[f] \in \pi_i(X,A)$, i.e., $f \colon (D^i,S^{i-1}) \to (X,A)$. We can use cellular approximation to replace $f$ with a cellular map $g$ with $g(D^i) \subseteq X^i$. But for $i \le n$ we have $X^i \subseteq A$, so the image of $g$ is contained in $A$. By the compression criterion (\Cref{lem:compression}) we have $[f] = [g] = 0$. 
+\end{proof}
+\begin{exercise}{}{}
+Use cellular approximation to show that the $n$-skeletons of homotopy equivalent CW-complexes without cells
+of dimension $n + 1$ are also homotopy equivalent.	
+\end{exercise}
+\section{Excision and the Freudenthal suspension theorem}
+On of the most powerful results in (co)homology is excision. As we will see in this section, things are more complicated for homotopy groups. This is one of the reasons why homotopy groups are (generally) more complicated to compute than homology groups. 
+\begin{Def}
+	An excisive triad $(X;A,B)$ consists of a space $X$ along with two subspaces $A,B \subseteq X$ such that $X = A^{\circ} \cup B^{\circ}$. 
+\end{Def}
+\begin{Rem}
+In homology $(A,A \cap B) \to (X,B)$ induces an isomorphism in homology (by excision). This fails in homotopy, as the following example shows.
+\end{Rem}
+\begin{Exa}
+	Let $X = S^2 \vee S^2$ and let $A = C_+$ and $B = C_{-}$, the southern and northern hemispheres, with a small overlap between the two hemispheres (see \Cref{fig:fst}).
+\begin{figure} \centering\includegraphics[scale = 0.5]{fst}\caption[][30pt]{The decomposition of $X = S^2 \vee S^2$ into the upper/lower hemispheres $C_{\pm}$, which intersect along the equator $S^1 \vee S^1$.}\label{fig:fst}\end{figure}
+
+
+	 Then $C_+ \cap C_{-} \simeq S^1 \vee S^1$ and $C_+ \cup C_{-} = S^2 \vee S^2$. Note that both $C_+$ and $C_{-}$ are contractible (they have the homotopy type of a wedge of two discs). By the long exact sequence in homotopy we have 
+	\[
+\pi_i(S^2 \vee S^2,C_{-}) \cong \pi_i(S^2 \vee S^2) \quad \text{ and } \quad \pi_i(C_+,S^1 \vee S^2) \cong \pi_{i-1}(S^1 \vee S^2). 
+	\]
+	In particular, when $i = 2$ we have $\pi_2(S^2\vee S^2,C_{-}) \cong \pi_2(S^2 \vee S^2)$ is the free abelian group on two generators while $\pi_2(C_+,S^1 \vee S^1) \cong \pi_1(S^1 \vee S^1)$ is the free group on two generators. Therefore $(C_+,S^1 \vee S^1) \to (S^2 \vee S^2,C_{-})$ does not induce an isomorphism on homotopy. 
+\end{Exa}
+\begin{Rem}
+The following is the homotopy theoretic version of excision. We will not give a full proof as it is quite involved. The full details can be found in May's book, for example. 
+\end{Rem}
+\begin{Thm}[Homotopy excision/Blakers--Massey theorem]
+	Let $(X;A,B)$ be an excisive triad such that $C = A \cap B$ is non-empty and $(A,C)$ and $(B,C)$ are relative CW-complexes. Suppose $(A,C,\ast)$ is $n$-connected and $(B,C,\ast)$ is $m$-connected for every choice of base-point $\ast \in C$. Then the map 
+	\[
+\pi_i(A,C) \to \pi_i(X,B)
+	\]
+	induced by the inclusion is an isomorphism for $i < n+m$ and a surjection for $i = n+m$, i.e., it is an $(n+m)$-equivalence. 
+\end{Thm}
+\begin{proof}[Sketch of proof]
+	The proof proceeds by a number of reductions. 
+
+	\textbf{Reduction 1: } It suffices to prove this when $A$ is built from $C$ by attaching cells of dimension greater than $n$ and $B$ is built by attaching cells of dimension greater than $m$. Indeed, we claim we can replace the pair $(A,C)$ with an $n$-connected pair $(A',C)$ such that the following diagram commutes: 
+	% https://q.uiver.app/?q=WzAsMyxbMCwwLCJDIl0sWzEsMCwiQSciXSxbMCwxLCJBIl0sWzAsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwyLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFsxLDIsIlxcc2ltIl1d
+\[\begin{tikzcd}
+	C & {A'} \\
+	A
+	\arrow[hook, from=1-1, to=1-2]
+	\arrow[hook', from=1-1, to=2-1]
+	\arrow["\sim", from=1-2, to=2-1]
+\end{tikzcd}\]
+and $A'$ is built from $C$ by attaching cells of dimension greater than $n$ only. To show this, we
+build up a CW complex from $C$ by adding cells which represent elements of $\pi_i(A)$
+or gets rid of elements which should not be there.\sidenote{For example, the first step is to kill the kernel of the surjection $\pi_n(C) \to \pi_n(A)$ by attaching cells to $A$. We will discuss this procedure in more detail when we discuss Eilenberg--Maclane spaces.} Since $\pi_i(C) \cong \pi_i(A)$ for all $i < n$, we only need to add cells of dimension greater than $n$ to make this work. This procedure can be carried out for $(B,C)$ as well.
+
+\textbf{Reduction 2: } It suffices to prove excision when each of $A$ and $B$ is built from $C$ by attaching one cell apiece. To see this, let us say that a pair of extensions $C \to A$ and $C \to B$ is of size $(p,q)$ if $A$ is obtained by attaching $p$-cells (of dimension greater than $n$) and $B$ is obtained by attaching $q$-cells (of dimension greater than $m$). The claim is that excision holds for size $(1,1)$ if it holds for size $(p,q)$. The proof is inductive, via a long each sequence of `triad homotopy groups' and the 5-lemma.
+
+The following lemma, whose proof is omitted, then completes the proof of homotopy excision. \end{proof}
+\begin{Lem}Suppose that $X = A \cup_C B$ where $A = C \cup e$ and $B = C \cup e'$ are built from $C$ by attaching cells of dimension $>n$ and $>m$, respectively. Then, $\pi_i(A,C) \to \pi_i(X,B)$ is an isomorphism for $i < n+m$ and a surjection for $i = n+m$. 
+\end{Lem}
+Our main application will be the Freudenthal suspension theorem. We first make a definition. 
+\begin{Def}
+	Let $(X,x_0)$ be a based space. The suspension homomorphism is the map $\Sigma_* \colon \pi_i(X) \to \pi_{i+1}(\Sigma X)$ which sends $[f]$ to $[\Sigma f]$, where $\Sigma f \colon S^{i+1} \to \Sigma X$ sends $[s,t]$ to $[f(s),t]$. 
+\end{Def}
+\begin{Thm}
+	Let $X$ be an $(n-1)$-connected CW-complex, then the suspension homomorphism
+	\[
+\Sigma_* \colon \pi_i(X) \to \pi_{i+1}(\Sigma X)
+	\]
+	is an isomorphism for $i < 2n-1$ and a surjection for $i = 2n-1$. 
+\end{Thm}
+\begin{proof}
+	Write $\Sigma X = C_+X \cup C_{-}X$ for the decomposition of $\Sigma X$ into its upper and lower cone. Now consider the diagram
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHBpX3tpKzF9KENfK1gsWCkiXSxbMSwwLCJcXHBpX3tpKzF9KFxcU2lnbWEgWCwgQ197LX1YKSJdLFswLDEsIlxccGlfaShYKSJdLFsxLDEsIlxccGlfe2krMX0oXFxTaWdtYSBYKSJdLFswLDFdLFswLDIsIlxcY29uZyIsMl0sWzIsMywiXFxTaWdtYV8qIiwyXSxbMSwzLCJcXGNvbmciXV0=
+\[\begin{tikzcd}
+	{\pi_{i+1}(C_+X,X)} & {\pi_{i+1}(\Sigma X, C_{-}X)} \\
+	{\pi_i(X)} & {\pi_{i+1}(\Sigma X)}
+	\arrow[from=1-1, to=1-2]
+	\arrow["\cong"', "\partial", from=1-1, to=2-1]
+	\arrow["{\Sigma_*}"', from=2-1, to=2-2]
+	\arrow["\cong", "\partial"', from=1-2, to=2-2]
+\end{tikzcd}\]
+which can be shown to commute. Then it suffices to show that the upper diagram is an isomorphism/surjection in the appropriate range. To see this, note that if $X$ is $(n-1)$-connected, then $(C_{\pm}X,X)$ are $n$-connected (use the long exact sequence and contractibility of $C_{\pm}X$). By excision, 
+\[
+\pi_{i+1}(C_+,X) \to \pi_{i+1}(\Sigma X,C_{-}X)
+\]
+is an isomorphism for $ i + 1 < 2n$ and a surjection for $i+1 = 2n$, and the result follows.  
+\end{proof}
+\begin{Exa}
+	The $n$-sphere has $\pi_i(S^n) = 0$ for $i < n$ (\Cref{exa:cellular_sphere}). So by the Freudenthal suspension theorem
+	\[
+\Sigma_* \colon \pi_i(S^n) \to \pi_{i+1}(S^{n+1})
+	\]
+	is an isomorphism for $i < 2n-1$. In particular, $\pi_n(S^n) \to \pi_{n+1}(S^{n+1})$ is an isomorphism for $n < 2n-1$, i.e., for $n \ge 2$. In particular, there is a surjection $\mathbb{Z} \cong \pi_1(S^1) \to \pi_2(S^2)$ and isomorphisms $\pi_2(S^2) \cong \pi_3(S^3) \cong \cdots \pi_n(S^n) $. In fact, the Hopf fibration $S^1 \to S^2 \to S^3$ shows that $\pi_2(S^2) \cong \mathbb{Z}$, and so we have $\pi_n(S^n) \cong \mathbb{Z}$ for all $n \ge 1$.  
+\end{Exa}
+\begin{Rem}
+	Let $X$ be a CW-complex. By the suspension theorem $\Sigma^nX$ is always $(n+1)$-connected. Thus, 
+	\[
+\Sigma_* \colon \pi_i(\Sigma nX) \to \pi_{i+1}(\Sigma^{n+1}X)
+	\]
+	is an isomorphism for $i < 2n-1$. This means that for a fixed value of $k$, the maps in the sequence
+	\[
+\pi_k(X) \to \pi_{k+1}(\Sigma X) \to \pi_{k+2}(\Sigma^2X) \to \cdots \Sigma_{k+i}(\Sigma^iX)
+	\]
+	eventually become isomorphisms. This is known as the $k$-th stable homotopy group of $X$. 
+\end{Rem}
+\begin{Rem}
+	There is an equivalent way to state homotopy excision. Suppose $f \colon A \to X$ is an $m$-equivalence and $g \colon A \to Y$ is an $n$-equivalence. We can form the following diagram
+	% https://q.uiver.app/?q=WzAsNixbMSwwLCJBIl0sWzIsMCwiWCJdLFsxLDEsIlkiXSxbMiwxLCJaIl0sWzAsMCwiRl9mIl0sWzAsMSwiRl96Il0sWzAsMSwiZiJdLFswLDIsImciLDJdLFsyLDMsInoiLDJdLFsxLDNdLFszLDAsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXItaW52ZXJzZSJ9fV0sWzQsMF0sWzUsMl0sWzQsNSwiXFx0aWxkZSBnIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	{F_f} & A & X \\
+	{F_z} & Y & Z
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["g"', from=1-2, to=2-2]
+	\arrow["z"', from=2-2, to=2-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow["\ulcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-3, to=1-2]
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{\tilde g}"', dashed, from=1-1, to=2-1]
+\end{tikzcd}\]
+Then $\tilde f \colon F_f \to F_z$ is an $(n+m-1)$-equivalence. This follows because $\pi_n(X,A) \cong \pi_{n-1}F_f$ (use \Cref{thm:les_fibration} and the 5-lemma, for example). 
+\end{Rem}
+\begin{exercise}{}{}
+Show that if $f \colon X \to Y$ is an $n$-connected map between spaces with $X$ an $(m-1)$-connected CW-complex, then the comparison map $F(f) \to \Omega C(f)$ is $(m+n-1)$-connected. 
+\end{exercise}
 \end{document}

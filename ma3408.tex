@@ -76,6 +76,55 @@
 
 \appendix
 \chapter{A nice category of topological spaces}
-
-
+\section{The compact open topology}
+In this appendix we briefly discuss how to give the set of continuous maps between topological spaces $X$ and $Y$ a topology, such that the product is left adjoint to the Hom functor. To begin, we fix some notation. 
+\begin{Rem}
+Let $X$ and $Y$ be topological spaces. Let $M(X,Y)$ denote the \emph{set} of continuous homomorphisms from $X$ to $Y$. There is an evaluation map 
+\[
+e' \colon \Hom_{\mathop{Sets}}(X,Y) \times X \to Y
+\]
+given by $e'(f,x) = f(x)$.  This restricts to a function
+\[
+e \colon M(X,Y) \times X \to Y.
+\]
+\end{Rem}
+\begin{Def}
+A topology on $M(X,Y)$ is called admissible if $e$ is continuous with respect to this topology. 
+\end{Def}
+\begin{Rem}
+It is possible that $M(X,Y)$ has no admissible topologies. 
+\end{Rem}
+\begin{Def}
+The compact-open topology on $M(X,Y)$ has as a sub-base the family of sets 
+\[
+U^K = \{f \in M(X,Y)\mid f(K) \subseteq U\}
+\]
+where $K \subseteq U$ is compact and $U$ is open in $Y$. 
+\end{Def}
+\begin{Prop}
+If $X$ is a locally compact\footnote{i.e., every point in $X$ has a compact neighborhood} Hausdorff space, the the compact-open topology on $M(X,Y)$ is admissible. 
+\end{Prop}
+\begin{Rem}
+The compact-open topology is the coarsest admissible topology: for any admissible topology $\tau$ we have $\tau_{\text{co}} \subseteq \tau$. 
+\end{Rem}
+\begin{Rem}
+Suppose we have sets $X,Y,X$. Then there is an adjoint equivalence
+% https://q.uiver.app/?q=WzAsMixbMCwwLCJcXEhvbV97XFxtYXRob3B7U2V0c319KFggXFx0aW1lcyBZLFopICJdLFsxLDAsIlxcSG9tX3tcXG1hdGhvcHtTZXRzfX0oWCxcXEhvbV97XFxtYXRob3B7U2V0c319KShZLFopIl0sWzAsMSwiXFxwaGkiLDAseyJvZmZzZXQiOi0xfV0sWzEsMCwiXFxwc2kiLDAseyJvZmZzZXQiOi0xfV1d
+\[\begin{tikzcd}
+    {\Hom_{\mathop{Sets}}(X \times Y,Z) } & {\Hom_{\mathop{Sets}}(X,\Hom_{\mathop{Sets}})(Y,Z)}
+    \arrow["\phi", "\sim"', shift left=1, from=1-1, to=1-2]
+    \arrow["\psi", shift left=1, from=1-2, to=1-1]
+\end{tikzcd}\]
+given by
+\[
+\phi(f)(x)(y) = f(x,y) \quad \text{ and } \quad \psi(g)(x,y) = g(x)(y).
+\]
+\end{Rem}
+\begin{Prop}
+If $X,Y,X$ are topological spaces with $Y$ Hausdorff, locally compact, then 
+\[
+\phi \colon M(X \times Y,Z) \xrightarrow{\cong} M(X,M(Y,Z))
+\]
+is an isomorphism of sets. If $X$ is Hausdorff, then it is a homeomorphism (using the compact-open topology). 
+\end{Prop}
 \end{document}
