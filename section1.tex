@@ -263,7 +263,7 @@ Then $p_*[\tilde f] = [f]$, and $p_*$ is surjective.
 
 To see that $p_*$ is injective, let $[\tilde f] \in \ker(p_*)$, i.e., $p_*[\tilde f] = [p \circ \tilde f] = 0$. Let $f = p \circ \tilde f$, then this is homotopic to the constant map $f \simeq c_{x_0}$ via a homotopy $\phi_t \colon (S^n,s_0) \to (X,x_0)$ with $\phi_1 =f $ and $\phi_0 = c_{x_0}$. By the same argument as above, the homotopy $\phi_t$ can be lifted to $\tilde \phi_t$. This satisfies $p \circ \tilde \phi_1 \simeq \phi_1 $ and $p \circ \tilde \phi_0 \simeq \phi_0$. By the uniqueness of lifts, we must have $\tilde \phi_1 \simeq \tilde f$ and $\tilde \phi_0 \simeq c_{x_0}$. In other words, $\tilde \phi_t$ gives a homotopy between $\tilde f$ and $c_{x_0}$, so that $[\tilde f]  = 0$, and $p_*$ is injective. 
 \end{proof}
-\begin{Exa}
+\begin{Exa}\label{ex:s1}
 	$S^1$ has universal cover $p \colon \mathbb{R} \to S^1$, $p(t) = e^{2\pi i t}$. Then $\pi_n(S^1) \cong \pi_n(\mathbb{R}) \cong 0$ for $n \ge 2$. 
 \end{Exa}
 \begin{exercise}{}{}
@@ -586,7 +586,7 @@ q^{-1}p^{-1}(U) = (p \circ q)^{-1}(U) = (H \mid_{X \times \{ 1\}})^{-1}(U)
 \]
 is open in $X$ by the continuity of $H \mid_{X \times \{ 1\}}$, hence $p^{-1}(U)$ is open in $X/A$ by the definition of the quotient topology, and so $p$ is continuous. We leave the proof of continuity of $G$ to the reader. 
 \end{proof}
-\begin{Thm}
+\begin{Thm}\label{thm:quotient_cofibration}
 Let $A \subseteq X$ be a subspace with $A$ contractible. Suppose that the inclusion $i \colon A \to X$ is a cofibration, then $X \to X/A$ is a homotopy equivalence. 
 \end{Thm}
 \begin{proof}
@@ -1238,6 +1238,9 @@ Suppose $f \colon (X,A) \to (Y,B)$ is a map of relative CW-complexes which is ce
 \begin{proof}
 	Let $[f] \in \pi_i(X,A)$, i.e., $f \colon (D^i,S^{i-1}) \to (X,A)$. We can use cellular approximation to replace $f$ with a cellular map $g$ with $g(D^i) \subseteq X^i$. But for $i \le n$ we have $X^i \subseteq A$, so the image of $g$ is contained in $A$. By the compression criterion (\Cref{lem:compression}) we have $[f] = [g] = 0$. 
 \end{proof}
+\begin{Cor}\label{cor:connectivity_cw_complex}
+If $X$ is a CW-complex, then $\pi_i(X,X_n) = 0$ for all $i \le n$. 
+\end{Cor}
 \begin{exercise}{}{}
 Use cellular approximation to show that the $n$-skeletons of homotopy equivalent CW-complexes without cells
 of dimension $n + 1$ are also homotopy equivalent.	
@@ -1264,7 +1267,7 @@ In homology $(A,A \cap B) \to (X,B)$ induces an isomorphism in homology (by exci
 \begin{Rem}
 The following is the homotopy theoretic version of excision. We will not give a full proof as it is quite involved. The full details can be found in May's book, for example. 
 \end{Rem}
-\begin{Thm}[Homotopy excision/Blakers--Massey theorem]
+\begin{Thm}[Homotopy excision/Blakers--Massey theorem]\label{thm:excision}
 	Let $(X;A,B)$ be an excisive triad such that $C = A \cap B$ is non-empty and $(A,C)$ and $(B,C)$ are relative CW-complexes. Suppose $(A,C,\ast)$ is $n$-connected and $(B,C,\ast)$ is $m$-connected for every choice of base-point $\ast \in C$. Then the map 
 	\[
 \pi_i(A,C) \to \pi_i(X,B)
@@ -1358,4 +1361,159 @@ Then $\tilde f \colon F_f \to F_z$ is an $(n+m-1)$-equivalence. This follows bec
 \begin{exercise}{}{}
 Show that if $f \colon X \to Y$ is an $n$-connected map between spaces with $X$ an $(m-1)$-connected CW-complex, then the comparison map $F(f) \to \Omega C(f)$ is $(m+n-1)$-connected. 
 \end{exercise}
+\section{The CW-approximation theorem}
+In this next section we show that, up to weak homotopy equivalence, every space is a CW-complex. We begin with the following. 
+\begin{Lem}\label{lem:killing_cells}
+Let $X$ be any space. Then there exists a space $Y$ and a map $i \colon X \to Y$ such that $i$ induces isomorphisms $\pi_q \colon \pi_qX \xrightarrow{\simeq} \pi_qY$ for $0 \le q \le n$ and $\pi_{n+1}Y = 0$.
+\end{Lem}
+\begin{proof}
+The idea of the proof is to attach cells to $X$ to kill the classes we don't want to exist. To that end, let $J$ be a set of representatives for each $[j] \in \pi_{n+1}X$. Form the pushout diagram
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXGNvcHJvZF97aiBcXGluIEp9U157bisxfSJdLFsxLDAsIlgiXSxbMCwxLCJcXGNvcHJvZF97aiBcXGluIEp9RF57bisyfSJdLFsxLDEsIlkiXSxbMCwxXSxbMCwyXSxbMiwzXSxbMSwzXSxbMywwLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyLWludmVyc2UifX1dXQ==
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\coprod_{j \in J}S^{n+1}} \& X \\
+	{\coprod_{j \in J}D^{n+2}} \& Y
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=1-2, to=2-2]
+	\arrow["\ulcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+\end{tikzcd}\]
+Note that $(Y,X)$ is a relative CW-complex with  $Y^{n+1} = X$ so $X \to Y$ is an $(n+1)$-equivalence. We claim that $\pi_{n+1}Y = 0$. Indeed, let $f \colon (S^{n+1},\ast) \to (Y,\ast)$ be a representative of $\pi_{n+1}(Y)$. By cellular approximation we can assume that $f$ factors through the $(n+1)$-skeleton of $Y$, which is just $X$. In other words, $f \simeq j$ for some $j \in J$. But $j \colon S^{n+1} \to X \to Y$ is null-homotopic by assumption, and so $\pi_{n+1}Y = 0$.  
+\end{proof}
+\begin{Prop}[CW-approximation]
+Given any topological space $X$ there exists a CW complex $\Gamma X$ and a weak equivalence $\Gamma X \xrightarrow{\gamma} X$.\footnote{In slightly fancy language, this is cofibrant replacement in a certain model structure on the category of topological spaces. }
+\end{Prop}
+\begin{proof}
+We can assume that $X$ is path-connected, or we can work one path component at a time. Choose a set of representatives $J = \{ j_q \mid [j] \in \pi_qX, q \ge 1 \}$. Let $X_1 = \bigvee_{j_q \in J} S^q$ (with its standard CW structure) and $\gamma_1 \coloneqq \vee j_q \colon X_1 \to X$. By construction, $\gamma_1$ is a 1-equivalence. Suppose by induction that we have constructed a CW complex $X_n$ and an $n$-equivalence $X_n \to X$. Once again, let $J = \{ j \mid [j] \in \pi_nX_n, [\gamma_n \circ j] = 0 \in \pi_nX \}$. By construction, for each $j \in J$ there exists an extension $h_j$ of $S^n \xrightarrow{\gamma_n \circ j} X$ to $D^{n+1}$. We then construct $X_{n+1}$ by the pushout 	
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXGNvcHJvZF97aiBcXGluIEp9U157bn0iXSxbMSwwLCJYIl0sWzAsMSwiXFxjb3Byb2Rfe2ogXFxpbiBKfURee24rMX0iXSxbMSwxLCJZIl0sWzIsMiwiWCJdLFswLDEsIlxcY29wcm9kIGoiXSxbMCwyXSxbMiwzXSxbMSwzXSxbMywwLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyLWludmVyc2UifX1dLFsyLDQsIlxcY29wcm9kIGhfaiIsMix7ImN1cnZlIjoxfV0sWzEsNCwiXFxnYW1tYV9uIiwwLHsiY3VydmUiOi0xfV0sWzMsNCwiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\coprod_{j \in J}S^{n}} \& X_n \\
+	{\coprod_{j \in J}D^{n+1}} \& X_{n+1} \\
+	\&\& X
+	\arrow["{\coprod j}", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=1-2, to=2-2]
+	\arrow["\ulcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+	\arrow["{\coprod h_j}"', curve={height=6pt}, from=2-1, to=3-3]
+	\arrow["{\gamma_n}", curve={height=-6pt}, from=1-2, to=3-3]
+	\arrow["{\gamma_{n+1}}", dashed, from=2-2, to=3-3]
+\end{tikzcd}\]
+Any map $S^q \to X_{n+1}$ for $q \le n$ factors through $X_n$, so $\pi_q\gamma_{n+1}$ factors through $\pi_q\gamma_n$ for $q \le n$. Since $X^n \to X^{n+1}$ is an $n$-equivalence, we have $\pi_q\gamma_{n+1} = \pi_q\gamma_n$ is an isomorphism for $0 \le q < n$. For $q = n$ we have a commutative diagram
+% https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXHBpX25YXm4iXSxbMSwwLCJcXHBpX3tufVhee24rMX0iXSxbMSwxLCJcXHBpX25YIl0sWzAsMSwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzAsMiwiXFxwaV9uXFxnYW1tYV9uIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEsMiwiXFxwaV9uXFxnYW1tYV97bisxfSJdXQ==
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\pi_nX^n} \& {\pi_{n}X^{n+1}} \\
+	\& {\pi_nX}
+	\arrow[two heads, from=1-1, to=1-2]
+	\arrow["{\pi_n\gamma_n}"', two heads, from=1-1, to=2-2]
+	\arrow["{\pi_n\gamma_{n+1}}", from=1-2, to=2-2]
+\end{tikzcd}\]
+so that $\pi_n\gamma_{n+1}$ is a surjection. Moreover, any map $j \in \pi_nX^n$ such that $[\gamma_n \circ j] =0 \in \pi_{n+1}$ extends to $D^{n+1}$ in $X_{n+1}$, hence maps to zero in $\pi_{n+1}X_{n_1}$. Therefore, $\pi_n\gamma_{n+1}$ is also injective, and thus an isomorphism. 
+
+Finally, setting $\Gamma X = \colim_n X_n$ and $\gamma= \colim_n \gamma_n$ gives the required CW-approximation.  
+\end{proof}
+\begin{Rem}
+There is also a version of CW-approximation for pairs. Namely, if $(X,A)$ is pair then one can product a CW-pair $(\Gamma X,\Gamma A)$ weakly-homotopic to $(X,A)$ such that $\Gamma A$ is a sub-complex of $\Gamma X$. 
+\end{Rem}
+\begin{exercise}{}{}
+Let $f \colon X \to Y$ be a map of topological spaces. Show that there is an induced map, $\Gamma f \colon \Gamma X \to \Gamma Y$, unique up to homotopy, between the CW-approximations to $X$ and $Y$, such that the following diagram commutes:
+\[
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAB12BxOgW17oACABogAvqXSZc+QigCM5KrUYs2nHvyEBNcZJAZseAkTLzl9Zq0QhREqUdlFF56pbU3dY5TCgBzeCJQADMAJwheJDIQHAgkRRUrdW4+AUFgvRDwyMRo2KQAJjdVaw52P1S6EGoGOgAjGAYABWljORBQrD8ACxxMkDCI+Op8xABmYqSbTgqtfsGcopi48Zr6xpbHExtOnr7JjwHxCjEgA
+\begin{tikzcd}
+\Gamma X \arrow[r, "\Gamma f"] \arrow[d, "\gamma' "'] & \Gamma Y \arrow[d, "\gamma"] \\
+X \arrow[r, "f"']                                   & Y                           
+\end{tikzcd}.
+\]
+Deduce that CW-approximations are unique up to homotopy. 
+\end{exercise}
+\begin{exercise}{}{}
+ Assume given maps $f \colon X \to Y$ and $g \colon Y \to X$ such that $g \circ f$ is
+homotopic to the identity. (We say that $Y$ “dominates” $X$.) Suppose
+that $Y$ is a CW complex. Prove that $X$ has the homotopy type of a CW
+complex.
+\end{exercise}
+\section{Eilenberg--Maclane spaces}
+\begin{Def}
+A space $X$ having just one non-trivial homotopy group $\pi_n(X) = G$ is called an Eilenberg--MacLane space $K(G,n)$. 
+\end{Def}
+\begin{Exa}
+We have seen that $S^1$ is a $K(\mathbb{Z},1)$ (\Cref{ex:s1}). We will see later that $\mathbb{C}P^{\infty}$ is a $K(\mathbb{Z},2)$. 
+\end{Exa}
+\begin{Rem}
+We have not yet shown that Eilenberg--MacLane spaces exist in any generality. In fact, since $\pi_n$ is abelian for $n \ge 2$ we see that for $n \ge 2$ Eilenberg--Maclane spaces can only exist for $G$ abelian. The goal of this section is to show that this is the only obstruction: for any group $G$, abelian if $n \ge 2$, the Eilenberg--MacLane space $K(G,n)$ exists. We begin with a lemma. 
+\end{Rem}
+\begin{Lem}\label{lem:homotopy_wedge_spheres}
+For $n \ge 2$ we have $\pi_n(\bigvee_{\alpha} S_{\alpha}^n)$ is free abelian, generated by the inclusion of the factors. 
+\end{Lem}
+\begin{proof}
+Suppose first that we have only finitely many factors. Then we can regard $\bigvee_{\alpha} S_{\alpha}^n$ as the $n$-skeleton of $\prod_{\alpha} S_{\alpha}^n$. Taking the usual cell structure on $S^n$ we see that $\prod_{\alpha} S_{\alpha}^n$ has a cell structure with one zero cell and the $n$-cells 
+\[
+\bigcup_{\alpha}(\prod_{\beta \ne \alpha} D^0_{\beta}) \times D_{\alpha}^n
+\]
+and together these form the $n$-skeleton of  $\prod_{\alpha} S_{\alpha}^n$. Hence $\prod_{\alpha} S_{\alpha}^n \setminus \bigvee_{\alpha} S_{\alpha}^n$ has only cells of dimension at least $2n$, so that the pair $(\prod_{\alpha} S_{\alpha}^n,\bigvee_{\alpha} S_{\alpha}^n)$ is $(2n-1)$-connected by \Cref{cor:connectivity_cw_complex}. Therefore, we have (recall we fix $n \ge 2$)
+\[
+\pi_n(\bigvee_{\alpha} S_{\alpha}^n) \cong \pi_n(\prod_{\alpha} S_{\alpha}^n) \cong \prod_{\alpha} \pi_n(S_{\alpha}^n) \cong \bigoplus_{\alpha} \mathbb{Z}.
+\]
+This handles the case of finitely many summands. The infinite case can be reduced to this case in the following way: Let $\Phi \colon \bigoplus_{\alpha}\pi_n(S_{\alpha}^n) \to \pi_n(\bigvee_{\alpha} S_{\alpha}^n)$ be induced by the inclusions. Then, any map $f \colon S^n \to \bigvee_{\alpha} S_{\alpha}^n$ has compact image contained in the wedge of finitely many summands, so such that $[f]$ is in the image of $\Phi$ by the finite case, and $\Phi$ is surjective. Similarly, a null-homotopy of $f$ has compact image and again by the finite case $\Phi$ must be injective. 
+\end{proof}
+\begin{Rem}
+If $n = 1$ then the Seifert--Van Kampen theorem shows that $\pi_1(\bigvee_{\alpha} S_{\alpha}^1)$ is the free group on the components; as soon as we have more than one sphere, this group is not abelian. 
+\end{Rem}
+\begin{Lem}\label{lem:technical_lemma}
+	If a CW-pair $(X,A)$ is $r$-connected $(r \ge 1)$ and $A$ is $s$-connected $(s \ge 0)$, then the map $\pi_i(X,A) \to \pi_i(X/A)$ induced by the quotient map $X \to X/A$ is an isomorphism if $i \le r+s$ and onto if $i = r+s-1$. 
+\end{Lem}
+\begin{proof}
+Let $i \colon A \to X$ be the inclusion and $C(i)$ the mapping cone, $C(i) = X \cup_A CA$. Since $CA$ is contractible and $(CA,C(i))$ is a cofibration the quotient map 
+\[
+q \colon C(i) \to C(i)/CA \simeq X/A
+\]
+is a homotopy equivalence (\Cref{thm:quotient_cofibration}). So we have a sequence of homomorphisms
+\[
+\pi_i(X,A) \to \pi_i(C(i),CA) \xleftarrow{\cong} \pi_i(C(i)) \xrightarrow{\cong} \pi_i(X/A),
+\]
+where the first and second maps are induced by the inclusion of pairs and the third map is the isomorphism $q_*$. The second map is an isomorphism by the long exact sequence of the pair $(C(i),CA)$. 
+
+Now we know that $(X,A)$ is $r$-connected and $CA,A)$ is $(s+1)$-connected which follows from the assumption on $A$ on the long exact sequence in homotopy. The result now follows from excision, \Cref{thm:excision}. 
+\end{proof}
+\begin{Rem}
+Suppose $n \ge 2$, and we are given maps $\phi_{\beta} \colon S_{\beta}^n \to \bigvee_{\alpha} S_{\alpha}^n$. Then we construct a space $X$ as the pushout 
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXGJpZ3ZlZV97XFxiZXRhfSBTX3tcXGJldGF9Xm4iXSxbMSwwLCJcXGJpZ3ZlZV97XFxhbHBoYX0gU197XFxhbHBoYX1ebiJdLFswLDEsIlxcYmlndmVlX3tcXGJldGF9IERfe1xcYmV0YX1ee24rMX0iXSxbMSwxLCJYIl0sWzAsMSwiKFxccGhpX1xcYmV0YSkiXSxbMCwyLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDNdLFsxLDNdLFszLDAsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXItaW52ZXJzZSJ9fV1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\bigvee_{\beta} S_{\beta}^n} \& {\bigvee_{\alpha} S_{\alpha}^n} \\
+	{\bigvee_{\beta} D_{\beta}^{n+1}} \& X
+	\arrow["{(\phi_\beta)}", from=1-1, to=1-2]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow["(\Phi_{\beta})"', from=2-1, to=2-2]
+	\arrow[from=1-2, to=2-2]
+	\arrow["\ulcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+\end{tikzcd}\]
+\end{Rem}
+\begin{Lem}
+We have 
+\[
+\pi_n(X) \cong \pi_n(\bigvee_{\alpha} S_{\alpha}^n)/\langle \phi_{\beta} \rangle \cong (\bigoplus_{\alpha}\mathbb{Z})/\langle \phi_{\beta} \rangle.
+\]
+\end{Lem}
+\begin{proof}
+The pair $(X,\bigvee_{\alpha} S_{\alpha}^n)$ is $n$-connected and fits in a long exact sequence
+\[
+\pi_{n+1}(X,\bigvee_{\alpha} S_{\alpha}^n) \xrightarrow{\partial} \pi_n(\bigvee_{\alpha}S_{\alpha}^n) \to \pi_n(X) \to \pi_n(X,\bigvee_{\alpha} S_{\alpha}^n) = 0,
+\]
+where the final equality follows as a consequence of cellular approximation, see \Cref{cor:connectivity_cw_complex}. It follows that $\pi_n(X) \cong \pi_n(\bigvee_{\alpha}S_{\alpha}^n)/\im(\partial)$. 
+
+We have $X/\bigvee_{\alpha} S_{\alpha}^n\simeq \bigvee S_{\beta}^{n+1}$, and so by \Cref{lem:homotopy_wedge_spheres} and \Cref{lem:technical_lemma} we have $\pi_{n+1}(X,\bigvee_{\alpha}S_{\alpha}^n) \cong \pi_{n+1}(\bigvee_{\beta} S_{\beta}^{n+1})$ is free with a basis consisting of the (restriction of the) characteristic maps $\Phi_{\beta}$ of the attaching cells. Since $\partial([\Phi_{\beta}]) = [\phi_{\beta}]$, the claim follows. 
+\end{proof}
+\begin{Exa}\label{Exa:almost_em_space}
+Using the previous results, any abelian group $G$ can be realized as $\pi_n(X)$ for $n \ge 2$ of some space $X$. Indeed, choosing a presentation $G = \langle g_{\alpha} \mid r_{\beta} \rangle$ we can take
+\[
+X = \left ( \bigvee_{\alpha} S_{\alpha}^n \right) \cup \bigcup_{\beta} D_{\beta}^{n+1},
+\]
+with the $S_{\alpha}^n$'s corresponding to the generators, and the discs are attached by maps $f \colon S_{\beta}^n \to \bigvee_{\alpha}S_{\alpha}^n$ satisfying $[f] = r_{\beta}$. Then, the previous lemma says that $\pi_n(X) \cong G$. In fact, $\pi_i(X) = 0$ for $i < n$ by cellular approximation, but we have no control over the higher homotopy groups. In order to construct Eilenberg--Maclane spaces, we have to kill higher homotopy groups. 
+\end{Exa}
+\begin{Thm}
+For any $n \ge 1$ and any group $G$ (abelian if $n \ge 2$) there exists an Eilenberg--Maclane space $K(G,n)$. 
+\end{Thm}
+\begin{proof}
+Let $X_{n+1} = \left ( \bigvee_{\alpha} S_{\alpha}^n \right) \cup \bigcup_{\beta} D_{\beta}^{n+1}$ be as in \Cref{Exa:almost_em_space}. We want to build a space $X_{n+2}$ which agrees with $X_{n+1}$ in homotopy up to $\pi_n$ but has $\pi_{n+1}X_{n+2} = 0$. We have seen exactly how to do this in \Cref{lem:killing_cells}. Repeating this procedure inductively and taking colimits, we product a space $X$ with the correct homotopy groups. 
+\end{proof}
 \end{document}
