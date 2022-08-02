@@ -2,10 +2,14 @@
 \usepackage{subfiles} 
 \usepackage{microtype,mathrsfs}
 \usepackage{amsmath,amsthm}
+\usepackage[all]{xypic}
+\usepackage{pgf,tikz}
 \usepackage{graphicx}
 \usepackage{cleveref}
 \hypersetup{colorlinks}
 \usepackage{quiver,mathtools}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
 %\geometry{showframe}% for debugging purposes -- displays the margins
 \usepackage{tikz-cd}
 \setcounter{secnumdepth}{2}
@@ -66,15 +70,27 @@
 \newcommand{\xr}{\xrightarrow}
 \Crefname{tcb@cnt@exercise}{Exercise}{Exercise 1}
 \Crefname{Exa}{Example}{Examples}
+\newcommand{\bbZ}{\mathbb{Z}}
 \dmo{\Hom}{Hom}
+\dmo{\coker}{coker}
 \dmo{\im}{im}
 \dmo{\colim}{colim}
-
+\dmo{\Ext}{Ext}
+\dmo{\Sp}{Sp}
+\dmo{\Tor}{Tor}
+\dmo{\Set}{Set}
+\dmo{\Ab}{Ab}
+\dmo{\Top}{Top}
+\dmo{\Ring}{Ring}
+\dmo{\op}{op}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
 \newcommand{\cat}[1]{\mathcal{#1}}%or: 
 \begin{document}
 \maketitle
+\tableofcontents
 \subfile{section1}
-
+\subfile{section2}
 \appendix
 \chapter{A nice category of topological spaces}
 \section{The compact open topology}

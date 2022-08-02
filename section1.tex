@@ -1516,4 +1516,149 @@ For any $n \ge 1$ and any group $G$ (abelian if $n \ge 2$) there exists an Eilen
 \begin{proof}
 Let $X_{n+1} = \left ( \bigvee_{\alpha} S_{\alpha}^n \right) \cup \bigcup_{\beta} D_{\beta}^{n+1}$ be as in \Cref{Exa:almost_em_space}. We want to build a space $X_{n+2}$ which agrees with $X_{n+1}$ in homotopy up to $\pi_n$ but has $\pi_{n+1}X_{n+2} = 0$. We have seen exactly how to do this in \Cref{lem:killing_cells}. Repeating this procedure inductively and taking colimits, we product a space $X$ with the correct homotopy groups. 
 \end{proof}
+\begin{exercise}{}{}
+Exhibit a fibration $F \to E \to B$ where, up to weak homotopy equivalence, $F$ is a $K(G, n-1)$, $B$ is a $K(G,n)$ and $E$ is contractible.
+\end{exercise}
+\begin{Rem}
+Eilenberg--Maclane spaces represent cohomology in the following sense.\footnote{We will talk about representability more when we discuss Brown representability}
+\end{Rem}
+\begin{Thm}\label{thm:representability_em}
+There are natural bijections $T \colon [X,K(G,n)] \xrightarrow{\simeq} H^n(X;G)$ for all CW-complexes and all $n > 0$ with $G$ any abelian group. Such a $T$ has the form $T([f]) = f^*(\alpha)$ for a distinguished class $\alpha \in H^n(K(G,n);G)$.  
+\end{Thm}
+\begin{proof}
+Recall that if $h^*$ is an unreduced cohomology theory on the category of CW-pairs, and $h^n(\ast) = 0$ for $n \ne 0$, then there exists a natural isomorphism $h^n(X,A) \cong H^n(X,A;h^0(\ast))$ for all CW-pairs $(X,A)$ and all $n$.
+
+Now define $h^n(X) = [X,K(G,n)]$. This defines a reduced cohomology theory and the coefficient groups $h^n(S^i) = \pi_i(K(G,n)$ are the same as $\tilde H^i(S^i;G)$. Therefore, the previous paragraph (translated into reduced cohomology) gives the representability result. It remains to be seen that $T$ has the claimed form. This is formal: let $\alpha = T(\text{id})$ for $\text{id} \colon K(G,n) \to K(G,n)$ the identity map. Then, 
+\[
+T([f]) = T(f^*(\text{id})) \cong f^*(T(\text{id})) = f^*(\alpha). \qedhere
+\]
+\end{proof}
+We can use this to prove a uniqueness theorem for Eilenberg--MacLane spaces. We begin with a lemma.
+\begin{Lem}
+If $X$ is $(n-1)$-connected, then $H^n(X;H) \cong \Hom(H_n(X);G)$.
+\end{Lem}
+\begin{proof}
+This follows from a form of the Universal Coefficient theorem: there is an exact sequence
+\[
+0 \to \Ext(H_{n-1}(X),G) \to H^n(X;G) \to \Hom(H_n(X),G) \to 0,
+\]
+but the first term is zero by assumption. 
+\end{proof}
+\begin{Rem}
+Let $G = \pi_n(X)$, then for $(n-1)$-connected $X$ the lemma gives $H^n(X;\pi_n(X)) \cong \Hom(H_n(X),\pi_n(X))$. The fundamental class $\iota$ is the class in $H^n(X;\pi_n(X))$ which corresponds to the inverse of a certain isomorphism $h_n \colon \pi_n(X) \cong H_n(X)$ we will construct in \Cref{sec:hurewicz}. In particular, to $K(G,n)$ we can associate a fundamental class $\iota_n \in H^n(K(G,n);G)$.
+\end{Rem}
+The following is a consequence of the representability of cohomology (\Cref{thm:representability_em}).
+\begin{Cor}
+There is a bijection
+\[
+[K(G,n),K(G',n)] \xrightarrow{\simeq} \Hom(G,G'). 
+\]
+\end{Cor}
+\begin{proof}
+We have bijections
+\[
+\begin{split}
+	[K(G,n),K(G',n)] & \cong H^n(K(G,n);G') \\
+	& \cong \Hom(H_n(K(G,n)),G') \\
+	& \cong \Hom(G,G'). 
+\end{split}
+\]
+\end{proof}
+\begin{Cor}
+The homotopy type of a CW-complex $K(G,n)$ is uniquely determined by $G$ and $n$.
+\end{Cor}
+\begin{proof}
+If $G \cong G'$ then this can be realized by a map $K(G,n) \to K(G',n)$ by the previous corollary, and since all other homotopy groups are trivial, it follows from Whitehead's theorem that this map is a homotopy equivalence. 
+\end{proof}
+\begin{Rem}[Moore spaces]
+There is a homology version of an Eilenberg--MacLane space, known as a Moore space: there exists a space $M(G,n)$ for an abelian group $G$ such that 
+\[
+\widetilde H_k(M(G,n)) \cong \begin{cases}
+G & k = n \\
+0 & \text{else.}
+\end{cases}
+\]
+These can in fact be used to construct Eilenberg--MacLane spaces:\footnote{This is the Dold–Thom theorem.} Let $\Sp^n(X) \coloneqq X^{\times n}/\Sigma_n$, and let the infinite symmetric product of a space $X$, denoted $\Sp^{\infty}(X)$, be the colimit of the $\Sp^n(X)$. Then, for any connected space $X$, we have $\widetilde H_n(X) \cong \pi_n(\Sp^{\infty}(X)$. In particular, $\Sp^{\infty}(M(G,n))$ is the Eilenberg--MacLane space $K(G,n)$. 
+\end{Rem}
+\section{The Hurewicz theorem}\label{sec:hurewicz}
+Define a homomorphism $h \colon \pi_i(X) \to H_i(X)$ by choosing a generator $u$ of $H_i(S^i) \cong \mathbb{Z}$ and defining $h([f]) = f_*(u)$. This is the Hurewicz homomorphism, and extends the Hurewicz homomorphism studied previously for $\pi_1$. 
+\begin{Thm}
+If a space $X$ is $(n-1)$-connected and $n \ge 2$, then $\tilde H_i(X) = 0$ for $i < n$ and $\pi_n(X) \cong H_n(X)$. Moreover, if a pair $(X,A)$ is $(n-1)$-connected with $n \ge 2$ and $\pi_i(A) = 0$, then $H_i(X,A) = 0$ for all $i \le n$ and $\pi_n(X,A) \cong H_n(X,A)$. 
+\end{Thm}
+\begin{Rem}
+The isomorphism in the theorem is induced by $h_n$, but we do not show this. 
+\end{Rem}
+\begin{proof}
+For note that the statements only involve homology and homotopy groups, so it suffices to use a CW approximation for $X$, or for $(X,A)$.\sidenote{Note that a weak equivalence in homotopy also induces a weak equivalence in (co)homology.} Secondly, the relative case can be reduced to the absolute case: $(X,A)$ is $(n-1)$-connected and $A$ is 1-connected, so \Cref{lem:whitehead_lemma} applies to show that $\pi_i(X,A) \cong \pi_i(X/A)$ for $i \le n$, while $H_i(X,A) \cong \tilde H_i(X/A)$ always holds for CW-pairs. 
+
+By a version of CW-approximation, we can assume $X$ has $(n-1)$-skeleton a point. 	In particular, $\tilde H_i(X) = 0$ for $i < n$. For showing $\pi_n(X) \cong H_n(X)$ we may ignore cells of dimension $> n+1$ since these do not change $\pi_n$ or $H_n$. So we can assume $X = (\bigvee_{\alpha} S_{\alpha}^n) \cup \bigcup_{\beta} D_{\beta}^{n+1}$. As we have seen, we then have $\pi_n(X) \cong \oplus_{\alpha} \mathbb{Z}/\langle \phi_{\beta} \rangle$, and the same is true for $H_n(X)$ by cellular homology. 
+\end{proof}
+\begin{Cor}[The homology Whitehead theorem]
+If $X$ and $Y$ are simply connected and $f \colon X \to Y$ a map inducing an isomorphism on homology, then $f$ is a homotopy equivalence. 
+\end{Cor}
+\begin{proof}
+By using the mapping cylinder $M_f$ we can assume $f$ is an inclusion. Then by the long exact sequence in homology we have $H_n(Y,X) = 0$ for all $n$. Since $X$ and $Y$ are simply-connected $\pi_1(Y,X) = 0$. So by the relative Hurewicz theorem, the first non-zero $\pi_n(Y,X)$ is equal to the first non-zero $H_n(YmX)$. Therefore, $\pi_n(Y,X) = 0$ for all $n$. Therefore, $f_* \colon \pi_n(X) \to \pi_n(Y)$ is an isomorphism for all $n$. By Whitehead's theorem, $f$ is a homotopy equivalence. 
+\end{proof}
+\begin{exercise}{}{}
+Show that a map between simply-connected CW complexes is a homotopy equivalence if its mapping cone is contractible. 
+\end{exercise}
+\begin{exercise}{}{}
+ Show that a simply-connected closed 3-manifold is homotopy
+equivalent to $S^3$. (You may assume that every closed manifold is homotopy equivalent to a CW-complex.)
+\end{exercise}
+\begin{Rem} This exercise is a little bit tricky, but you should try and compute the homology groups of such a manifold, and then use the homology Whitehead theorem. You should begin by noting that simply-connected manifolds are orientable. 
+\end{Rem}
+\section{Brown representability}
+In this section we explain Brown's representability theorem, which one can use to give an abstract proof of \Cref{thm:representability_em}.\footnote{There are no proofs given in this section.}
+\begin{Def}
+Let $F \colon \mathcal C \to \Set$ be a functor. Then $F$ is representable if it is naturally isomorphic to $\Hom_{\mathcal C}(A,-)$ for some $A \in \mathcal C$. 
+\end{Def}
+\begin{Rem}
+If such an $A$ exists, then it is unique up to unique isomorphism. 
+\end{Rem}
+\begin{Exa}
+\begin{itemize}
+\item The forgetful functor $\Ab \to \Set$ is representable. Indeed, $\Hom_{\Ab}(\mathbb{Z},M) \to M$ sending $f$ to $f(1)$ is an isomorphism. 
+\item The forgetful functor $\Ring \to \Set$ is represented by $\mathbb{Z}[x]$: the map $\Hom_{\Ring}(\mathbb{Z}[x],M) \to M$ sending $f$ to $f(x)$ is a bijection. 
+\item The functor $\Top^{\op} \to \Set$ that sends a topological space $(X,\tau_X)$ to its topology (the family of open sets) is representable. Indeed, let $Y = \{0 ,1\}$ with topology $\{ \emptyset, \{ 1 \}, \{ 0,1 \} \}$. Then, consider $\Hom_{\Top}(X,Y) \to \tau_X$ sending $f$ to $f^{-1}(\{ 1 \})$. This map is a bijection: the inverse is given by sending an open set $U$ to the characteristic function $\mathbb{1}_U$, i.e., the functor $\mathbb{1}_U \colon X \to \{ 0, 1\}$ defined by
+\[
+\mathbb{1}_U(x) = \begin{cases}
+1, &x \in U\\
+0, &x \not \in U.
+\end{cases}
+\]
+\end{itemize}
+\end{Exa}
+\begin{Rem}
+Note that representable functors preserve limits, because $\Hom_{\cat C}(A,-)$ preserves limits. This, if we want a functor to be representable it should at least preserve limits. Brown's representability theorem gives sufficient additional conditions for a functor from CW-complexes to Sets to be representable. 
+\end{Rem}
+Let $CW$ denote the homotopy category of based connected CW complexes. 
+\begin{Thm}
+	Let $F \colon CW^{\op} \to \Set$ be a functor satisfying:
+	\begin{enumerate}
+		\item $F(\bigvee_{\alpha} X_{\alpha}) = \prod_{\alpha} F(X_{\alpha})$
+		\item Let $X$ be an object of CW. Consider a cover $X = Y \cup Z$ by sub-complexes such that $Y,Z,Y \cap Z \in CW$. Then, for all $y \in F(Y)$ and $z \in F(Z)$ that restrict to the same elect of $F(Y \cap Z)$, there exists some $x \in F(x)$ that restricts to $z \in F(Z)$ and $y \in F(Y)$.
+	\end{enumerate}
+	Then $F$ is representable: there exists some $C \in CW$ and $c \in F(c)$ such that for all $X \in CW$, the map
+	\[
+[X,C] \to F(x), f \mapsto f^*(c)
+	\]
+	is a bijection. 
+\end{Thm}
+\begin{Exa}
+	Consider the functor $\tilde H^n(-;G) \colon CW^{\op} \to \Ab \to \Set$. This satisfies the above conditions (the second condition is essentially Mayer--Vietoris), and so there exists some $C \in CW$ and $c \in \widetilde H^n(C;G)$ such that 
+		\[
+[X,C] \to \widetilde H^n(X;G), f \mapsto f^*(c).
+	\]
+		is a bijection. In particular, if we take $X = S^i$, then 
+	\[[S^i,C] = \pi_i(C) \cong \widetilde H^n(S^i;G) \cong \begin{cases}
+	G & i = n \\
+	0 & \text{otherwise.}
+	\end{cases}
+	\]
+In other words, $C$ is a $K(G,n)$, and we recover \Cref{thm:representability_em}. 
+\end{Exa}
+\begin{Exa}
+Let $X$ be \emph{any} space, and consider the functor $F_X \colon CW^{\op} \to \Set$ given by $Z \mapsto [Z,X]$. This is representable, and so there exists $Y \in CW$ and a map $f \colon Y \to X$ such that $[Z,Y] \xrightarrow{\cong} [Z,X]$. Taking $Z$ to be the spheres, we see that $Y \to X$ is a CW-approximation. 
+\end{Exa}
 \end{document}
