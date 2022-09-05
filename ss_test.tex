@@ -1,0 +1,29 @@
+\documentclass{ltxdoc}
+\usepackage[a4paper,left=2.25cm,right=2.25cm,top=2.5cm,bottom=2.5cm,nohead]{geometry}
+\usepackage[tooltips]{spectralsequences}
+\usetikzlibrary{shapes.geometric}
+\usepackage{amssymb}
+\usepackage{afterpage}
+\usepackage[notmath]{sansmathfonts}
+\usepackage{verbatim}
+\usepackage{needspace}
+\usepackage[documentation]{tcolorbox}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\begin{document}
+\begin{sseqdata}[ name = tikz background example, cohomological Serre grading, classes = fill ]
+\begin{scope}[background]
+\node at (\xmax/2,\ymax+1.2) {\textup{Page \page}};
+\node at (\xmax/2,-1.7) {H^*(B)};
+\node[rotate = 90] at (-1.5,\ymax/2) {H^*(F)};
+\draw[step = 1cm, gray, very thin] (\xmin-0.5,\ymin-0.5) grid (\xmax+0.4,\ymax+0.5);
+\end{scope}
+\class(0,0)
+\class(3,0)
+\class(0,2)
+\class(3,2)
+\d3(0,2)
+\end{sseqdata}
+\printpage[name = tikz background example, page = 2]
+\printpage[name = tikz background example, page = 3]
+\end{document}

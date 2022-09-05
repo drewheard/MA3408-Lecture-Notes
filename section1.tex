@@ -612,7 +612,7 @@ By the HEP, the dotted map $\tilde H$ exists as in the diagram. This map satisfi
 Therefore, $q \colon X \to X/A$ is a homotopy equivalence, as claimed. 
 \end{proof}
 \begin{exercise}[label=ex:cofibratonpushout]{Cofibrations are pushout closed.}{}
-Let $i \colon A \to X$ be a cofibration, and $g \colon A \to B$ any map, then the induced map $B \to B \cup_g X$ is a fibration. 
+Let $i \colon A \to X$ be a cofibration, and $g \colon A \to B$ any map, then the induced map $B \to B \cup_g X$ is a cofibration. 
 \end{exercise}
 \section{Fibrations and the homotopy lifting property}
 The dual notion of a cofibration is a fibration, where the homotopy extension property is replaced by the homotopy lifting property. 
@@ -756,6 +756,9 @@ p_*Y \to Y^I \xrightarrow{p_1} Y
 \]
 where $p_*Y$ is the space of paths with end-point $\ast$. 
 \end{Exa}
+\begin{Rem}[The path-space fibration]\label{rem:path_space_fibration}
+The fibration $\Omega X \to PX \to B $ is known as the path-space fibration. Note that the space $PX$ is contractible. 
+\end{Rem}
 \begin{Def}\label{def:mapping_path_space}
 	Given $f \colon X \to Y$ the mapping path space $P_f$ (or mapping cocylinder), is the pullback of $f$ along $Y^I \xrightarrow{p_1}Y$, i.e., 
 % https://q.uiver.app/?q=WzAsNCxbMCwwLCJQX2YiXSxbMCwxLCJYIl0sWzEsMCwiWV5JIl0sWzEsMSwiWSJdLFsyLDMsInBfMSJdLFsxLDMsImYiLDJdLFswLDEsInAnIiwyXSxbMCwyXSxbMCwzLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
@@ -1582,7 +1585,7 @@ These can in fact be used to construct Eilenberg--MacLane spaces:\footnote{This 
 \end{Rem}
 \section{The Hurewicz theorem}\label{sec:hurewicz}
 Define a homomorphism $h \colon \pi_i(X) \to H_i(X)$ by choosing a generator $u$ of $H_i(S^i) \cong \mathbb{Z}$ and defining $h([f]) = f_*(u)$. This is the Hurewicz homomorphism, and extends the Hurewicz homomorphism studied previously for $\pi_1$. 
-\begin{Thm}
+\begin{Thm}\label{thm:hurewicz}
 If a space $X$ is $(n-1)$-connected and $n \ge 2$, then $\tilde H_i(X) = 0$ for $i < n$ and $\pi_n(X) \cong H_n(X)$. Moreover, if a pair $(X,A)$ is $(n-1)$-connected with $n \ge 2$ and $\pi_i(A) = 0$, then $H_i(X,A) = 0$ for all $i \le n$ and $\pi_n(X,A) \cong H_n(X,A)$. 
 \end{Thm}
 \begin{Rem}

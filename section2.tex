@@ -198,7 +198,7 @@ E^{r+1}_{*,*} = H_*(E^r_{*,*})
 	\]
 	where the homology is taken with respect to maps (called differentials)
 	\[
-d^r_{p,q} \colon E^r_{p,q} \to E^r_{p-q,q+r-1}
+d^r_{p,q} \colon E^r_{p,q} \to E^r_{p-r,q+r-1}
 	\]
 	such that $(d^r)^2 = 0$. 
 \end{Def}
@@ -258,11 +258,11 @@ We say that the spectral sequence collapses or degenerates at $E^r$.
 % Text Node
 \draw (261,275.4) node [anchor=north west][inner sep=0.75pt]    {$p$};
 \end{tikzpicture}
-\caption{The $E_r$-page of the spectral sequence}
+\caption{The $E^r$-page of a homological spectral sequence}
 \end{figure}
 \end{Rem}
 \begin{Def}
-	If $\{H_n\}_{n}$ are groups, then we say that the spectral sequence converges, or abuts, to $H_*$, denoted $E^r_{*,*} \implies H_*$, if for each $n$ there is a filtration
+	If $\{H_n\}_{n}$ are groups, then we say that the spectral sequence converges, or abuts, to $H_*$, denoted $E^2_{*,*} \implies H_*$, if for each $n$ there is a filtration
 	\[
 H_n = D_{n,0} \subseteq D_{n-1,1} \subseteq \cdots \subseteq D_{1,n-1} \subseteq D_{0,n} \subseteq 0
 	\]
@@ -272,7 +272,7 @@ E^{\infty}_{p,q} = D_{p,q}/D_{p-1,q+1}.
 	\]
 \end{Def}
 \begin{Rem}
-In more straightforward terms: the if we look along the $n$-th diagonal of the spectral sequence, then the $E_{\infty}$-page computes the associated graded of the filtration on $H_n$. For example, if there is only a single non-zero term, say $E^{\infty}_{p,n-p}$, then the filtration is trivial, and $H_n = E^{\infty}_{p,n-p}$. If we have two non-zero terms, then $H_n$ fits into a short exact sequence, and so on. 
+In more straightforward terms: the if we look along the $n$-th diagonal of the spectral sequence, then the $E_{\infty}$-page computes the associated graded of the filtration on $H_n$. For example, if $E^{\infty}_{p,q} = 0$ for all $p+q =n$, then $H_n = 0$. If there is only a single non-zero term, say $E^{\infty}_{p,n-p}$, then the filtration is trivial, and $H_n = E^{\infty}_{p,n-p}$. If we have two non-zero terms, then $H_n$ fits into a short exact sequence, and so on. 
 \end{Rem}
 \begin{Exa}\label{ex:ss_filtered_complex}
 We have previously discussed the spectral sequence of a filtered complex without explicitly mentioning it. Indeed, if $C_{\bullet}$ is a filtered chain complex, then there is a spectral sequence with $E^1_{p,q} = H_{p+q}(G_pC_{\bullet})$, such that if the filtration of $C_i$ is bounded for each $i$ the spectral sequence converges to $H_{p+q}(C_{\bullet})$.\sidenote{Recall what this means: we have $E^{\infty}_{p,q} = G_pH_{p+q}(C_{\bullet})$.}
@@ -401,7 +401,7 @@ and
 \quad \coker(\coker f \to \coker q) = 0.
 \]
 
-(2) Using Part (1), prove the following 'butterfly lemma': given a commutative diagram
+(2) Using Part (1), prove the following `butterfly lemma': given a commutative diagram
 % https://q.uiver.app/?q=WzAsNSxbMSwxLCJDIl0sWzAsMCwiQSJdLFswLDIsIkIiXSxbMiwwLCJEIl0sWzIsMiwiRSJdLFsxLDIsImYiLDJdLFsxLDAsImkiXSxbMCwyLCJxIl0sWzMsMCwiaiIsMl0sWzMsNCwiZyJdLFswLDQsInAiLDJdXQ==
 \[\begin{tikzcd}
 	A && D \\
@@ -420,4 +420,863 @@ of abelian groups, in which the diagonals $pi$ and $qj$ are exact at $C$, there 
 \frac{\im q}{\im f} \cong \frac{\im p}{\im g}. 
 \]
 \end{exercise}
+\section{The Serre spectral sequence}
+For us the most important example of a spectral sequence will be the Serre spectral sequence. We will state the theorem now and then return to the proof after some examples and applications. 
+\begin{Thm}[The Serre spectral sequence]
+Let $\pi \colon E \to F$ be a fibration with fiber $F$ and assume that $\pi_1(B) = 0$ and $\pi_0(F) = 0$, then there is a first quadrant spectral sequence
+\[
+E^2_{p,q} = H_p(B;H_q(F)) \implies H_{p+q}(E). 
+\]
+In particular, this means there is a filtration
+\[
+H_n(E) = D_{n,0} \supseteq D_{n-1,1} \supseteq \ldots \supseteq D_{0,n} \supseteq D_{-1,n+1} = 0
+\]
+such that $E^{\infty}_{p,q} = D_{p,q}/D_{p-1,q+1}$. 
+\end{Thm}
+\begin{Rem}
+There is a version of this spectral sequence where $\pi_1(B) \ne 0$; the $E_2$-page is then given by the cohomology of $B$ with local coefficients $\mathcal{H}_q(F)$. This will not play a role in this course. 
+\end{Rem}
+\begin{Exa}\label{ex:hopf_fibration}
+Consider the Hopf fibration $S^1 \to S^3 \to S^2$. We have 
+\[
+E^2_{p,q} = H_p(S^2;H_q(S^1)) \cong \begin{cases}
+	\bbZ & p = 0,2 \text{ and } q = 0, 1 \\
+	0 & \text{ otherwise.}
+\end{cases}
+\]
+The $E^2$-term is as follows (and we have $E^3 = E^{\infty}$ for degree reasons):
+\begin{sseqdata}[ name = basice2,
+x label = { $H_*(S^2)$},
+y label = { $H_*(S^1)$ },
+homological Serre grading, classes = {draw = none } ]
+\class["\mathbb{Z}"](0,0)
+\class["\mathbb{Z}"](2,0)
+\class["\mathbb{Z}"](0,1)
+\class["\mathbb{Z}"](2,1)
+\class["{}"](3,1)
+\class["{}"](0,2)
+\d["\cdot n"]2(2,0)
+\end{sseqdata}
+\printpage[ name = basice2, page = 2 ] 
+
+There are three possibilities for the $d_2$-differential (which is multiplication by $n \in \bbZ$ as indicated): either $n = 0,n= \pm 1$ or $n \ne 0,\pm 1$, which lead to the following $E^3 = E^{\infty}$-page:
+\begin{sseqdata}[ name = basice3a, xscale = 0.6,
+x label = { $H_*(S^2)$ \\ $n = 0$},
+y label = { $H_*(S^1)$ }, homological Serre grading, classes = {draw = none } ]
+\class["\mathbb{Z}"](0,0)
+\class["\mathbb{Z}"](2,0)
+\class["\mathbb{Z}"](0,1)
+\class["\mathbb{Z}"](2,1)
+
+\end{sseqdata}
+\begin{sseqdata}[ name = basice3b, xscale = 0.6,
+x label = { $H_*(S^2)$ \\ $n = \pm 1$},
+y label = { $H_*(S^1)$ }, homological Serre grading, classes = {draw = none } ]
+\class["\mathbb{Z}"](0,0)
+\class["\mathbb{Z}"](2,0)
+\class["\mathbb{Z}"](0,1)
+\class["\mathbb{Z}"](2,1)
+\d["\cdot n"]2(2,0)
+\end{sseqdata}
+\begin{sseqdata}[ name = basice3c, xscale = 0.6,
+x label = { $H_*(S^2)$ \\ $n \ne 0,\pm 1$ },
+y label = { $H_*(S^1)$ }, homological Serre grading, classes = {draw = none } ]
+\class["\mathbb{Z}"](0,0)
+\class["\mathbb{Z}"](2,0)
+\class["\mathbb{Z}"](0,1)
+\class["\mathbb{Z}"](2,1)
+\d["\cdot n"]2(2,0)
+\replacetarget["\mathbb{Z}/n"] 
+\end{sseqdata}
+\noindent \begin{minipage}{0.35\textwidth}
+\printpage[ name = basice3a, page = 3 ]   \quad
+\end{minipage}
+\begin{minipage}{0.35\textwidth}
+\printpage[ name = basice3b, page = 3 ]  \quad
+\end{minipage}
+\begin{minipage}{0.35\textwidth}
+\printpage[ name = basice3c, page = 3 ] 
+\end{minipage}
+We see that taking $n = \pm 1$ computes the correct answer for $H_*(S^3)$; we have a copy of $\bbZ$ in the $p+q= 0$ and $p + q = 3$ columns, as required. 
+\end{Exa}
+\begin{Exa}
+There is a fibration $SU(n-1) \to SU(n) \to S^{2n-1}$. Taking $n = 3$ and using $SU(2) \cong S^3$, we obtain a fibration $S^3 \to SU(3) \to S^5$. We have
+\[
+E^2_{p,q} \cong \begin{cases}
+	\bbZ & p = 0,5 \text{ and } q = 0, 3 \\
+	0 & \text{ otherwise.} 
+	\end{cases}
+\]
+The $E^2$-term is as follows:
+\begin{sseqdata}[ name = su(3),xscale = 0.6,yscale = 0.6,
+x label = { $H_*(S^5)$},
+y label = { $H_*(S^3)$ },
+homological Serre grading, classes = {draw = none } ]
+\class["\mathbb{Z}"](0,0)
+\class["\mathbb{Z}"](5,0)
+\class["\mathbb{Z}"](0,3)
+\class["\mathbb{Z}"](5,3)
+\class["{}"](3,1)
+\d["d_2"]2(5,0)
+\end{sseqdata}
+\printpage[ name = su(3), page = 2 ] 
+
+Note that there are no differentials for degree reasons, as shown for $d_2$. Therefore, the spectral sequence collapses and we see that
+\[
+H_i(SU(3)) \cong \begin{cases}\bbZ, &i = 0,3,5,8 \\ 0, & \text{otherwise.}\end{cases}
+\]
+\end{Exa}
+\begin{Exa}
+We can continue the previous example and take $n = 4$ to get a fibration $SU(3) \to SU(4) \to S^7$. We can compute the $E^2$-term using the previous example
+\[
+E^2_{p,q} = H_p(S^7;H_q(SU(3))) \cong \begin{cases} \bbZ, & p = 0,7, q = 0,3,5,8 \\ 0, &\text{otherwise.}\end{cases}
+\]
+The $E^2$-term is as follows:
+\begin{sseqdata}[ name = su(4),xscale = 0.6, yscale = 0.6,
+x label = { $H_*(S^7)$},
+y label = { $H_*(SU(3))$ },
+homological Serre grading, classes = {draw = none } ]
+\class["\mathbb{Z}"](0,0)
+\class["\mathbb{Z}"](7,0)
+\class["\mathbb{Z}"](0,3)
+\class["\mathbb{Z}"](7,3)
+\class["\mathbb{Z}"](0,5)
+\class["\mathbb{Z}"](7,5)
+\class["\mathbb{Z}"](0,8)
+\class["\mathbb{Z}"](7,8)
+\end{sseqdata}
+\printpage[ name = su(4), page = 2 ] 
+
+Note that there are no differentials for degree reasons, and we compute
+\[
+H_i(SU(4)) \cong \begin{cases}\bbZ, &i = 0,3,5,7,8,10,12,15 \\ 0, & \text{otherwise.}\end{cases}
+\]
+\end{Exa}
+\begin{Rem}
+If one tries the same argument for $SU(5)$ there are possible differentials. We will see later that it is easier to use cohomology, where one can use multiplicative structures to rule out differentials. 
+\end{Rem}
+\begin{Rem}[Naturality of the Serre spectral sequence]\label{Rem:naturality_of_ss}
+The Serre spectral sequence is natural in the following sense. Suppose we are given two fibrations satisfying the hypothesis of the Serre spectral sequence, and a map between them: 
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJGIl0sWzEsMCwiRSJdLFsyLDAsIkIiXSxbMCwxLCJGJyJdLFsxLDEsIkUnIl0sWzIsMSwiQiciXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDJdLFszLDQsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzQsNV0sWzAsM10sWzEsNCwiXFx0aWxkZSBmIl0sWzIsNSwiZiJdXQ==
+\[\begin{tikzcd}[ampersand replacement=\&]
+	F \& E \& B \\
+	{F'} \& {E'} \& {B'}
+	\arrow[hook, from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[hook, from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{\tilde f}", from=1-2, to=2-2]
+	\arrow["f", from=1-3, to=2-3]
+\end{tikzcd}\]
+Then the following hold:
+\begin{enumerate}
+	\item There are induced maps $f_*^r \colon E^r_{p,q} \to 'E^r_{p,q}$ commuting with differentials, i,e, the diagram
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJFXnJfe3AscX0iXSxbMSwwLCJFXnJfe3AtcixxK3ItMX0iXSxbMCwxLCInRV5yX3twLHF9Il0sWzEsMSwiJ0Vecl97cC1yLHErci0xfSJdLFswLDEsImRfciJdLFswLDIsImZecl8qIiwyXSxbMiwzLCInZF9yIiwyXSxbMSwzLCInZl8qXnIiXV0=
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{E^r_{p,q}} \& {E^r_{p-r,q+r-1}} \\
+	{'E^r_{p,q}} \& {'E^r_{p-r,q+r-1}}
+	\arrow["{d_r}", from=1-1, to=1-2]
+	\arrow["{f^r_*}"', from=1-1, to=2-1]
+	\arrow["{'d_r}"', from=2-1, to=2-2]
+	\arrow["{f_*^r}", from=1-2, to=2-2]
+\end{tikzcd}\]
+	commutes, and moreover  $f_*^{r+1}$ is the map induced on homology by $f_*^r$.
+	\item The map $\tilde f_* \colon H_*(E) \to H_*(E')$ preserves filtrations, inducing a map on associated graded which is exactly $f_*^{\infty}$. 
+	\item Under the isomorphisms $E^2_{p,q} \cong H_p(B;H_q(F))$ and $'E^2_{p,q} \cong H_p(B';H_q(F'))$ the map $f_*^2$ corresponds to the map induced by the maps $B \to B'$ and $F \to F'$. 
+\end{enumerate}
+\end{Rem}
+Once again, we can demonstrate this with an example. 
+\begin{Exa}
+We recall the Hopf fibration $S^1 \to S^3 \to S^2$. This factors through $\bbR P^3 = S^3/\{ \pm 1 \}$ as in the following diagram:
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJTXjEiXSxbMSwwLCJTXjMiXSxbMiwwLCJTXjIiXSxbMCwxLCJTXjEvXFx7IFxccG0gMSBcXH0iXSxbMSwxLCJTXjMvXFx7IFxccG0gMVxcfSJdLFsyLDEsIlNeMiJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMl0sWzAsMywicSIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxLDQsInEiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0LCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs0LDVdLFsyLDUsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{S^1} \& {S^3} \& {S^2} \\
+	{S^1/\{ \pm 1 \}} \& {S^3/\{ \pm 1\}} \& {S^2}
+	\arrow[hook, from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow["q"', two heads, from=1-1, to=2-1]
+	\arrow["q"', two heads, from=1-2, to=2-2]
+	\arrow[hook, from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[Rightarrow, no head, from=1-3, to=2-3]
+\end{tikzcd}\]
+We see that we have a fibration $S^1 \to \bbR P^3 \to S^2$. The $'E^2$-term of this spectral sequence is as for the Hopf fibration:
+\[
+E^2_{p,q} = H_p(S^2;H_q(S^1)) \cong \begin{cases}
+	\bbZ & p = 0,2 \text{ and } q = 0, 1 \\
+	0 & \text{ otherwise.}
+\end{cases}
+\]
+As in \Cref{ex:hopf_fibration} there is only one possible differential, which is $'d_2 \colon 'E^2_{2,0} \to 'E^2_{0,1}$, and this is given by multiplication by an integer $n$. We use naturality to determine what this is. We note that we have a commutative diagram
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{H_2(S^2;H_0(S^1))} \& H_0(S^2;H_1(S^1)) \\
+	{H_2(S^2;H_0(S^1/\{ \pm 1\}))} \& H_0(S^2;H_1(S^1/\{ \pm 1\})) \\
+	\arrow["{d_2}", "\cong"', from=1-1, to=1-2]
+	\arrow["{q_*}"', "\cong", from=1-1, to=2-1]
+	\arrow["{'d_2}"', from=2-1, to=2-2]
+	\arrow["{\cdot 2}", from=1-2, to=2-2]
+\end{tikzcd}\]
+The right hand arrow is multiplication by 2 because the map induced on homology by $S^1 \to S^1/\{ \pm 1 \}$ has degree 2 (it is the attaching map for the top cell of $\bbR P^2$). Commutativity of the diagram implies that $'d_2$ is multiplication by 2. Therefore, the $E^2$ and $E^3= E^{\infty}$-terms are as follows:
+\begin{sseqdata}[ name = rp3,
+x label = { $H_*(S^2)$},
+y label = { $H_*(S^1)$ },
+homological Serre grading, classes = {draw = none } ]
+\class["\mathbb{Z}"](0,0)
+\class["\mathbb{Z}"](2,0)
+\class["\mathbb{Z}"](0,1)
+\class["\mathbb{Z}"](2,1)
+\class["{}"](3,1)
+\class["{}"](0,2)
+\d["\cdot 2"]2(2,0)
+\replacetarget["\mathbb{Z}/2"] 
+\end{sseqdata}
+ \begin{minipage}{0.5\textwidth}
+\printpage[ name = rp3, page = 2 ] \quad 
+\end{minipage}
+ \begin{minipage}{0.5\textwidth}
+\printpage[ name = rp3, page = 3 ] \quad
+\end{minipage}
+We deduce that
+\[
+H_i(\bbR P^3) \cong \begin{cases} \bbZ, &i = 0,3 \\ \bbZ/2, & i = 1 \\ 0, &\text{otherwise.}\end{cases}
+\]
+\end{Exa}
+\begin{Rem}
+It is also possible to deduce some information about $H^*(F)$ or $H^*(B)$ in certain cases, as the following example demonstrates. 
+\end{Rem}
+\begin{Exa}\label{ex:s_infty}
+There is a fibration $S^1 \to S^{\infty} \to \bbC P^{\infty}$. Note that $\pi_1(\bbC P^{\infty}) = 0$, so we can run the Serre spectral sequence. We have
+\[
+E^2_{p,q} = \begin{cases} H_p(\bbC P^{\infty}), & q = 0,1 \\ 0, &\text{otherwise.}\end{cases} 
+\]
+We also know that the spectral sequence converges to $H_{p+q}(S^{\infty},\bbZ)$, which is only non-zero when $p+q = 0$. In particular, the $E^{\infty}$ page should be zero except for $E^{\infty}_{0,0}$. Now consider the $E_2$-page of the spectral sequence:
+\begin{sseqdata}[ name = sinfty,xscale = 2, x axis extend end=1cm,
+x label = { $H_*(\bbC P^{\infty})$},
+y label = { $H_*(S^1)$ },
+homological Serre grading, classes = {draw = none } ]
+\class["\bbZ"](0,0)
+\class["H_1(\bbC P^{\infty})"](1,0)
+\class["H_2(\bbC P^{\infty})"](2,0)
+\class["H_3(\bbC P^{\infty})"](3,0)
+\class["\bbZ"](0,1)
+\class["H_1(\bbC P^{\infty})"](1,1)
+\class["H_2(\bbC P^{\infty})"](2,1) 
+\class["H_3(\bbC P^{\infty})"](3,1)
+\class["{}"](0,2)
+\d[]2(2,0)
+\d[]2(3,0)
+\end{sseqdata}
+\printpage[ name = sinfty, page = 2 ] 
+
+\noindent Note that for degree reasons $E^2_{1,0} \cong H_1(\bbC P^{\infty})$ survives the spectral sequences, and so must be 0. So the $E^2$-page is as follows:
+\begin{sseqdata}[ name = sinfty2,xscale = 2,x axis extend end=1cm,
+x label = { $H_*(\bbC P^{\infty})$},
+y label = { $H_*(S^1)$ },
+homological Serre grading, classes = {draw = none } ]
+\class["\bbZ"](0,0)
+\class["H_2(\bbC P^{\infty})"](2,0)
+\class["H_3(\bbC P^{\infty})"](3,0)
+\class["\bbZ"](0,1)
+\class["0"](1,1)
+\class["0"](1,0)
+\class["H_2(\bbC P^{\infty})"](2,1) 
+\class["H_3(\bbC P^{\infty})"](3,1)
+\class["{}"](0,2)
+\d[]2(2,0)
+\d[]2(3,0)
+\end{sseqdata}
+\printpage[ name = sinfty2, page = 2 ] 
+
+\noindent By the same argument $E^2_{3,0} \cong H_3(\bbC P^{\infty})$ survives the spectral sequences, and so must be 0. Inductively, we deduce that $H_n(\bbC P^{\infty}) = 0$ for all $n$ odd. Since $E^2_{0,1} \cong \bbZ$ must also die in the spectral sequence, we see that we must have $H_2(\bbC P^{\infty}) \cong \bbZ$, and that $d^2$ must be an isomorphism. Continuing inductively, we get
+\[
+H_n(\bbC P^{\infty}) \cong \begin{cases} \bbZ, & n \text{ even}\\  \bbZ, & 0 \text{ odd.}\end{cases}
+\]
+\end{Exa}
+
+\begin{Exa}\label{ex:loop_spaces}
+In our next example, we compute $H_*(\Omega S^n)$ for $n >1 $. We use the path-space fibration of \Cref{rem:path_space_fibration}. In this case, this takes the form
+\[
+\Omega S^n \to PS^n \to S^n
+\]
+where we recall that $PS^n$ is contractible, i.e. $H_0(PS^n) = \bbZ$ and is zero otherwise. In particular, the only non-zero term on the $E^{\infty}$-page of the spectral sequence is a copy of $\bbZ$ when $p+q = 0$. Now consider a small portion of the $E_2$-term:
+\begin{sseqdata}[name = loop_sphere_s2,no x ticks,no y ticks, classes = {draw = none},homological Serre grading, y axis gap=1.5cm, x axis extend end=1cm,yscale = 0.6,
+]
+\begin{scope}[ background ]
+  \node at (0,-1.5) {0};
+  \node at (3,-1.5) {n};
+  \node at (-2.5,0) {0};
+  \node at (-2.5,2) {1\quad};
+  \node at (-2.5,4) {2 \quad};
+    \node at (-2.5,6) {3\quad};
+  \end{scope}
+\class["\mathbb{Z}"](0,0)
+\class["\mathbb{Z}"](3,0)
+\class["H_{1}(\Omega S^n)"](0,2)
+\class["H_{1}(\Omega S^n)"](3,2)
+\class["H_{2}(\Omega S^n)"](0,4)
+\class["H_{2}(\Omega S^n)"](3,4)
+\class["H_{3}(\Omega S^n)"](0,6)
+\class["H_{3}(\Omega S^n)"](3,6)
+\end{sseqdata}
+\printpage[ name = loop_sphere_s2, page = 2 ] 
+
+\noindent Note that the only possible differential is a $d_n$, and so goes $n-1$-terms upwards. We immediately see that $H_i(\Omega S^n) = 0$ for $0 < i < n-1$. Moreover, the only way to get rid of the $\bbZ$ in $E^2_{n,0} = E^n_{n,0}$ is that $H_{n-1}(\Omega S^n) \cong \bbZ$, and that $d_n$ is an isomorphism. We can inductively repeat this argument, getting the following, where all the differentials shown are isomorphisms:
+\begin{sseqdata}[name = ss_loop_d,no x ticks,no y ticks, classes = {draw = none},homological Serre grading, y axis gap=1.5cm, x axis extend end=1cm,yscale = 0.6,
+]
+\begin{scope}[ background ]
+  \node at (0,-1.5) {0};
+  \node at (3,-1.5) {n};
+  \node at (-2.5,0) {0};
+  \node at (-2.5,2) {n-1\quad};
+  \node at (-2.5,4) {2n-2 \quad};
+    \node at (-2.5,6) {3n-3\quad};
+  \end{scope}
+\class["\mathbb{Z}"](0,0)
+\class["\mathbb{Z}"](3,0)
+\class["H_{n-1}(\Omega S^n)"](0,2)
+\class["H_{n-1}(\Omega S^n)"](3,2)
+\class["H_{2n-2}(\Omega S^n)"](0,4)
+\class["H_{2n-2}(\Omega S^n)"](3,4)
+\class["H_{3n-3}(\Omega S^n)"](0,6)
+\class["H_{3n-3}(\Omega S^n)"](3,6)
+\d3(3,0)
+\d3(3,2)
+\d3(3,4)
+\end{sseqdata}
+\printpage[ name = ss_loop_d, page = 3] 
+\end{Exa}
+We conclude that
+\[
+H_i(\Omega S^n) \cong \begin{cases} \bbZ, & i = k(n-1) \\  0, & \text{otherwise.} \end{cases}
+\]
+\begin{Rem}
+So far we have only considered examples where the extension problem is trivial; we have had at most one non-zero term in each diagonal on the $E^{\infty}$-page. The following gives an example where this is not the case. 
+\end{Rem}
+\begin{Exa}
+Consider the Serre spectral sequence of the fibration
+\[
+S^1 \to U(2) \to \mathbb{R}P^3
+\]
+where we identify $S^1 \cong U(1)$ and the first map is given by \[
+\lambda \mapsto \begin{pmatrix}
+\lambda & 0 \\
+0  & \lambda 
+\end{pmatrix}  
+\]
+The $E^2$-page is given by
+\[
+H_p(\bbR P^3;H_q(S^1)) \cong \begin{cases} \bbZ, &p = 0,3, q = 0,1 \\ \bbZ/2 &p = 1,q = 0,1 \\ 0 & \text{else.}\end{cases}
+\]
+The $E^2$-page looks as follows:
+\begin{sseqdata}[ name = u(2),
+x label = { $H_*(\bbR P^3)$},
+y label = { $H_*(S^1)$ },
+homological Serre grading, classes = {draw = none } ]
+\class["\mathbb{Z}"](0,0)
+\class["\mathbb{Z}"](3,0)
+\class["\mathbb{Z}/2"](1,0)
+\class["\mathbb{Z}/2"](1,1)
+\class["\mathbb{Z}"](0,1)
+\class["\mathbb{Z}"](3,1)
+\d2(3,0)
+\end{sseqdata}
+\printpage[ name = u(2), page = 2] 
+
+We know (or take it as fact) that $H_2(U(2)) = 0$; the only way that this is compatible with the spectral sequence is if the differential shown is a surjection, and we get the following $E^3 = E^{\infty}$-page:
+\printpage[ name = u(2), page = 3] 
+
+Now, in fact we have that\sidenote{For example, note that $U(2) \cong SU(2) \times U(1)$}
+\[
+H_i(U(2)) \begin{cases} \bbZ, & i = 0,1,3,4 \\ 0, &\text{else.}\end{cases}
+\]
+Note that in the $E^{\infty}$-page shown we have two non-zero terms in the $p+q = 1 $ column, a $\bbZ$ in $(0,1)$ and $\bbZ/2$ in $(1,0)$. This means there is an extension\sidenote{In fact, the spectral sequence shows that we have filtered $H_1(U(2))$ as follows $0 \subseteq 2\bbZ \subseteq \bbZ \subseteq \bbZ = H_1(U(2))$.}
+\[
+0 \to \bbZ \to H_1(U(2)) \to \bbZ/2 \to 0.
+\]
+From the calculations above we know that this extension must be non-trivial. Yet, if we didn't know another way to compute $H_1(U(2))$ we could not determine (without more information) if $H_1(U(2))$ was $\bbZ$ or $\bbZ \oplus \bbZ/2$. 
+\end{Exa}
+\begin{Rem}
+We now return to the Hurweicz theorem, giving a second proof of \Cref{thm:hurewicz}. 
+\end{Rem}
+\begin{Thm}
+If $X$ is $(n-1)$-connected, $n \ge 2$, then $\widetilde H_i(X) = 0$ for $i \le n-1$ and $\pi_n(X) \cong H_n(X)$. 
+\end{Thm}
+\begin{proof}
+We use the path-space fibration
+\[
+\Omega X \to PX \to X,
+\]
+and the fact that $PX$ is contractible. The $E^2$-page of the Serre spectral sequence is
+\[
+E^2_{p,q} = H_p(X;H_q(\Omega X)) \implies H_{p+q}(PX).
+\]
+We prove the theorem by induction on $n$. When $n = 2$, we have $H_1(X) = 0$ because $X$ is simply connected by assumption. Moreover, we have
+\[
+\pi_2(X) \cong \pi_1(\Omega X) \cong H_1(\Omega X)
+\]
+where the first isomorphism follows by the long exact sequence of the fibration, and the second follows from the fact that $\pi_1(\Omega X)$ is abelian, so that $H_1(\Omega X) \cong \pi_1(\Omega X)^{ab} \cong \pi_1(\Omega X)$. It remains to show that $H_1(\Omega X) \cong H_2(X)$. We will use the Serre spectral sequence to show this. Note that $E^2_{2,0} = H_2(X)$ and $E^2_{0,1} = H_1(\Omega X)$, so it suffices to show that
+\[
+d^2 \colon E^2_{2,0} = H_2(X) \to E^2_{0,1} = H_1(\Omega X)
+\]
+is an isomorphism. We consider then then a portion of the $E^2$-page:
+\begin{sseqdata}[ name =hur_2,
+x label = { $H_*( X)$},
+y label = { $H_*(\Omega X)$ },
+homological Serre grading, classes = {draw = none },y axis gap=1cm, xscale = 2, y tick gap = 0.2cm ]
+\class["\mathbb{Z}"](0,0)
+\class["H_1(X)"](1,0)
+\class["H_2(X)"](2,0)
+\class["H_1(\Omega X)"](0,1)
+\d2(2,0)
+\end{sseqdata}
+\printpage[ name = hur_2, page = 2] 
+Note that if $d_2$ is not an isomorphism, then both of these groups will persist to the $E^{\infty}$-page, giving a contradiction to the fact that $PX$ is contractible. So, $d_2$ must be an isomorphism, as required. This gives the base case of the induction.
+
+We now assume the statement of the theorem holds for $n-1$ and deduce it for $n$. Since $X$ is $(n-1)$-connected, $\Omega X$ is $(n-2)$-connected, and so by the inductive hypothesis, we have that $\widetilde H_i(\Omega X) = 0$ for $i < n-1$ and $\pi_{n-1}(\Omega X) \cong H_{n-1}(\Omega X)$. In particular, we get isomorphisms
+\[
+\pi_n(X) \cong \pi_{n-1}(\Omega X) \cong H_{n-1}(\Omega X),
+\]
+and so it suffices to show that $H_{n-1}(\Omega X) \cong H_n(X)$. We do this via the Serre spectral sequence. We have
+\[
+\begin{split}
+E^2_{p,q} &= H_p(X;H_q(\Omega))\\
+&\cong H_p(X) \otimes H_q(X) \oplus \Tor(H_{p-1}(X),H_q(\Omega X)) \\
+& 0
+\end{split}
+\]
+for $0 < q < n-1$ by the inductive hypothesis. Now consider the Serre spectral sequence:
+\begin{sseqdata}[ name =hur,
+y label = { $H_*(\Omega X)$ },
+homological Serre grading, classes = {draw = none },y axis gap=1cm, xscale = 1.5, y tick gap = 0.2cm,no x ticks,no y ticks ]
+\class["\mathbb{Z}"](0,0)
+\class["H_1(X)"](1,0)
+\class["H_2(X)"](2,0)
+\class["\cdots"](3,0)
+\class["H_{n-1}(X)"](4,0)
+\class["H_{n}(X)"](5,0)
+\class["0"](0,1)
+\class["\vdots"](0,2)
+\class["0"](0,3)
+\class["H_{n-1}(\Omega X)"](0,4)
+\node at (2.5,-1) {H_*(\Omega X)};
+\d5(5,0)
+\end{sseqdata}
+\printpage[ name = hur, page = 5] 
+
+The only differentials that interact with $H_n(X)$ and $H_{n-1}(\Omega X)$ is the $d_n$ differential shown, and so this must be an isomorphism in order for these terms to die in the spectral sequence. Moreover, the terms $H_i(X)$ for $1 \le i \le n-1$ have no differentials at all in the spectral sequence; in particular, we must have $H_i(X) = 0$ for $1 \le i \le n-1$ and $d_n \colon H_n(X) \to H_{n-1}(\Omega X)$ is an isomorphism. 
+\end{proof}
+\begin{exercise}{}{}
+Show, using the Serre spectral sequence, that if $S^k \to S^m \to S^n$ is a fibration with $n \ge 2$, then $k = n - 1$ and $m = 2n - 1$.
+\end{exercise}
+\section{The Serre spectral sequence in cohomology}
+The Serre spectral sequence in cohomology looks much like the homology version:
+\begin{Thm}[The Serre spectral sequence in cohomology]
+Let $\pi \colon E \to F$ be a fibration with fiber $F$ and assume that $\pi_1(B) = 0$ and $\pi_0(F) = 0$, then there is a first quadrant spectral sequence
+\[
+E_2^{p,q} = H^p(B;H^q(F)) \implies H^{p+q}(E). 
+\]
+In particular, this means there is a filtration
+\[
+H^n(E) = D^{0,n} \supseteq D^{1,n-1} \supseteq \ldots \supseteq D^{n,0} \supseteq D^{n+1,-1} = 0
+\]
+such that $E_{\infty}^{p,q} = D^{p,q}/D^{p+1,q-1}$. 
+
+The differentials run $d_r^{p,q} \colon E_r^{p,q} \to E_r^{p+r,q+r-1}$. 
+\end{Thm}
+\begin{Rem}
+Apart from the direction of differentials, this looks much like the Serre spectral sequence in homology. However, there is one major difference: each $E_r$ page has a bilinear product, i.e., a map
+\[
+\bullet \colon E_r^{p,q} \times E_r^{p',q'} \to E_r^{p+p',q+q'}
+\]
+or equivalently,
+\[
+E_r^{p,q} \otimes E_r^{p',q'} \to E_r^{p+p',q+q'}
+\]
+satisfying the Leibniz rule
+\[
+d_r(x \bullet y) = d_r(x) \bullet y + (-1)^{\deg(x)}x \bullet d_r(y). 
+\]
+where $\deg(x) = p+q$. Moreover, on the $E_2$-page, this product is induced by the cup product. 
+
+Once again, it is instructive to do an example. 
+\end{Rem}
+\begin{Exa}
+Consider the fibration 
+\[
+S^1 \to S^{\infty} \simeq \ast \to \bbC P^{\infty}
+\]
+The $E_2$-page looks as follows 
+\begin{sseqdata}[ name = c_sinfty,xscale = 2, x axis extend end=1cm,
+x label = { $H^*(\bbC P^{\infty})$},
+y label = { $H^*(S^1)$ },
+cohomological Serre grading, classes = {draw = none } ]
+\class["\bbZ"](0,0)
+\class["H^1(\bbC P^{\infty})"](1,0)
+\class["H^2(\bbC P^{\infty})"](2,0)
+\class["H^3(\bbC P^{\infty})"](3,0)
+\class["\bbZ"](0,1)
+\class["H^1(\bbC P^{\infty})"](1,1)
+\class["H^2(\bbC P^{\infty})"](2,1) 
+\class["H^3(\bbC P^{\infty})"](3,1)
+\class["{}"](0,2)
+\d[]2(0,1)
+\d[]2(1,1)
+\end{sseqdata}
+\printpage[ name = c_sinfty, page = 2 ] 
+
+Running an argument similar to \Cref{ex:s_infty} it is not too hard to compute the additive structure: we must have $E_2^{2k+1,0} = 0$, and $d_2 \colon E_2^{p,1} \to E_2^{p+2,0}$ is an isomorphism $\bbZ \to \bbZ$. In particular, we have
+\[
+H^{i}(\bbC P^{\infty}) \begin{cases} \bbZ, & i = \text{ even}\\ 0, & i = \text{ odd.}\end{cases}
+\]
+
+Now we wish to compute the multiplicative structure. Let use note that by the universal coefficient theorem in cohomology\sidenote{In case this was not covered or you need a reminder, this states there is a natural short exact sequence \[ \begin{split}
+0 \to H^n(X;\bbZ) \otimes M \to H^n(X;M) \to\\ \Tor(H^{n+1}(X;\bbZ),M) \to 0.\end{split}
+\]}
+we have
+\[
+E_2^{p,q} = H^p(\bbC P^{\infty}) \otimes H^q(S^1).
+\]
+Let $\bbZ = \langle x \rangle = H^1(S^1)$ and let $\bbZ = \langle y \rangle = H^2(\bbC P^{\infty})$, chosen so that $d_2(x) = y$. Then we have
+\[
+E_2^{2,1} = H^2(\bbC P^{\infty}) \otimes H^1(S^1) = \bbZ \otimes \bbZ \cong \bbZ.
+\]
+The pairing 
+\[
+\bullet \colon E_2^{2,0} \times E_2^{0,1} \to E_2^{2,1}
+\]
+is induced by the cup product, and unwinding the definitions, sends $(x,y)$ to $xy$, i.e., $xy$ generates $E_2^{2,1}$. 
+
+ Let $z$ be a generator of $H^4(\bbC P^{\infty})$. We want to show that $z = y^2$. By the Leibniz rule,
+\[
+d_2(xy) = d_2(x)y + (-1)^{\deg(x)}xd_2(y) = y^2.
+\]
+Noting that $d_2$ is an isomorphism, we see that $d_2(xy) = y^2 = z$, as needed. Arguing inductively, we see that $d_2(xy^{n-1}) = y^n$ is a generator of $H^{2n}(\bbC P^{\infty})$ and we deduce that $H^*(\bbC P^{\infty}) \cong \bbZ[y]$ with $\deg(y) = 2$. 
+
+\begin{sseqdata}[ name = c_sinfty_d,xscale = 1, x axis extend end=1cm,classes = fill ,
+x label = { $H^*(\bbC P^{\infty})$},
+y label = { $H^*(S^1)$ },
+cohomological Serre grading]
+\class["1" {above}](0,0)
+\class["y" {above}](2,0)
+\class["x" {above}](0,1)
+\class["xy" {above}](2,1)
+\class["y^2" {above}](4,0)
+\d["d_2" {above}]2(0,1)
+\d["d_2" {above}]2(2,1)
+\end{sseqdata}
+\printpage[ name = c_sinfty_d, page = 2 ] 
+\end{Exa}
+\begin{Exa}
+We now consider the cohomology ring $H^*(\Omega S^3)$, leaving the general case of $H^*(\Omega S^n)$ as an exercise. To do this, we use the Serre spectral sequence of the fibration $\Omega S^3 \to PS^3 \simeq \ast \to S^3$. The additive structure can be determined much as in \Cref{ex:loop_spaces},\sidenote{Convince yourself of this!} and the spectral sequence looks as follows:
+
+\begin{sseqdata}[ name = loops3,xscale = 1, yscale = 0.6, x axis extend end=1cm,classes = fill ,
+x label = { $H^*(S^3)$},
+y label = { $H^*(\Omega S^3)$ },
+cohomological Serre grading]
+\class["1" {above}](0,0)
+\class["x" {above}](3,0)
+\class["a_1" {above}](0,2)
+\class["a_1x" {above}](3,2)
+\class["a_2" {above}](0,4)
+\class["a_2x" {above}](3,4)
+\class["a_3" {above}](0,6)
+\class["a_3x" {above}](3,6)
+\d["d_3" {above}]3(0,2)
+\d["d_3" {above}]3(0,4)
+\d["d_3" {above}]3(0,6)
+\end{sseqdata}
+\printpage[ name = loops3, page = 3 ] 
+
+\noindent That is, additively, we have
+\[
+H^i(\Omega S^3) \cong \begin{cases} \bbZ, & i = 2k\\ 0, \text{else}. \end{cases}
+\]
+In order to work out the multiplicative structure, we need to work out how the classes $a_i$ relate to each other. For example, is $a_1^2 = a_2$? We have chosen the generators such that $d_3(a_i) = a_{i-1}x$ where $a_0 = 1$. Now we use the Leibniz rule to see that\sidenote{Here it is important that all our classes are in even total degrees!}
+\[
+d_3(a_1^2) = d_3(a_1)a_1 + a_1d_3(a_1) = 2a_1x = d_3(2a_2).
+\]
+Because $d_3$ is an isomorphism, we deduce that $a_1^2 = 2a_2$. What about $a_3$? Note that
+\[
+\begin{split}
+d_3(a_1a_2) &= d_3(a_1)a_2+a_1d_3(a_2) = xa_2 + a_1^2x \\
+&= xa_2 + 2xa_2 = 3xa_2\\& = d_3(3a_3).
+\end{split}
+\]
+Because $d_3$ is an isomorphism, we deduce that $a_1a_2 = 3a_3$. Said another way, $a_1^3 = a_1a_1^2 = 2a_1a_2 = 3 \cdot 2 \cdot a_3$. By an inductive argument, we deduce that $a_1^n = n! a_n$, where $a_n$ generates $E_2^{0,2n}$. We see that $H^*(\Omega S^3) \cong \Gamma_{\bbZ}[a_1]$, the divided polynomial algebra on a class $a_1$ in degree 2.\sidenote[][-6\baselineskip]{In general, the divided polynomial algebra on a ring $R$, denoted $\Gamma_R[\alpha]$ where $\alpha$ has (even) degree $n$ is the algebra with additive generators $\alpha_i$ in degree $ni$ and multiplication $\alpha_1^k = k_!\alpha_k$ (and hence $\alpha_i \alpha_j = \binom{i+j}{i}\alpha_{i_j}$). Note that if $R = \mathbb{Q}$, then $\Gamma_{\mathbb{Q}}[\alpha] \cong \mathbb{Q}[\alpha]$, but in general it is more complex. For example, if $R = \bbF_p$, then $\Gamma_{\bbF_p}[\alpha] \cong \otimes_{i \ge 0} \bbF_p[\alpha_{p_i}]/(\alpha_{p^i}^p)$, a tensor product of truncated polynomial rings. }
+\end{Exa}
+You should now attempt the following exercise.\sidenote{Here $\Lambda_{\mathbb{Z}}[x] \cong \mathbb{Z}[x]/(x^2)$ is the exterior algebra}
+\begin{exercise}{}{}
+Use the cohomological Serre spectral sequence associated to the path fibration
+\[
+\Omega S^n \to PS^n \to S^n
+\] to show the following: If $n$ is odd, then 
+\[
+H^*(\Omega S^n) \cong \Gamma_{\mathbb{Z}}[x]
+\]
+where $|x| = n-1$. If $n$ is even, then
+\[
+H^*(\Omega S^n) \cong \Lambda_{\mathbb{Z}}[x] \otimes \Gamma_{\mathbb{Z}}[y]
+\]
+where $|x| = n-1$ and $|y| = 2n-2$.
+\end{exercise}
+\begin{Exa}
+Much like in the additive case, we can sometimes have multiplicative extensions that we cannot solve without additional information. For example, there is a fibration $S^2 \to \bbC P^3 \to S^4$, and the associated spectral sequence looks as follows:
+\begin{sseqdata}[ name = cp3,xscale = 1, yscale = 0.6, y axis extend end=1cm,classes = fill ,
+x label = { $H^*(S^4)$},
+y label = { $H^*(S^2)$ },
+cohomological Serre grading]
+\class["1" {above}](0,0)
+\class["x" {above}](0,2)
+\class["y" {above}](4,0)
+\class["xy" {above}](4,2)
+\end{sseqdata}
+\printpage[ name = cp3, page = 2 ] 
+
+\noindent There is no room for differentials, and so
+\[
+H^i(\bbC P^{\infty}) \cong \begin{cases}\bbZ, & i = 0,2,4,6 \\ 0, & \text{else}. \end{cases}
+\]
+Yet from the spectral sequence, we cannot deduce (without further information) that $y= x_2^2$, which we know holds.\footnote{Recall that $H^*(\bbC P^3) \cong \bbZ[x]/(x^4)$ for $|x| = 2$.}
+\end{Exa}
+\begin{Rem}\label{rem:solve_extensions}
+A useful way to compute multiplicative extensions is the following theorem:\sidenote{See Example 1.K of McCleary's "A user's guide to spectral sequences"} If there is a spectral sequence converging to $H_*$ as an algebra and the $E_\infty$-term is a free, graded-commutative, bigraded algebra, then $H_*$ is
+a free, graded commutative algebra isomorphic to the total complex $E_{\infty}^{\ast,\ast}$, i.e., 
+\[
+H_i \cong \bigoplus_{p+q=i} E_{\infty}^{p,q}. 
+\]
+\end{Rem}
+\begin{Exa}
+Recall that we have a fiber sequence
+\[
+SU(n-1) \to SU(n) \to S^{2n-1}
+\]
+Taking $n = 3$, this has the form $S^3 \to SU(3) \to S^5$. The $E^2$-term is
+\[
+E_2^{p,q} = H^p(S^5;H^q(S^3)) \cong H^p(S^5) \otimes H^q(S^3).
+\]
+The $E^2 = E^{\infty}$-page looks as follows:
+\begin{sseqdata}[ name = su3,xscale = 1, yscale = 0.6, y axis extend end=1cm,classes = fill ,
+x label = { $H^*(S^5)$},
+y label = { $H^*(S^3)$ },
+cohomological Serre grading]
+\class["1" {above}](0,0)
+\class["a_3" {above}](0,3)
+\class["a_5" {above}](5,0)
+\class["a_3a_7" {above}](5,3)
+\end{sseqdata}
+\printpage[ name = su3, page = 2 ] 
+
+\noindent Unlike in the previous example, there are no possible multiplicative extension problems, and we deduce that $H^*(SU(3)) \cong \Gamma_{\bbZ}(a_3,a_5)$, the exterior algebra on two generators $a_3$ and $a_5$. Now we consider the case $n = 4$. We leave it for the reader to deduce the following $E^2 = E^{\infty}$-page
+\begin{sseqdata}[ name = su4,xscale = 1, yscale = 0.6, y axis extend end=1cm,classes = fill ,
+x label = { $H^*(S^7)$},
+y label = { $H^*(SU(3))$ },
+cohomological Serre grading]
+
+\class["1" {above}](0,0)
+\class["a_3" {above}](0,3)
+\class["a_5" {above}](0,5)
+\class["a_3a_5" {above}](0,8)
+\class["a_7" {above}](7,0)
+\class["a_3a_7" {above}](7,3)
+\class["a_3a_5a_7" {above}](7,8)
+\class["a_3a_5" {above}](7,5)
+\end{sseqdata}
+\printpage[ name = su4, page = 2 ] 
+
+The extension problem can be solved by \Cref{rem:solve_extensions}, and we get $H^*(SU(4)) \cong \Gamma_{\bbZ}(a_3,a_5,a_7)$. These two examples suggest a general pattern: is $H^*(SU(n)) \cong \Gamma_{\bbZ}(a_3,a_5,\ldots,a_{2n-1})$? The next exercise is to show that this is true.\footnote{However, unlike the previous two examples, there will be differentials to deal with. The hint is to use the multiplicative structure, in particular the Leibniz rule.}
+\end{Exa}
+\begin{exercise}{}{}
+Show, using induction, that 
+\[H^*(SU(n)) \cong \Gamma_{\bbZ}(a_3,a_5,\ldots,a_{2n-1}).\]
+\end{exercise}
+\section{The Gysin and Wang sequences}
+The Gysin and Wang sequences are long exact sequences derived from special cases of the Serre spectral sequence. We will prove the following.
+\begin{Thm}[The Gysin sequence]\label{thm:gysin}
+Let $S^n \to E \to B$ be a fibration with $\pi_1B = 0$ and $n \ge 1$. Then, there exists an exact sequence
+\[
+\cdots H_r(E) \to H_r(B) \to H_{r-n-1}(B) \to H_{r-1}(E) \to \cdots
+\]
+\end{Thm}
+We begin with two algebraic lemmas, whose proof we leave as exercises for the reader.
+\begin{Lem}\label{lem:alg_1}
+	Let $A \to B \xrightarrow{f} C$ and $D \to E \xrightarrow{g}$ be exact sequences of abelian groups. Suppose there exists an isomorphism $\phi \colon \coker(f) \cong \ker(g)$, then there is an exact sequence
+	\[
+A \to B \xrightarrow{f} C \xrightarrow{\phi} D \to E \xrightarrow{g} F, 
+	\]
+	where $c \mapsto \phi(\overline c)$, for $\overline c$ the class of $c$ in $\coker(f)$. 
+\end{Lem}
+\begin{Lem}\label{lem:alg_2}
+	Given the following diagram of abelian groups:
+	% https://q.uiver.app/?q=WzAsNixbMSwwLCJBIl0sWzEsMSwiQiJdLFsxLDIsIkMiXSxbMCwyLCIwIl0sWzIsMiwiRCJdLFszLDIsIkUiXSxbMCwxLCJmIl0sWzEsMiwiZyJdLFszLDJdLFsyLDQsImgiLDJdLFs0LDUsImsiLDJdLFsxLDQsImhnIl1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+	\& A \\
+	\& B \\
+	0 \& C \& D \& E
+	\arrow["f", from=1-2, to=2-2]
+	\arrow["g", from=2-2, to=3-2]
+	\arrow[from=3-1, to=3-2]
+	\arrow["h"', from=3-2, to=3-3]
+	\arrow["k"', from=3-3, to=3-4]
+	\arrow["hg", from=2-2, to=3-3]
+\end{tikzcd}\]
+with rows and columns exact, then the sequence $A \xrightarrow{f} B \xrightarrow{hg} D \xrightarrow{k} E$ is exact. 
+\end{Lem}
+We now return to the Gysin sequence. 
+\begin{proof}[Proof of \Cref{thm:gysin}]
+We consider the Serre spectral sequence of the fibration. This has $E_2$-term
+\[
+E^2_{p,q} \cong H_p(B;H_q(S^n)) \cong \begin{cases} H_p(B)& q = 0,n \\ 0 & \text{ else.}\end{cases}
+\]
+and so is as follows:
+\begin{sseqdata}[ name = gysin,xscale = 2, x axis extend end=1cm,
+x label = { $H_*(B)$},
+y label = { $H_*(S^n)$ },no x ticks,no y ticks,y axis gap=0.7cm,
+homological Serre grading, classes = {draw = none } ]
+\begin{scope}[ background ]
+  \node at (-0.5,0) {0};
+  \node at (-0.5,2) {n};
+  \end{scope}
+\class["H_0(B)"](0,0)
+\class["H_1(B)"](1,0)
+\class["H_2(B)"](2,0)
+\class["H_3(B)"](3,0)
+\class["H_0(B)"](0,2)
+\class["H_1(B)"](1,2)
+\class["H_2(B)"](2,2) 
+\class["H_3(B)"](3,2)
+\end{sseqdata}
+\printpage[ name = gysin, page = 2 ] 
+We observe that there is only one possible differential, namely $d_{n+1} \colon E_{p,0}^{n+1} \to E^{n+1}_{p-n-1,n}$, and so $E^2 = E^{n+1}$ and $E^{n+2} = E^{\infty}$. Therefore, using \Cref{lem:alg_1} we get a short exact sequence
+\begin{equation}\label{eq:gysin_1}
+0 \to E^{\infty}_{p,0} \to E^{n+1}_{p,0} \xrightarrow{d_{n+1}} E_{p-n-1,n}^{n+1} \to E^{\infty}_{p-n-1,n} \to 0. 
+\end{equation}
+The filtration on $H_i(E)$ is $0 \subseteq E^{\infty}_{i-n,n} =D_{i-n,n} \subseteq D_{i,0} = H_i(E)$, i.e., we have a short exact sequence:
+\begin{equation}\label{eq:gysin_2}
+0 \to E^{\infty}_{i-n,n} \to H_i(E) \to E^{\infty}_{i,0} \to 0. 
+\end{equation}
+Pasting \eqref{eq:gysin_1} and \eqref{eq:gysin_2} together we get a diagram of the form:
+% https://q.uiver.app/?q=WzAsMTYsWzEsMSwiXFxjb2xvcntyZWR9SF9yKEUpIl0sWzEsMiwiRV57XFxpbmZ0eX1fe3IsMH0iXSxbMCwyLCIwIl0sWzEsMywiMCJdLFsyLDIsIlxcY29sb3J7cmVkfVxcdW5kZXJicmFjZXtFXjJfe3IsMH19X3s9SF9yKEIpfSJdLFszLDIsIlxcY29sb3J7cmVkfVxcdW5kZXJicmFjZXtFXjJfe3Itbi0xLG59fV97SF97ci1uLTF9KEIpfSJdLFs0LDEsIjAiXSxbNCwyLCJFXntcXGluZnR5fV97ci1uLTEsbn0iXSxbNCwzLCJcXGNvbG9ye3JlZH1IX3tyLTF9KEUpIl0sWzQsNCwiRV57XFxpbmZ0eX1fe3ItMSwwfSJdLFszLDQsIjAiXSxbNSw0LCJcXGNkb3RzIl0sWzQsNSwiMCJdLFs1LDIsIjAiXSxbMCwwXSxbMSwwXSxbMCwxXSxbMiwxXSxbMSwzXSxbMSw0XSxbMCw0LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNCw1LCJkX3tuKzF9Il0sWzYsN10sWzUsN10sWzcsOF0sWzUsOCwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzgsOV0sWzEwLDldLFs5LDExXSxbOCwxMSwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzksMTJdLFs3LDEzXSxbMTQsMCwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzE1LDAsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{} \& {} \\
+	\& {\color{red}H_r(E)} \&\&\& 0 \\
+	0 \& {E^{\infty}_{r,0}} \& {\color{red}\underbrace{E^2_{r,0}}_{=H_r(B)}} \& {\color{red}\underbrace{E^2_{r-n-1,n}}_{H_{r-n-1}(B)}} \& {E^{\infty}_{r-n-1,n}} \& 0 \\
+	\& 0 \&\&\& {\color{red}H_{r-1}(E)} \\
+	\&\&\& 0 \& {E^{\infty}_{r-1,0}} \& \cdots \\
+	\&\&\&\& 0
+	\arrow[from=2-2, to=3-2]
+	\arrow[from=3-1, to=3-2]
+	\arrow[from=3-2, to=4-2]
+	\arrow[from=3-2, to=3-3]
+	\arrow[dashed, from=2-2, to=3-3]
+	\arrow["{d_{n+1}}", from=3-3, to=3-4]
+	\arrow[from=2-5, to=3-5]
+	\arrow[from=3-4, to=3-5]
+	\arrow[from=3-5, to=4-5]
+	\arrow[dashed, from=3-4, to=4-5]
+	\arrow[from=4-5, to=5-5]
+	\arrow[from=5-4, to=5-5]
+	\arrow[from=5-5, to=5-6]
+	\arrow[dashed, from=4-5, to=5-6]
+	\arrow[from=5-5, to=6-5]
+	\arrow[from=3-5, to=3-6]
+	\arrow[dashed, from=1-1, to=2-2]
+	\arrow[dashed, from=1-2, to=2-2]
+\end{tikzcd}\]
+and \Cref{lem:alg_2} implies that the sequence in red is exact. 
+\end{proof}
+\begin{Exa}
+Consider the fiber sequence $S^1 \to S^{2n-1} \to \bbC P^n$ for $n \ge 1$. One recalls that $H_p(\bbC P^n) = 0$ for $p > 2n$ using, for example, cellular homology. We will show that
+\[
+H_p(\bbC P^n) \cong \begin{cases}\bbZ & p \text{ even} \\ 0 & p \text{ odd}\end{cases}
+\]
+using the Gysin sequence. The sequence tell us that 
+\[
+0=H_{2n+2}(\bbC P^n) \to H_n(\bbC P^n) \to H_{2n+1}(S^{2n+1}) \cong \bbZ \to H_{2n+1}(\bbC P^n) = 0
+\]
+is exact, and so $H_n(\bbC P^n) \cong \bbZ$. Next, observe that we have an exact sequence
+\[
+0=H_{2n}(S^{2n+1}) \to H_{2n}(\bbC P^n) \cong \bbZ \to H_{2n-2}(\bbC P^n)\to H_{2n-1}(S^{2n-1})
+\]
+so that $H_{2n-2}(\bbC P^n) \cong \bbZ$. Moreover, the exact sequence
+\[
+0=H_{2n+1}(\bbC P^n) \to H_{2n-1}(\bbC P^n) \to H_{2n}(S^{2n+1}) = 0
+\]
+shows that $H_{2n-1}(\bbC P^n) = 0$. Inductively continuing, we get the claimed result. 
+
+\end{Exa}
+\begin{exercise}{Wang sequence}{}
+Use the Serre spectral sequence to prove the following:
+
+If $F \to E \to S^n$ with $n \ge 2$ is a fibration, then there is an exact sequence
+\[
+\cdots \to H_i(F) \to H_i(E) \to H_{i-n}(F) \to H_{i-1}(F) \to H_{i-1}(E) \to \cdots
+\]
+\end{exercise}
+\begin{Exa}
+Let us return to the homology of $\Omega S^n$ for $n \ge 2$. We will show that 
+\[
+H_r(\Omega S^n) \cong \begin{cases} \bbZ & r = k(n-1) \\ 0 & \text{else}. \end{cases}
+\]
+We do this via the Wang sequence of the fibration $\Omega S^n \to PS^n \to S^n$. Since $PS^n$ is contractible, every third term vanishes except for $H_0(PS^n) \cong \bbZ$. So,
+\[
+H_{r-n}(\Omega S^n) \cong H_{r-1}(\Omega S^n). 
+\]
+Because $H_0(\Omega S^n) \cong \bbZ$ (by path-connectedness), we get the claimed result inductively. 
+\end{Exa}
+We also have a Wang sequence in cohomology. 
+\begin{Thm}[Wang sequence in cohomology]
+Let $F \xrightarrow{i} E \xrightarrow{p} S^n$ be a fiber sequence with $n \ge 1$, then there is a long exact sequence
+\[
+\cdots \to H^{i}(E) \xrightarrow{i^*} H^{i}(F) \xrightarrow{\theta} H^{q-n+1}(F) \to H^{q+1}(E) \to \cdots
+\]
+where
+\[
+\theta(u \smile v) = \theta(u) \smile v + (-1)^{(n-1)\deg(u)}u \smile \theta(v). 
+\]
+\end{Thm}
+\begin{proof}[Proof sketch]
+The additive structure is determined as in the exercise. The fact that $\theta$ is a derivation follows because it is identified with the $d^{n+1}$ differential in the spectral sequence. 
+\end{proof}
+We can use this to recover the ring structure on $H^*(\Omega S^n)$. 
+\begin{Thm}
+If $u$ is odd, then $H^*(\Omega S^u) \cong \Gamma_{\bbZ}(x), |x| = u-1$. 
+\end{Thm}
+\begin{proof}
+	The Wang sequence gives isomorphisms
+	% https://q.uiver.app/?q=WzAsMixbMCwwLCJIXm4oXFxPbWVnYSBTXnUpIl0sWzEsMCwiSF57bi11LTF9KFxcT21lZ2EgU15uKS4iXSxbMCwxLCJcXHRoZXRhIl1d
+\[\begin{tikzcd}
+	{H^n(\Omega S^u)} & {H^{n-u-1}(\Omega S^u).}
+	\arrow["\theta", "\cong"',from=1-1, to=1-2]
+\end{tikzcd}\]
+	This determines the additive structure. To work out the multiplicative structure, let $\gamma_0(x) = 1$ and inductively let $\gamma_i(x) \in H^{i(i-1)}(\Omega S^u)$ for $i \ge 1$ so that $\theta(\gamma_i(x)) = \gamma_{i-1}(x)$. By induction on $i$ and $j$ and using that $\theta$ is a derivation, we have\footnote{Try and spot where we use that $x$ is is even degree.}
+	\[
+\begin{split}
+\theta(\gamma_i(x) \smile \gamma_j(x)) &= \gamma_{i-1}(x) \smile \gamma_j(x) + \gamma_i(x) \smile \gamma_{j-1}(x)\\
+&= \binom{i-1+j}{j}\gamma_{i-1+j}(x) + \binom{i-1+j}{j-1}\gamma_{i-1+j}(x)\\
+& = \binom{j+i}{j}\gamma_{i-1+j}(x) \\
+& = \binom{j+i}{j}\theta(\gamma_{i+j}(x)). 
+\end{split}
+	\]
+	Because $\theta$ is an isomorphism, we deduce that $\gamma_i(x) \smile \gamma_j(x) = \gamma_{i+j}(x)$, and the result follows.
+\end{proof}
+\begin{Thm}
+If $u \ge 2$ is even, then $H^*(\Omega S^u) \cong \Lambda_{\bbZ}(x) \otimes \Gamma_{\bbZ}(y)$, $|x| = u-1$ and $|y| = 2(u-1)$. 
+\end{Thm}
+\begin{proof}
+Let $x \in H^{u-1}(\Omega S^u)$ be such that $\theta(x) = 1$. By graded commutativity we have $x^2 = 0$. Let $\gamma_0(y) = 1$ and inductively define $\gamma_i(y) \in H^{2i(u-1)}(\Omega S^u)$ so that $\theta(\gamma_i(y)) = x\gamma_{i-1}(y)$. Then,
+\[
+\theta(x\gamma_i(y)) = 1 \smile \gamma_i(y) - x \smile x\gamma_{i-1}(y) = 1 \smile \gamma_i(y) = \gamma_i(y),
+\]
+so that $\gamma_i(y)$ generates $H^{2i(u-1)}(\Omega S^u)$ and $x\gamma_i(y)$ generates $H^{(2i+1)(u-1)}(\Omega S^u)$. Then 
+	\[
+\begin{split}
+\theta(\gamma_i(y) \smile \gamma_j(y)) &= x\gamma_{i-1}(y) \smile \gamma_j(y) + \gamma_i(y) \smile x\gamma_{j-1}(y)\\
+&= \binom{i-1+j}{j}x\gamma_{i-1+j}(y) + \binom{i-1+j}{j-1}x\gamma_{i-1+j}(y)\\
+& = \binom{j+i}{j}x\gamma_{i-1+j}(t) \\
+& = \binom{j+i}{j}\theta(\gamma_{i+j}(y)). 
+\end{split}
+	\]
+		Because $\theta$ is an isomorphism, we deduce that $\gamma_i(y) \smile \gamma_j(y) = \gamma_{i+j}(y)$, and the result follows.
+\end{proof}
 \end{document}
