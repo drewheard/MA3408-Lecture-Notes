@@ -1279,4 +1279,54 @@ so that $\gamma_i(y)$ generates $H^{2i(u-1)}(\Omega S^u)$ and $x\gamma_i(y)$ gen
 	\]
 		Because $\theta$ is an isomorphism, we deduce that $\gamma_i(y) \smile \gamma_j(y) = \gamma_{i+j}(y)$, and the result follows.
 \end{proof}
+\section{Serre mod $\cat C$ theory}
+Our next goal is to prove the following theorem of Serre.
+\begin{Thm}
+If $X$ is a finite CW complex with $\pi_1(X) = 0$, then the homotopy groups $\pi_i(X)$ are finitely generated abelian groups for $i \ge 2$. 
+\end{Thm}
+\begin{Rem}
+How do we begin to prove such a theorem? Computing it directly is not possible. The ingenious idea of Serre is to use what are now known as Serre classes.
+\end{Rem}
+\begin{Def}
+A class $\cat C$ of abelian groups is a Serre class if $0 \in \cat C$ and if for any short exact sequence $0 \to A \to B \to C \to 0$ we have $A,C \in \cat C \implies B \in \cat C$. 
+\end{Def} 
+\begin{Rem}
+The following are a consequence of the definitions:\footnote{You should check these.}
+\begin{enumerate}[(i)]
+	\item A Serre class is closed under isomorphisms.
+	\item A Serre class is closed under the formation of subgroups and quotient groups. 
+	\item Let $A \xrightarrow{i}B \xrightarrow{p} C$ be exact at $B$. IF $A, C \in \cat C$, then $B \in \cat C$. This follows from the previous two points and the diagram
+% https://q.uiver.app/?q=WzAsNyxbMSwwLCJBIl0sWzIsMSwiQiJdLFszLDIsIkMiXSxbMSwxLCJcXGtlcihwKSJdLFswLDEsIjAiXSxbMywxLCJcXGNva2VyKGkpIl0sWzQsMSwiMCJdLFswLDEsImkiXSxbMSwyLCJwIl0sWzMsMV0sWzQsM10sWzEsNV0sWzUsMiwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMCwzLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNSw2XV0=
+\[\begin{tikzcd}[ampersand replacement=\&]
+	\& A \\
+	0 \& {\ker(p)} \& B \& {\coker(i)} \& 0 \\
+	\&\&\& C
+	\arrow["i", from=1-2, to=2-3]
+	\arrow["p", from=2-3, to=3-4]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-3, to=2-4]
+	\arrow[hook', from=2-4, to=3-4]
+	\arrow[two heads, from=1-2, to=2-2]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+\end{enumerate}
+\end{Rem}
+\begin{Exa}
+Examples of Serre classes include finite abelian groups, finitely generated abelian groups, and torsion abelian groups. 
+\end{Exa}
+\begin{Def}
+Given a morphism of abelian groups $\phi \colon A \to B$, we say $\phi$ is a monomorphism mod $\cat C$ if $\ker(\phi) \in \cat C$, an epimorphism mod $\cat C$ if $\coker \phi \in \cat C$, and an isomorphism mod $\cat C$ if both $\ker \phi, \coker \phi \in \cat C$. 
+\end{Def}
+\begin{Rem}
+We note the following:
+\begin{enumerate}[(i)]
+	\item Let $C_{\bullet}$ be a chain complex. If $C_n \in \cat C$, then $H_n(C_{\bullet}) \in \cat C$. 
+	\item Suppose $F_{\bullet}A$ is a filtration on an abelian group. If $A \in \cat C$, then $G_sA \in \cat C$ for all $s$. If the filtration is finite $(F_m = 0, F_n = A$, for some $m,n)$ and $G_s(A) \in \cat C$ for all $a$, then $A \in \cat C$.
+	\item Suppose we have a spectral sequence $\{ E^r_{S,t} \}$. If $E^2_{s,t} \in \cat C$, then $E^r_{s,t} \in \cat C$ for all $r \ge 2$. If $\{ E^r \}$ is a first quadrant spectral sequence, then $E^{\infty} \in \cat C$. If the spectral sequence comes from a finite filtered complex $C$ and $E^2_{s,t} \in \cat C$ for all $s+t = n$, then $H_n(C) \in \cat C$. 
+\end{enumerate}
+\end{Rem}
+\begin{Def}
+A Serre class is called a Serre ring if $A,B \in \cat C \implies A \otimes B \in \cat C$ and $\Tor(A,B) \in \cat C$.\footnote{For example, the class of all finitely generated abelian groups is a Serre ring, as is the class of torsion abelian groups. In fact, for the latter, we only require that one of $A$ or $B$ is in $\cat C$.}
+\end{Def}
 \end{document}
