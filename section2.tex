@@ -797,9 +797,9 @@ Note that in the $E^{\infty}$-page shown we have two non-zero terms in the $p+q 
 From the calculations above we know that this extension must be non-trivial. Yet, if we didn't know another way to compute $H_1(U(2))$ we could not determine (without more information) if $H_1(U(2))$ was $\bbZ$ or $\bbZ \oplus \bbZ/2$. 
 \end{Exa}
 \begin{Rem}
-We now return to the Hurweicz theorem, giving a second proof of \Cref{thm:hurewicz}. 
+We now return to the Hurewicz theorem, giving a second proof of \Cref{thm:hurewicz}. 
 \end{Rem}
-\begin{Thm}
+\begin{Thm}\label{thm:hurewicz_2}
 If $X$ is $(n-1)$-connected, $n \ge 2$, then $\widetilde H_i(X) = 0$ for $i \le n-1$ and $\pi_n(X) \cong H_n(X)$. 
 \end{Thm}
 \begin{proof}
@@ -831,7 +831,8 @@ homological Serre grading, classes = {draw = none },y axis gap=1cm, xscale = 2, 
 \d2(2,0)
 \end{sseqdata}
 \printpage[ name = hur_2, page = 2] 
-Note that if $d_2$ is not an isomorphism, then both of these groups will persist to the $E^{\infty}$-page, giving a contradiction to the fact that $PX$ is contractible. So, $d_2$ must be an isomorphism, as required. This gives the base case of the induction.
+
+\noindent Note that if $d_2$ is not an isomorphism, then both of these groups will persist to the $E^{\infty}$-page, giving a contradiction to the fact that $PX$ is contractible. So, $d_2$ must be an isomorphism, as required. This gives the base case of the induction.
 
 We now assume the statement of the theorem holds for $n-1$ and deduce it for $n$. Since $X$ is $(n-1)$-connected, $\Omega X$ is $(n-2)$-connected, and so by the inductive hypothesis, we have that $\widetilde H_i(\Omega X) = 0$ for $i < n-1$ and $\pi_{n-1}(\Omega X) \cong H_{n-1}(\Omega X)$. In particular, we get isomorphisms
 \[
@@ -1281,7 +1282,7 @@ so that $\gamma_i(y)$ generates $H^{2i(u-1)}(\Omega S^u)$ and $x\gamma_i(y)$ gen
 \end{proof}
 \section{Serre mod $\cat C$ theory}
 Our next goal is to prove the following theorem of Serre.
-\begin{Thm}
+\begin{Thm}\label{thm:serres_thm}
 If $X$ is a finite CW complex with $\pi_1(X) = 0$, then the homotopy groups $\pi_i(X)$ are finitely generated abelian groups for $i \ge 2$. 
 \end{Thm}
 \begin{Rem}
@@ -1327,6 +1328,160 @@ We note the following:
 \end{enumerate}
 \end{Rem}
 \begin{Def}
-A Serre class is called a Serre ring if $A,B \in \cat C \implies A \otimes B \in \cat C$ and $\Tor(A,B) \in \cat C$.\footnote{For example, the class of all finitely generated abelian groups is a Serre ring, as is the class of torsion abelian groups. In fact, for the latter, we only require that one of $A$ or $B$ is in $\cat C$.}
+A Serre class is called a Serre ring if $A,B \in \cat C \implies A \otimes B \in \cat C$ and $\Tor(A,B) \in \cat C$, and a Serre ideal if only one of $A$ or $B$ is required to be in $\cat C$. Finally, a Serre class is called acyclic if $A \in \cat C$ implies $\tilde H_*(K(A,1),\bbZ) \in \cat C$. \footnote{For example, the class of all finitely generated abelian groups is an acyclic Serre ring, while the class of torsion abelian groups is an acyclic Serre ideal. }
 \end{Def}
+\begin{Thm}[Hurewicz mod {$\cat C$}]
+Assume that $\cat C$ is an acyclic Serre ring, and let $X$ be a simply connected space. If $\pi_q(X) \in \cat C$ for all $q < n$, then $\widetilde H_q(X) \in \cat C$ for all $q < n$, and in that case the Hurewicz map $\pi_n(X) \to H_n(X)$ is a mod $\cat C$ isomorphism. 
+\end{Thm}
+\begin{proof}
+Simply observe that the same argument as \Cref{thm:hurewicz_2} works replacing `isomorphism' with `isomorphism mod $\cat C$' where necessary. 
+\end{proof}
+We return to Serre's theorem.
+\begin{proof}[Proof of \Cref{thm:serres_thm}]
+	Take $\cat C$ to be the class of finitely generated abelian groups, which is an acyclic Serre ring. Because $X$ is a finite CW-complex $\widetilde H_i(X) \in \cat C$ since $X$ is a finite CW-complex. Now suppose there exists a minimal $i$ such that $\pi_i(X)$ is not finitely generated. Then, by the relative Hurewicz theorem, $h \colon \pi_i(X) \to H_n(X)$ is an isomorphism mod finitely generated abelian groups, and so $H_i(X)$ is also not finitely generated, a contradiction. 
+\end{proof}
+\section{Final notes on spectral sequences}
+We finish this section on spectral sequences by including some observations which we have so far omitted, beginning with the construction of the Serre spectral sequence.
+\begin{Rem}[Construction of the Serre spectral sequence]
+Let us sketch the construction of the Serre spectral sequence. Let $F \to E \xrightarrow{\pi} B$ be a fibration with $B$ a simply-connected CW complex, and $\pi_0(F) = 0$.\footnote{By cellular approximation, we can always replace $B$ a CW-complex, , and replace $\pi \colon E \to B$ with $\pi' \colon E' \to B'$, the pullback of the fibration along $B' \to B$.} Let $C_*(E)$ be the singular chain complex of $E$, and filter this by 
+\[
+F^pC_*(E) \coloneqq C_*(\pi^{-1}(B_p)),
+\]
+where $B_p$ is the $p$-skeleton of $B$. Then,
+\[
+\begin{split}
+F^pC_*(E) /F^{p-1}C_*(E) &\simeq C_*(\pi^{-1}(B_p))/C_*(\pi^{-1}(B_{p-1})) \\
+&\simeq C_*(\pi^{-1}(B_p),\pi^{-1}(C_{p-1}))
+\end{split}
+\]
+and (using excision)
+\[
+\begin{split}
+H_*(F^pC_*(E) /F^{p-1}C_*(E) ) &\cong H_*(\pi^{-1}(B_p),\pi^{-1}(B_{p-1})) \\
+&\cong \oplus_{e^p}  H_*(\pi^{-1}(e^p),\pi^{-1}(\partial e^p))
+\end{split}
+\]
+where the direct sum is over the $p$-cells $e^p$ in $B$. Since $e^p$ is contractible, locally the fibration looks like the trivial fibration, i.e., $\pi^{-1}(e^p) \cong e^p \times F$. Then,
+\[
+\begin{split}
+H_*(\pi^{-1}(e^p),\pi^{-1}(\partial e^p)) &\cong H_*(e^p \times F,\partial e^p \times F) \\
+& \cong H_*(D^p \times F, S^{p-1} \times F) \\
+& \cong H_{*-p}(F) \\
+& \cong H_p(D^p,S^{p-1};H_{\ast-p}(F))
+\end{split}
+\]
+where we have use the K{\"u}nneth formula.  The general machinery of spectral sequence tells us we have a spectral sequence with $E_1$ term
+\[
+\begin{split}
+E^1_{p,q} &= H_{p+q}(F^pC_*(E)/F^{p-1}C_*(E)) \\
+&\cong \oplus_{e^p} H_p(D^p,S^{p-1};H_q(F))
+\end{split}
+\]
+The $d^1$-differential can be checked to be exactly the cellular boundary map of the CW-chain complex of $B$ with coefficients in $H_q(F)$, i.e., 
+\[
+E^1_{p,q} = C_p^{cell}(B;H_q(F))
+\]
+and 
+\[
+E^2_{p,q} = H_p(B;H_q(F)).
+\]
+\end{Rem}
+\begin{Rem}
+There are several natural generalizations of the Serre spectral sequence:
+\begin{enumerate}
+	\item We can take homology with coefficients in an abelian group, i.e., 
+	\[
+E^2_{s,t} = H_p(B;H_q(F;G)) \implies H_{p+q}(E;G).
+	\]
+	\item There is a relative form of the Serre spectral sequence: Suppose we have $F \to E \xrightarrow{\pi} B$, and $B' \subseteq B$. If we set $E' \colon \pi^{-1}(B')$, then there is a spectral sequence 
+	\[
+E^2_{s,t} = H_p(B,B';H_q(F;G)) \implies H_{p+q}(E,E';G). 
+	\]
+\item If $\pi_1(B)$ is not 0, but acts trivially on $H_*(F)$, then the spectral sequence takes the same form. If $\pi_1(B)$ does not act trivially then there is still a Serre spectral sequence, but then one must use homology with local coefficients. 
+	\end{enumerate}
+\end{Rem}
+We finish this section with another theorem of Serre. 
+\begin{Thm}[Serre]
+The group $\pi_i(S^n)$ are finite for $i> n$ except for $\pi_{4k-1}(S^{2k})$, which is the direct sum of $\bbZ$ with a finite group. 
+\end{Thm}
+\begin{proof}
+We can assume $n>1$, in which case we can use the Serre spectral sequence. Note that we already know that these are finitely generated abelian groups by \Cref{thm:serres_thm}. Recall that $H_n(S^n) \cong \bbZ$, and that $H^n(S^n) \cong [S^n,K(\bbZ,n)]$. Moreover, the Hurewicz map $h_n \colon \pi_n(S^n) \to H_n(S^n)$ is an isomorphism, so together we can find a homotopy class of map $f \colon S^n \to K(\bbZ,n)$ inducing an isomorphism on $\pi_n$. We can assume that this is a fibration. By the long exact sequence in homotopy, the fiber $F$ is $(n-1)$-connected, and $\pi_i(F) \cong \pi_i(S^n)$ for $i > n$. Converting $F \to S^n$ into a fibration, and taking the fiber (which is then a $K(\bbZ,n-1)$), we have a fibration
+\[
+K(\bbZ,n-1) \to F \to S^n. 
+\]
+We will study the Serre spectral sequence associated to this rationally, i.e., with $\mathbb{Q}$-coefficients. This takes the form
+\[
+\begin{split}
+E_2^{p,q} &\cong H^p(S^n;H^q(K(\bbZ,n-1);\bbQ))  \\
+& \cong H^p(S^n;\bbQ) \otimes H^q(K(\bbZ,n-1);\bbQ)).
+\end{split}
+\]
+We have\footnote{This is another good exercise. The hint is to use induction, starting from $K(\bbZ,1) = S^1$.}
+\[
+H^*(K(\bbZ,n);\bbQ) \cong \begin{cases} \bbQ[x], & n \text{ even}\\
+\Lambda_{\bbQ}(x), & n \text{ odd,}\end{cases}
+\]
+where $|x| =n$. 
+
+We begin with the case $n$ odd. The Serre spectral sequence looks as follows:
+\begin{sseqdata}[name = serre_2,no x ticks,no y ticks, classes = {draw = none},cohomological Serre grading, y axis gap=1.5cm, x axis extend end=1cm,yscale = 0.6,
+]
+\begin{scope}[ background ]
+  \node at (0,-1.5) {0};
+  \node at (3,-1.5) {n};
+  \node at (-2.5,0) {0};
+  \node at (-2.5,2) {n-1\quad};
+  \node at (-2.5,4) {2n-2 \quad};
+    \node at (-2.5,6) {3n-3\quad};
+  \end{scope}
+\class["\mathbb{Q}\{ 1\}"](0,0)
+\class["\mathbb{Q}\{x \}"](3,0)
+\class["\mathbb{Q}\{a \}"](0,2)
+\class["\mathbb{Q}\{ax \}"](3,2)
+\class["\mathbb{Q}\{a^2 \}"](0,4)
+\class["\mathbb{Q}\{a^2x \}"](3,4)
+\class["\mathbb{Q}\{a^3 \}"](0,6)
+\class["\mathbb{Q}\{a^3x \}"](3,6)
+\d3(0,2)
+\d3(0,4)
+\d3(0,6)
+\end{sseqdata}
+\printpage[ name = serre_2, page = 3 ] 
+
+\noindent The differential $\bbQ\{ a \} \to \bbQ\{ x \}$ must be an isomorphism, as otherwise it would be zero, and $\bbQ\{ a \}$ would survive to $E^{\infty}$, a contradiction to the fact that $F$ is $(n-1)$-connected. By the Leibniz rule, all the differentials are isomorphisms, and so $\widetilde H_*(F;\bbQ) = 0$, and so $\pi_i(F) \otimes \bbQ = 0$ for all $i$. By a Serre class argument $\pi_i(F)$ is a finitely-generated abelian group, and so it must in fact be finite for all $i$. Therefore, $\pi_i(S^n)$ is finite for $i> n$. 
+
+The case $n$ is a bit trickier. The spectral sequence now looks as follows:
+\begin{sseqdata}[name = serre_3,no x ticks,no y ticks, classes = {draw = none},cohomological Serre grading, y axis gap=1.5cm, x axis extend end=1cm,yscale = 0.6,
+]
+\begin{scope}[ background ]
+  \node at (0,-1.5) {0};
+  \node at (3,-1.5) {n};
+  \node at (-2.5,0) {0};
+  \node at (-2.5,2) {n-1\quad};
+  \end{scope}
+\class["\mathbb{Q}\{ 1\}"](0,0)
+\class["\mathbb{Q}\{x \}"](3,0)
+\class["\mathbb{Q}\{a \}"](0,2)
+\class["\mathbb{Q}\{ax \}"](3,2)
+\d3(0,2)
+\end{sseqdata}
+\printpage[ name = serre_3, page = 3 ] 
+
+\noindent So we deduce
+\[
+\widetilde H^*(F;\bbQ) \cong \begin{cases} \bbQ & * = 0,2n-1 \\ 0 & \text{else}. \end{cases}. 
+\]
+By the Hurewicz theorem mod finitely generated abelian groups,we conclude that $\pi_i(S^n)$ is finite for $n < i <2n-1$ and $\pi_{2n-1} \cong \bbZ$ plus a finite abelian group. To deal with $\pi_i(S^n)$ for $i>2n-1$, we let $Y$ be the space obtained from $F$ by attaching cells of dimension $2n+1$ and greater to kill $\pi_i(F)$ for $i \ge 2n-1$. We can assume $F \to Y$ is fibration, with fiber $Z$. Then $Z$ is $(2n-2)$-connected and has $\pi_i(Z) \cong \pi_i(Y)$ for $i<2n-1$ and so all the homotopy groups of $Y$ are finite. Thus $\widetilde H^*(Y;\bbQ) = 0$ and from the Serre spectral sequence associated to $Z \to F \to Y$ we get
+\[
+\widetilde H^*(Z;\bbQ) \cong \widetilde H^*(F;\bbQ) \cong \widetilde H^*(S^{2n-1};\bbQ) 
+\]
+Using the earlier argument for $n$ odd with $Z$ instead of $S^n$, we conclude that $\pi_i(Z)$ is finite for $i>2n-1$, but $\pi_i(S^n) \cong \pi_i(Z)$ for $i>2n-1$ and we are done. 
+\end{proof}
+\begin{exercise}{}{}
+Let $\pi \colon E \to B$ be a fibration with fiber $F$, let $k$ be a field, and suppose $\pi_1(B) = \pi_0(F) = 0$. Assume that the Euler characteristics $\chi(B),\chi(F)$ are defined over the field $k$. (Recall that for a chain complex $C$, the Euler characteristic is the alternating sum of the ranks of the homology of the chain complex, assuming these ranks are all finite.) Then $\chi(E)$ is defined, and 
+\[
+\chi(E) = \chi(B) \cdot \chi(F). 
+\]
+\textbf{Hint: } Construct an `Euler characteristic' for the $E_r$-page of the Serre spectral sequence. 
+\end{exercise}
 \end{document}

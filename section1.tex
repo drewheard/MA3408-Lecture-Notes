@@ -1173,7 +1173,7 @@ Using \Cref{Rem:relative_help} we have the following variant of \Cref{lem:whiteh
 \begin{proof}
 	Suppose $f \colon X \to Y$ is a weak equivalence, so $f_* \colon [Y,X] \xrightarrow{\simeq} [Y,Y]$. In other words, there exists a $g \colon Y \to X$ such that $f_*[g] = [f \circ g] = [\text{id}_Y]$, i.e., $f \circ g \simeq \text{id}_Y$. Then, $f \circ g \circ f \simeq f$ as well. But, we also have $f_* \colon [X,X] \xrightarrow{\simeq} [X,Y]$, which sends $\text{id}_X$ to $f$ and $g \circ f$ to $f \circ g \circ f \simeq f$. Therefore, $\text{id}_X \simeq g \circ f$, and so $X \simeq Y$. 
 \end{proof}
-\begin{Cor}If $X$ is a CW-complex with $\pi_i(X) = 0$ for all $i$, then $X$ is contractible. 
+\begin{Cor}\label{cor:contractible_cw}If $X$ is a CW-complex with $\pi_i(X) = 0$ for all $i$, then $X$ is contractible. 
 \end{Cor}
 \begin{proof}
 	Apply Whitehead's theorem to the unique map $X \to \ast$. 
