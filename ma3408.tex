@@ -1,4 +1,4 @@
-\documentclass[a4paper]{tufte-book}
+\documentclass[a4paper,nobib]{tufte-book}
 \usepackage{subfiles} 
 \usepackage{microtype,mathrsfs}
 \usepackage{amsmath,amsthm}
@@ -20,6 +20,7 @@
 \usepackage{amsmath}
 \usepackage[shortlabels]{enumitem}
 \usepackage{fontawesome}
+\usepackage[usestackEOL]{stackengine}
 \usepackage[most]{tcolorbox}
     \tcbuselibrary{theorems}
     \newtcbtheorem{exercise}{Exercise}{}{exercise}
@@ -68,6 +69,7 @@
 \newtheorem{Que}[equation]{Question}
 %\newtheorem{Baksh}[equation]{Baksheesh}
 \newcommand{\dmo}{\DeclareMathOperator}
+\dmo{\Vect}{Vect}
 \newcommand{\xr}{\xrightarrow}
 \Crefname{tcb@cnt@exercise}{Exercise}{Exercise 1}
 \Crefname{Exa}{Example}{Examples}
@@ -76,9 +78,11 @@
 \newcommand{\bbF}{\mathbb{F}}
 \newcommand{\bbR}{\mathbb{R}}
 \newcommand{\bbC}{\mathbb{C}}
+\newcommand{\cat}[1]{\mathcal{#1}}%or: 
 \dmo{\Hom}{Hom}
 \dmo{\coker}{coker}
 \dmo{\im}{im}
+\dmo{\Map}{Map}
 \dmo{\colim}{colim}
 \dmo{\Ext}{Ext}
 \dmo{\Sp}{Sp}
@@ -91,7 +95,7 @@
 \dmo{\op}{op}
 \setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{2}
-\newcommand{\cat}[1]{\mathcal{#1}}%or: 
+
 \begin{document}
 \maketitle
 \tableofcontents

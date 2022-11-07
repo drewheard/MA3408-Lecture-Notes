@@ -616,7 +616,7 @@ Let $i \colon A \to X$ be a cofibration, and $g \colon A \to B$ any map, then th
 \end{exercise}
 \section{Fibrations and the homotopy lifting property}
 The dual notion of a cofibration is a fibration, where the homotopy extension property is replaced by the homotopy lifting property. 
-\begin{Def}
+\begin{Def}\label{def:hlp}
 	Let $\mathcal{E}$ be a class of topological spaces. Assume that $p \colon E \to B$ is a continuous map, then we say that $p$ has the homotopy lifting property (with respect to $\cal E$) if for every $X \in \cal E$, and map $f \colon X \to E$ and every homotopy $H \colon X \times I \to B$ that begins with $p \circ f$, we can lift it to a homotopy $\tilde H \colon X \times I \to E$ that begins with $f$, i.e., $p \circ \tilde H = H$ and $\tilde H(x,0) = f(x)$. In a diagram, we require the lift $\tilde H$ in the following:
 % https://q.uiver.app/?q=WzAsNCxbMSwwLCJFIl0sWzEsMSwiQiJdLFswLDAsIlgiXSxbMCwxLCJYIFxcdGltZXMgSSJdLFswLDEsInAiXSxbMiwwLCJmIl0sWzMsMSwiSCIsMl0sWzIsMywiaV8wIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMywwLCJcXGV4aXN0cyBcXHRpbGRlIEgiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
 \[\begin{tikzcd}
