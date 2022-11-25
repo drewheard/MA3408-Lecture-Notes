@@ -648,7 +648,7 @@ A vector bundle is a special case of a locally trivial bundle.
 \begin{Def}
 A locally trivial bundle is called a real (respectively, complex) vector bundle of rank $n$ if its fiber is a vector space $V$ of dimension $n$ over $\bbR$ (respectively, $\bbC$) and the structure group is $GL(V)$. 
 \end{Def}
-\begin{Exa}
+\begin{Exa}\label{exa:tangent-bundle-smooth}
 For a manifold of dimension $n$, the tangent bundle $TM \to M$ is a real vector bundle of rank $n$. 
 \end{Exa}
 \begin{Rem}
@@ -704,7 +704,7 @@ where the last map is given by
 \]
 Note that this is a vector bundle over $B \times B'$. In the case that $B = B'$, the pullback along the diagonal map gives a bundle $\xi \otimes \xi'$ over $B$ called the tensor product bundle. 
 \end{Def}
-\begin{Def}[Hom bundle]
+\begin{Def}[Hom bundle]\label{def:hom-bundle}
 Let $\xi = (p \colon E \to B)$ and $\xi' = (p' \colon E' \to B)$ be two vector bundles over the same base space of rank $m$ and $n$ respectively. We can assume that local trivializations are defined over the same cover by taking a subdivision if necessary. Let
 \[
 \Phi_{\alpha\alpha'} \colon U_{\alpha} \cap U_{\alpha'} \to GL_m(K)
@@ -722,6 +722,9 @@ where ${}^t(-)$ denotes the transpose.\footnote{To justify the use of the transp
 \begin{Exa}
 Let $\underline{K}_B$ denote the trivial $K$-bundle over a base $B$. Then $E^* \coloneqq \Hom(E,\underline{K}_B)$ is called the dual vector bundle, and has fibers dual to those of $E$. We note that if $K = \bbR$ and we work over a paracompact Hausdorff base space then a finite rank vector bundle and its dual are isomorphic as vector bundles (but not canonically). 
 \end{Exa}
+\begin{Def}\label{def:projective-bundle}
+Associated to a real or complex vector bundle $\pi \colon E \to B$ is the \emph{projective bundle} $P(E) \to B$, where $P(E)$ is the space of all lines through the origin in all of the fibers of $E$. This is a locally trivial bundle with fiber $\bbR P^{n-1}$ or $\bbC P^{n-1}$ respectively.
+\end{Def}
 \section{Morphism of bundles}
 Let us now formalize the notion of a morphism of locally trivial bundles. There are various possibilities depending on how much structure we wish to preserve. 
 \begin{Def}[Bundle homomorphism]
@@ -1090,7 +1093,7 @@ c_1(\pi) \coloneqq f_\pi^{\infty}(c)
 \]
 called the first Chern class of $\pi$. The bijection $P(X,S^1) \simeq H^2(X;\bbZ)$ sends $\pi$ to $c_1(\pi)$ and so real line bundles are completely classified by their first Chern classes. 
 \end{Exa}
-\begin{Exa}
+\begin{Exa}\label{exa:tautological-bundle}
 How many (real) vector bundles over $\bbR P^{n}$ are there? We have
 \[
 \Vect_1^{\bbR}(\bbR^n) \cong H^1(\bbR P^n;\bbZ/2) \cong \bbZ/2,

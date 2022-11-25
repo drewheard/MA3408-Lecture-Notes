@@ -21,15 +21,25 @@
 \usepackage[shortlabels]{enumitem}
 \usepackage{fontawesome}
 \usepackage[usestackEOL]{stackengine}
-\usepackage[most]{tcolorbox}
-    \tcbuselibrary{theorems}
-    \newtcbtheorem{exercise}{Exercise}{}{exercise}
+
 %------------------------------------------------------------------------------
 %----- Commands and macros ----------------------------------------------------
 %------------------------------------------------------------------------------
 
 %----- Thms, Defs, etc. -------------------------------------------------------
+\newenvironment{axioms}
+ {\enumerate[label=\textbf{A\arabic*.}, ref=A\arabic*]}
+ {\endenumerate}
+\makeatletter
+\newcommand\varitem[1]{\item[\textbf{A\arabic{enumi}\rlap{$#1$}.}]%
+  \edef\@currentlabel{A\arabic{enumi}{$#1$}}}
+\makeatother
+
+
+
 \numberwithin{equation}{section}
+
+\newtheorem{exercise}{Exercise}
 \swapnumbers %pour que le numero apparaisse devant le theoreme
 
 \newtheorem{Thm}[equation]{Theorem}
@@ -46,7 +56,7 @@
 %\newtheorem*{Cor*}{Corollary}
 \newtheorem{Conj}[equation]{Conjecture}
 \newtheorem{Leap}[equation]{Leap of Faith}
-%\newtheorem{Axiom}[equation]{Axiom}
+
 
 %\theoremstyle{definition}
 \theoremstyle{remark}
@@ -71,7 +81,6 @@
 \newcommand{\dmo}{\DeclareMathOperator}
 \dmo{\Vect}{Vect}
 \newcommand{\xr}{\xrightarrow}
-\Crefname{tcb@cnt@exercise}{Exercise}{Exercise 1}
 \Crefname{Exa}{Example}{Examples}
 \newcommand{\bbZ}{\mathbb{Z}}
 \newcommand{\bbQ}{\mathbb{Q}}
@@ -95,13 +104,14 @@
 \dmo{\op}{op}
 \setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{2}
-
+\usepackage{tocloft}
 \begin{document}
 \maketitle
 \tableofcontents
 \subfile{section1}
 \subfile{section2}
 \subfile{section3}
+\subfile{section4}
 \appendix
 \chapter{A nice category of topological spaces}
 \section{The compact open topology}

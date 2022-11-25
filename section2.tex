@@ -35,7 +35,7 @@ This determines $H_*(C_{\bullet})$ up to extension.\sidenote{This is a common ph
 How would we handle the situation if we have a longer filtration: $\cdots F_pC_{\bullet} \subseteq F_{p+1}C_{\bullet} \subseteq \cdots$?
 
 \begin{Exa}
-Consider a (semi-simplicial) model of the $2$-sphere $S^2$ with vertices $\{a,b,c\}$, edges $\{A,B,C\}$ and solid triangles $\{P,Q\}$ and with inclusions as soon in \Cref{fig:s2}.\sidenote{This example comes from Example 2.1 of \url{https://arxiv.org/pdf/1702.00666.pdf}.}
+Consider a (semi-simplicial) model of the $2$-sphere $S^2$ with vertices $\{a,b,c\}$, edges $\{A,B,C\}$ and solid triangles $\{P,Q\}$ and with inclusions as shown in \Cref{fig:s2}.\sidenote{This example comes from Example 2.1 of \url{https://arxiv.org/pdf/1702.00666.pdf}.}
 \begin{figure}[h!] \centering\includegraphics[scale = 0.5]{s2.png}\caption{Simplicial model of $S^2$}\label{fig:s2}\end{figure}
 The associated chain complex is $C_{\bullet}$
 \[
@@ -365,7 +365,7 @@ A \otimes B & 0
 \end{bmatrix} \]
 In this case we see that $H_0(C) = A \otimes B$ and $H_1(C) = "\Tor(A,B)$. Therefore, $'\Tor(A,B) = "\Tor(A,B)$. 
 \end{Exa}
-\begin{exercise}{The snake lemma}{}
+\begin{exercise}[The snake lemma]
 Show, using spectral sequences, the following result in homological algebra (the snake lemma):
 
 Given a commutative diagram
@@ -382,7 +382,7 @@ in an abelian category with exact rows, there is a long exact sequence
 \end{split}
 \]
 \end{exercise}
-\begin{exercise}{}{}
+\begin{exercise}
 (1) Suppose we have a commutative triangle
 	% https://q.uiver.app/?q=WzAsMyxbMCwwLCJBIl0sWzIsMCwiQyJdLFsxLDEsIkIiXSxbMCwxLCJpIl0sWzAsMiwiZiIsMl0sWzEsMiwicSJdXQ==
 \[\begin{tikzcd}
@@ -867,7 +867,7 @@ homological Serre grading, classes = {draw = none },y axis gap=1cm, xscale = 1.5
 
 The only differentials that interact with $H_n(X)$ and $H_{n-1}(\Omega X)$ is the $d_n$ differential shown, and so this must be an isomorphism in order for these terms to die in the spectral sequence. Moreover, the terms $H_i(X)$ for $1 \le i \le n-1$ have no differentials at all in the spectral sequence; in particular, we must have $H_i(X) = 0$ for $1 \le i \le n-1$ and $d_n \colon H_n(X) \to H_{n-1}(\Omega X)$ is an isomorphism. 
 \end{proof}
-\begin{exercise}{}{}
+\begin{exercise}
 Show, using the Serre spectral sequence, that if $S^k \to S^m \to S^n$ is a fibration with $n \ge 2$, then $k = n - 1$ and $m = 2n - 1$.
 \end{exercise}
 \section{The Serre spectral sequence in cohomology}
@@ -1007,7 +1007,7 @@ d_3(a_1a_2) &= d_3(a_1)a_2+a_1d_3(a_2) = xa_2 + a_1^2x \\
 Because $d_3$ is an isomorphism, we deduce that $a_1a_2 = 3a_3$. Said another way, $a_1^3 = a_1a_1^2 = 2a_1a_2 = 3 \cdot 2 \cdot a_3$. By an inductive argument, we deduce that $a_1^n = n! a_n$, where $a_n$ generates $E_2^{0,2n}$. We see that $H^*(\Omega S^3) \cong \Gamma_{\bbZ}[a_1]$, the divided polynomial algebra on a class $a_1$ in degree 2.\sidenote[][-6\baselineskip]{In general, the divided polynomial algebra on a ring $R$, denoted $\Gamma_R[\alpha]$ where $\alpha$ has (even) degree $n$ is the algebra with additive generators $\alpha_i$ in degree $ni$ and multiplication $\alpha_1^k = k_!\alpha_k$ (and hence $\alpha_i \alpha_j = \binom{i+j}{i}\alpha_{i_j}$). Note that if $R = \mathbb{Q}$, then $\Gamma_{\mathbb{Q}}[\alpha] \cong \mathbb{Q}[\alpha]$, but in general it is more complex. For example, if $R = \bbF_p$, then $\Gamma_{\bbF_p}[\alpha] \cong \otimes_{i \ge 0} \bbF_p[\alpha_{p_i}]/(\alpha_{p^i}^p)$, a tensor product of truncated polynomial rings. }
 \end{Exa}
 You should now attempt the following exercise.\sidenote{Here $\Lambda_{\mathbb{Z}}[x] \cong \mathbb{Z}[x]/(x^2)$ is the exterior algebra}
-\begin{exercise}{}{}
+\begin{exercise}
 Use the cohomological Serre spectral sequence associated to the path fibration
 \[
 \Omega S^n \to PS^n \to S^n
@@ -1087,7 +1087,7 @@ cohomological Serre grading]
 
 The extension problem can be solved by \Cref{rem:solve_extensions}, and we get $H^*(SU(4)) \cong \Gamma_{\bbZ}(a_3,a_5,a_7)$. These two examples suggest a general pattern: is $H^*(SU(n)) \cong \Gamma_{\bbZ}(a_3,a_5,\ldots,a_{2n-1})$? The next exercise is to show that this is true.\footnote{However, unlike the previous two examples, there will be differentials to deal with. The hint is to use the multiplicative structure, in particular the Leibniz rule.}
 \end{Exa}
-\begin{exercise}{}{}
+\begin{exercise}
 Show, using induction, that 
 \[H^*(SU(n)) \cong \Gamma_{\bbZ}(a_3,a_5,\ldots,a_{2n-1}).\]
 \end{exercise}
@@ -1280,6 +1280,14 @@ so that $\gamma_i(y)$ generates $H^{2i(u-1)}(\Omega S^u)$ and $x\gamma_i(y)$ gen
 	\]
 		Because $\theta$ is an isomorphism, we deduce that $\gamma_i(y) \smile \gamma_j(y) = \gamma_{i+j}(y)$, and the result follows.
 \end{proof}
+\begin{Rem}\label{rem:gysin-sequence-cohomology}
+Of course, we also have a cohomological Gysin sequence: Suppose $S^{n-1} \to E \xrightarrow{p} B$ is a fibration with $\pi_1B = 0$ and $n \ge 0$. Then, there exists an exact sequence
+\[
+\cdots \to H^{i-n}(B) \xrightarrow{\smile_e} H^i(B) \xrightarrow{p^*} H^i(E) \to H^{i-n+1}(B) \to \cdots
+\]
+for a certain Euler class $e \in H^n(B)$ Moreover, if $n$ is odd, then $2e = 0$. 
+
+\end{Rem}
 \section{Serre mod $\cat C$ theory}
 Our next goal is to prove the following theorem of Serre.
 \begin{Thm}\label{thm:serres_thm}
@@ -1477,11 +1485,10 @@ By the Hurewicz theorem mod finitely generated abelian groups,we conclude that $
 \]
 Using the earlier argument for $n$ odd with $Z$ instead of $S^n$, we conclude that $\pi_i(Z)$ is finite for $i>2n-1$, but $\pi_i(S^n) \cong \pi_i(Z)$ for $i>2n-1$ and we are done. 
 \end{proof}
-\begin{exercise}{}{}
-Let $\pi \colon E \to B$ be a fibration with fiber $F$, let $k$ be a field, and suppose $\pi_1(B) = \pi_0(F) = 0$. Assume that the Euler characteristics $\chi(B),\chi(F)$ are defined over the field $k$. (Recall that for a chain complex $C$, the Euler characteristic is the alternating sum of the ranks of the homology of the chain complex, assuming these ranks are all finite.) Then $\chi(E)$ is defined, and 
+\begin{exercise}
+Let $\pi \colon E \to B$ be a fibration with fiber $F$, let $k$ be a field, and suppose $\pi_1(B) = \pi_0(F) = 0$. Assume that the Euler characteristics $\chi(B),\chi(F)$ are defined over the field $k$. (Recall that for a chain complex $C$, the Euler characteristic is the alternating sum of the ranks of the homology of the chain complex, assuming these ranks are all finite.) Then $\chi(E)$ is defined, and\sidenote{\textbf{Hint: } Construct an `Euler characteristic' for the $E_r$-page of the Serre spectral sequence. }
 \[
 \chi(E) = \chi(B) \cdot \chi(F). 
 \]
-\textbf{Hint: } Construct an `Euler characteristic' for the $E_r$-page of the Serre spectral sequence. 
 \end{exercise}
 \end{document}

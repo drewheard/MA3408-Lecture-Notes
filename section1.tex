@@ -163,7 +163,7 @@ A map $f \colon X \to Y$ is a homotopy equivalence if there exists $g \colon Y \
 	All of these operations agree, and for $n \ge 2$, these give $\pi_n(X,x_0)$ the structure of an abelian group. 
 \end{Thm}
 This is a consequence of the following exercise, known as the Eckmann--Hilton lemma. 
-\begin{exercise}{Eckmann--Hilton lemma}{}
+\begin{exercise}[Eckmann--Hilton lemma]
 	Let $M$ be a set and let $\ast,\bullet$ be two binary operations on $M$, $\ast,\bullet \colon M \times M \to M$, both with unit elements. Suppose that 
 	\[
 (a \ast b) \bullet (c \ast d) = (a \bullet c) \ast (b \bullet d)
@@ -190,9 +190,8 @@ i(2t_1-1,2t_2-2,\ldots) & [1/2,1] \times [1/2,1].
 \begin{figure}[h!] \centering\includegraphics[scale = 0.5]{abelian.png}\caption{$f + g \simeq g +f $.}\label{fig:abelian}\end{figure}
 	That is, so long as $n \ge 2$, we can shrink the domain of $f$ and $g$ to smaller cubes (mapping the remaining region to the base point), slide $f$ and $g$ past each other, and then increase the domains back again. 
 \end{Rem}
-\begin{exercise}{}{}
-	Let $G$ be a topological group with identity element $e$, then $\pi_1(G,e)$ is abelian. \\
-	\textbf{Hint: } Use Eckmann--Hilton, or note the following: A topological group is a group object in the category of topological spaces. What is a group object in the category of groups? 
+\begin{exercise}
+	Let $G$ be a topological group with identity element $e$, then $\pi_1(G,e)$ is abelian.\sidenote{	\textbf{Hint: } Use Eckmann--Hilton, or note the following: A topological group is a group object in the category of topological spaces. What is a group object in the category of groups? }
 \end{exercise}
 \begin{Prop}
 	If $n \ge 1$ and $X$ is path connected, then there is an isomorphism $\beta_{\gamma} : \pi_n(X, x_0) \xrightarrow{\simeq} \pi_n(X, x_0)$ given by $\beta_{\gamma}([ f ]) = [\gamma \circ f ]$ where $\gamma$ is a path in $X$ from $x_1$ to $x_0$ and $\gamma \circ f$ is constructed by first shrinking the domain of $f$ to a smaller cube inside of $I^n$, and then inserting the path $\gamma$ radially from $x_1$ to $x_0$ on the boundaries of these cubes.
@@ -232,7 +231,7 @@ We have the following:
 	\]
 \end{enumerate}
 \end{proof}
-\begin{exercise}{}{}
+\begin{exercise}
 	If $\phi \colon X \to Y$ is homotopy equivalence (not necessarily base-point preserving), then $\pi_* \colon \pi_n(X,x_0) \to \pi_n(Y,\phi(y_0))$ is an isomorphism.  
 \end{exercise}
 \begin{Rem}
@@ -266,7 +265,7 @@ To see that $p_*$ is injective, let $[\tilde f] \in \ker(p_*)$, i.e., $p_*[\tild
 \begin{Exa}\label{ex:s1}
 	$S^1$ has universal cover $p \colon \mathbb{R} \to S^1$, $p(t) = e^{2\pi i t}$. Then $\pi_n(S^1) \cong \pi_n(\mathbb{R}) \cong 0$ for $n \ge 2$. 
 \end{Exa}
-\begin{exercise}{}{}
+\begin{exercise}
 	Find two spaces $X,Y$ with $\pi_nX \cong \pi_nY$ but $X \not \simeq Y$. 
 
 	\textbf{Hint: } What is the universal cover of $\mathbb{R}P^n$?
@@ -352,7 +351,7 @@ j_*[G_1] = [j \circ G_1] = [G_1] = [f]
 \begin{proof}
 	Use the long exact sequence in homotopy. 
 \end{proof}
-\begin{exercise}{}{}
+\begin{exercise}
 Let $X$ be a path-connected space, and $CX$ the cone on $X$. Show that 
 	\[
 \pi_n(CX,X,X_0) \cong \pi_{n-1}(X,x_0)
@@ -398,7 +397,7 @@ of topological spaces, where $\Hom(Y,Z)$ is given the compact open topology. Wri
 \end{tikzcd}\]
 where $p \colon Y^I \to Y$ is the evaluation at 0 map. It is often easier to work with this equivalent diagram. 
 \end{Rem}
-\begin{exercise}{}{}
+\begin{exercise}
 Let $(X,A)$ have the HEP, and assume moreover that $i \colon A \to X$ is a retract up to homotopy. Show that $A$ is a retract of $X$. 
 \end{exercise}
 \begin{Lem}
@@ -445,7 +444,7 @@ H(x,(1-t)(1+s)-1), & (1-t)(1+s) \ge 1.
 One verifies directly that this gives the required extension. 
 \end{proof}
 \begin{Rem}
-We recall that given a map $f \colon X \to Y$, the mapping cylinder (see \Cref{fig_mapping_cylinder}) is the pushout\begin{marginfigure}[5\baselineskip] \centering\includegraphics[scale = 0.2]{map_cylinder.png}\caption{The mapping cylinder.}\label{fig_mapping_cylinder}\end{marginfigure}
+We recall that given a map $f \colon X \to Y$, the mapping cylinder (see \Cref{fig_mapping_cylinder}) is the pushout\begin{marginfigure}[5\baselineskip]\centering\includegraphics[scale = 0.2]{map_cylinder.png}\caption{The mapping cylinder.}\label{fig_mapping_cylinder}\end{marginfigure}
 % https://q.uiver.app/?q=WzAsNCxbMCwwLCJYIl0sWzAsMSwiWSJdLFsxLDEsIk1fZiJdLFsxLDAsIlggXFx0aW1lcyBJIl0sWzAsMSwiZiIsMl0sWzEsMl0sWzAsMywiaV8xIl0sWzMsMl0sWzIsMCwiIiwxLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lci1pbnZlcnNlIn19XV0=
 \[\begin{tikzcd}
 	X & {X \times I} \\
@@ -514,13 +513,13 @@ Let $J \colon A \times I \to M_i$ be the canonical map (arising from the definit
 Because $i \colon A \to X$ is a cofibration, so is $i(A) \to X$. Hence $X \times I$ retracts onto $X \times \{ 0 \} \cup i(A) \times I$ (\Cref{cor:cofibration_retract}). For a Hausdorff space, the image of a retract is closed, and so $X \times \{ 0 \} \cup i(A) \times I$ is a closed subspace of $X \times I$. Intersecting with $X \times \{ 1 \}$, we see that $i(A) \times \{ 1 \}$ is closed in $X \times \{ 1 \}$, i.e, $i(A)$ is closed in $X$.  
 \end{proof}
 The following (rather pathological) example shows that $i$ is not always a closed map if $X$ is not Hausdorff. 
-\begin{exercise}{}{}
+\begin{exercise}
 Let $A = \{ a \}$ and $X = \{ a , b\}$ with the trivial topology. Show that the inclusion $A \to X$ is a cofibration whose image is not closed. 
 \end{exercise}
 \begin{Rem}
 The next goal is to show that CW-complexes $(X,A)$ are always cofibrations. The key is the following exercise. 
 \end{Rem}
-\begin{exercise}{}{}
+\begin{exercise}
 \begin{enumerate}[label=(\alph*)]
   	\item Suppose $\{ (X_i,A_i)\}$ are a collection of spaces satisfying the HEP, then so does $\{ (\coprod X_i, \coprod A_i) \}$.
   	\item Suppose $(X,A)$ satisfies the HEP, and $f \colon A \to B$ is a continuous map. Let $Y = X \cup_f B$ be the pushout, then $(Y,B)$ satisfies the HEP. 
@@ -681,7 +680,7 @@ This makes it clear how the homotopy lifting property is dual to the homotopy ex
 
 
 \end{proof}
-\begin{exercise}{}{}
+\begin{exercise}
 Show that the composition of fibrations is a fibration. 
 \end{exercise}
 
@@ -1118,7 +1117,7 @@ can be completed to a diagram
 \begin{Rem}\label{Rem:relative_help}
 	If $(X,A)$ is a relative CW-complex of dimension $n$, and $f \colon Y \to Z$ is an $n$-equivalence\sidenote{That is, the homotopy fiber of $f$ is $(n-1)$-conneceted}, the same argument goes through to show that the conclusion of HELP also holds in this case. 
 \end{Rem}
-\begin{exercise}{}{}
+\begin{exercise}
 Show that if $f = \text{id}$ in HELP, then we recover the homotopy extension property. 
 \end{exercise}
 Our first application of this will be Whitehead's theorem. We start with the folliwing lemma. 
@@ -1184,11 +1183,11 @@ Using \Cref{Rem:relative_help} we have the following variant of \Cref{lem:whiteh
 	\item We must have a map inducing the weak equivalence; the homotopy groups cannot be abstractly isomorphism, e.g., consider $\mathbb{R}P^2 \times S^3$ and $\mathbb{R}P^3 \times S^2$. 
 \item The Warsaw circle\footnote{See, for example, \url{https://wildtopology.com/bestiary/warsaw-circle/}} is an example of a space with $\pi_nX = 0$ for all $n$, but for which $X$ is not contractible. 
 \end{enumerate}
-\begin{exercise}{}{}
+\begin{exercise}
 Use Whitehead’s theorem to show that a CW complex is contractible if it is the union of an increasing
 sequence of sub-complexes $X_1 \subseteq X_2 \subseteq \cdots$ such that each inclusion $X_i \to X_{i+1}$ is null-homotopic.
 \end{exercise}
-\begin{exercise}{}{}
+\begin{exercise}
 	Let $f \colon X \to Y$ be a weak homotopy equivalence. Assuming $X$ is a CW-complex, and $Y$ has the homotopy type of a CW-complex, show that $f$ is a homotopy equivalence.
 \end{exercise}
 \end{Rem}
@@ -1244,7 +1243,7 @@ Suppose $f \colon (X,A) \to (Y,B)$ is a map of relative CW-complexes which is ce
 \begin{Cor}\label{cor:connectivity_cw_complex}
 If $X$ is a CW-complex, then $\pi_i(X,X_n) = 0$ for all $i \le n$. 
 \end{Cor}
-\begin{exercise}{}{}
+\begin{exercise}
 Use cellular approximation to show that the $n$-skeletons of homotopy equivalent CW-complexes without cells
 of dimension $n + 1$ are also homotopy equivalent.	
 \end{exercise}
@@ -1361,7 +1360,7 @@ is an isomorphism for $ i + 1 < 2n$ and a surjection for $i+1 = 2n$, and the res
 \end{tikzcd}\]
 Then $\tilde f \colon F_f \to F_z$ is an $(n+m-1)$-equivalence. This follows because $\pi_n(X,A) \cong \pi_{n-1}F_f$ (use \Cref{thm:les_fibration} and the 5-lemma, for example). 
 \end{Rem}
-\begin{exercise}{}{}
+\begin{exercise}
 Show that if $f \colon X \to Y$ is an $n$-connected map between spaces with $X$ an $(m-1)$-connected CW-complex, then the comparison map $F(f) \to \Omega C(f)$ is $(m+n-1)$-connected. 
 \end{exercise}
 \section{The CW-approximation theorem}
@@ -1418,7 +1417,7 @@ Finally, setting $\Gamma X = \colim_n X_n$ and $\gamma= \colim_n \gamma_n$ gives
 \begin{Rem}
 There is also a version of CW-approximation for pairs. Namely, if $(X,A)$ is pair then one can product a CW-pair $(\Gamma X,\Gamma A)$ weakly-homotopic to $(X,A)$ such that $\Gamma A$ is a sub-complex of $\Gamma X$. 
 \end{Rem}
-\begin{exercise}{}{}
+\begin{exercise}
 Let $f \colon X \to Y$ be a map of topological spaces. Show that there is an induced map, $\Gamma f \colon \Gamma X \to \Gamma Y$, unique up to homotopy, between the CW-approximations to $X$ and $Y$, such that the following diagram commutes:
 \[
 % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAB12BxOgW17oACABogAvqXSZc+QigCM5KrUYs2nHvyEBNcZJAZseAkTLzl9Zq0QhREqUdlFF56pbU3dY5TCgBzeCJQADMAJwheJDIQHAgkRRUrdW4+AUFgvRDwyMRo2KQAJjdVaw52P1S6EGoGOgAjGAYABWljORBQrD8ACxxMkDCI+Op8xABmYqSbTgqtfsGcopi48Zr6xpbHExtOnr7JjwHxCjEgA
@@ -1429,7 +1428,7 @@ X \arrow[r, "f"']                                   & Y
 \]
 Deduce that CW-approximations are unique up to homotopy. 
 \end{exercise}
-\begin{exercise}{}{}
+\begin{exercise}
  Assume given maps $f \colon X \to Y$ and $g \colon Y \to X$ such that $g \circ f$ is
 homotopic to the identity. (We say that $Y$ “dominates” $X$.) Suppose
 that $Y$ is a CW complex. Prove that $X$ has the homotopy type of a CW
@@ -1519,7 +1518,7 @@ For any $n \ge 1$ and any group $G$ (abelian if $n \ge 2$) there exists an Eilen
 \begin{proof}
 Let $X_{n+1} = \left ( \bigvee_{\alpha} S_{\alpha}^n \right) \cup \bigcup_{\beta} D_{\beta}^{n+1}$ be as in \Cref{Exa:almost_em_space}. We want to build a space $X_{n+2}$ which agrees with $X_{n+1}$ in homotopy up to $\pi_n$ but has $\pi_{n+1}X_{n+2} = 0$. We have seen exactly how to do this in \Cref{lem:killing_cells}. Repeating this procedure inductively and taking colimits, we product a space $X$ with the correct homotopy groups. 
 \end{proof}
-\begin{exercise}{}{}
+\begin{exercise}
 Exhibit a fibration $F \to E \to B$ where, up to weak homotopy equivalence, $F$ is a $K(G, n-1)$, $B$ is a $K(G,n)$ and $E$ is contractible.
 \end{exercise}
 \begin{Rem}
@@ -1602,10 +1601,10 @@ If $X$ and $Y$ are simply connected and $f \colon X \to Y$ a map inducing an iso
 \begin{proof}
 By using the mapping cylinder $M_f$ we can assume $f$ is an inclusion. Then by the long exact sequence in homology we have $H_n(Y,X) = 0$ for all $n$. Since $X$ and $Y$ are simply-connected $\pi_1(Y,X) = 0$. So by the relative Hurewicz theorem, the first non-zero $\pi_n(Y,X)$ is equal to the first non-zero $H_n(YmX)$. Therefore, $\pi_n(Y,X) = 0$ for all $n$. Therefore, $f_* \colon \pi_n(X) \to \pi_n(Y)$ is an isomorphism for all $n$. By Whitehead's theorem, $f$ is a homotopy equivalence. 
 \end{proof}
-\begin{exercise}{}{}
+\begin{exercise}
 Show that a map between simply-connected CW complexes is a homotopy equivalence if its mapping cone is contractible. 
 \end{exercise}
-\begin{exercise}{}{}
+\begin{exercise}
  Show that a simply-connected closed 3-manifold is homotopy
 equivalent to $S^3$. (You may assume that every closed manifold is homotopy equivalent to a CW-complex.)
 \end{exercise}
