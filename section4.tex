@@ -1,0 +1,613 @@
+\documentclass[ma3408.tex]{subfiles}
+\begin{document}
+\chapter{Characteristic classes}
+In the end of the previous chapter we saw how two cohomology classes, the first Chern class, and the first Stiefel--Whitney class completely characterize complex and real line bundles respectively. In this section we develop a general theory of Chern and Stiefel--Whitney classes for higher rank bundles. 
+\section{Chern classes of complex vector bundles}
+\begin{Rem}
+We recall that we have a bijection
+\[
+ \renewcommand\stacktype{L}
+ \strutlongstacks{T}
+\left\{\vcenter{\hbox{$\Longstack[c]{principal $GL_n(\bbC)$-bundles over $X$}$}}\right\} 
+\longleftrightarrow 
+\left\{\vcenter{\hbox{$\Longstack[c]{Rank $n$ complex vector bundles over $X$}$}}\right\}
+\]
+for any CW-complex $X$. We will freely use this to pass between complex vector bundles and principal bundles. Moreover, by Gram--Schmidt we have $GL_n(\bbC) \simeq U(n)$. We begin by computing the cohomology of the classifying space $BU(n)$. 
+\end{Rem}
+\begin{Prop}\label{prop:cohomology-of-bun}
+We have
+\[
+H^*(BU(n);\bbZ) \cong \bbZ[c_1,c_2,\ldots,c_n]
+\]
+with $|c_i| = 2i$. Moreover, the map
+\[
+i \colon BU(n-1) \to BU(n)
+\]
+induces a map $i^* \colon H^*(BU(n);\bbZ) \to H^*(BU(n-1);\bbZ)$ sending $c_i$ to $c_i$ for $i<n$.  
+\end{Prop}
+\begin{proof}
+There are any number of ways to do this. For example, we can do this by induction on $n$. When $n = 1$ we have $BU(1) \simeq \bbC P^{\infty}$ and $H^*(\bbC P^{\infty};\bbZ) \cong \bbZ[c_1]$ as we have already seen. In general, we have a fibration
+\[
+S^{2n-1} \cong U(n)/U(n-1) \to BU(n-1)\to BU(n)
+\]
+so the Gysin sequence (\Cref{prop:cohomology-of-bun}) is of the form
+\[
+\cdots \to H^{k-1}(BU(n-1)) \to H^{k-2n}(BU(n)) \xrightarrow{\smile_e} H^{k}(BU(n)) \xrightarrow{p^*} H^{k}(BU(n-1)) \to H^{k-2n+1}(BU(n)) \to \cdots
+\]
+Inductively we note that $H^{*}(BU(n-1))$ is concentrated in even degrees, so we get short exact sequences
+\[
+0 \to H^{k-2n}(BU(n)) \xrightarrow{\smile_e} H^{k}(BU(n)) \xrightarrow{p^*} H^{k}(BU(n-1)) \to 0
+\]
+It follows that $H^k(BU(n)) = 0$ for $k$ odd as well.\sidenote{This is clear for $k < 2n$, but note that we can then feed this into the leftmost term and use induction to see it for all $k$.} Moreover, there is an isomorphism $H^*(BU(n))/(e) \xrightarrow{\sim} H^*(BU(n-1))$. Because $H^*(BU(n-1))$ is a polynoimal algebra, we can lift the generators to generators of $H^*(BU(n))$, and produce an algebra map $H^*(BU(n-1))[e] \to H^*(BU(n))$, which we claim is an isomorphism. Indeed, we can filter both sides by powers of $e$, and note that this gives an isomorphism on associated gradeds. A five-lemma argument shows that the map induces an isomorphism modulo $e^k$ for any $k$, but the powers of $e$ increase in dimension, so we obtain an isomorphism in each dimension. Finally, we can define $c_n = (-1)^ne \in H^{2n}(BU(n))$. 
+
+If you don't like that argument, another way is to first prove that $H^*(U(n)) \cong \Lambda_{\bbZ}[x_1,\ldots,x_{2n-1}]$ using the Serre spectral sequence. A second application of the Serre spectral sequence for the fibration $U(n) \to EU(n) \to BU(n)$ gives the result. We leave the details to the reader. 
+\end{proof}
+\begin{Def}
+The generators $c_1,\ldots,c_n$ are called the universal Chern classes of $U(n)$-bundles. 
+\end{Def}
+\begin{Rem}
+Recall that given a principal $U(n)$-bundle $\pi \colon E \to X$, there exists a map $f_{\pi} \colon X \to BU(n)$ such that $\pi \cong f^*_{\pi}(\pi_{U(n)})$. 
+\end{Rem}
+\begin{Def}
+The $i$-th Chern class of the $U(n)$-bundle $\pi \colon E \to X$ is defined as $c_i(\pi) \coloneqq f_{\pi}^*(c_i) \in H^{2i}(X;\bbZ)$. 
+\end{Def}
+\begin{Prop}[Functoriality of Chern classes]\label{prop:functoriality-of-chern-classes}
+If $f \colon Y \to X$ is a continuous map, and $\pi \colon E \to X$ is a $U(n)$-bundle, then $c_i(f^*\pi) \cong f^*(c_i(\pi))$ for any $i$.\sidenote{Note that $f^*$ has a dual role here: once as a pullback bundle, and once as the pullback of a cohomology class.}
+\end{Prop}
+\begin{exercise}{}{}
+Prove \Cref{prop:functoriality-of-chern-classes}. 
+\end{exercise}
+\begin{Cor}\label{cor:chern-classes-trivial-bundle}
+If $\epsilon$ is the trivial $U(n)$-bundle on a space $X$, then $c_i(\epsilon) = 0 $ for all $i > 0$. 
+\end{Cor}
+\begin{proof}
+The bundle $\epsilon$ is the pullback of the bundle $\nu \colon G \to {\ast}$ along the canonical map $q \colon X \to \ast$:
+% https://q.uiver.app/?q=WzAsNCxbMSwwLCJHIl0sWzEsMSwiXFxhc3QiXSxbMCwxLCJYIl0sWzAsMCwiWCBcXHRpbWVzIEciXSxbMCwxLCJcXG51Il0sWzIsMSwicSIsMl0sWzMsMiwiXFxlcHNpbG9uIiwyXSxbMywwXSxbMywxLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
+\[\begin{tikzcd}[ampersand replacement=\&]
+    {X \times G} \& G \\
+    X \& \ast
+    \arrow["\nu", from=1-2, to=2-2]
+    \arrow["q"', from=2-1, to=2-2]
+    \arrow["\epsilon"', from=1-1, to=2-1]
+    \arrow[from=1-1, to=1-2]
+    \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+ So we have
+\[
+c_i(\epsilon) \cong c_i(q^*(\nu)) \cong q^*c_i(\nu).
+\]
+But $c_i(\nu) \in H^{2i}(\ast) = 0$ when $i>0$. 
+\end{proof}
+\begin{Def}
+The total Chern class of a $U(n)$-bundle $\pi \colon E \to X$ is defined by\sidenote{Note that if $\pi$ is a $U(n)$-bundle, then $c_i(\pi) = 0$ for $i>n$ by definition.}
+\[
+c(\pi) = c_0(\pi) + c_1(\pi) + \cdots + c_n(\pi) \in H^*(X;\bbZ)
+\]
+as an element in the cohomology ring of the base space. 
+\end{Def}
+\begin{Def}[Whitney Sum]
+Let $\pi_1 \colon E_1 \to X$ and $\pi_2 \colon E_2 \to X$ be principal $U(n)$ and $U(m)$-bundles respectively. Consider the product bundle $\pi_1 \times \pi_2 \colon E_1 \times E_2 \to X \times X$ which is a principal $U(n+m)$-bundle, via the inclusion $U(n) \times U(m) \to U(n+m)$. The Whitney sum of $\pi_1$ and $\pi_2$ is defined as
+\[
+\pi_1 \oplus \pi_2 \coloneqq \Delta^*(\pi_1 \times \pi_2)
+\]
+where $\Delta \colon X \to X \times X$ is the diagonal.
+\end{Def}
+\begin{Prop}[Whitney sum formula]
+If $\pi_1 \colon E_1 \to X$ and $\pi_2 \colon E_2 \to X$ are principal $U(n)$ and $U(m)$-bundles respectively, then
+\[
+c(\pi_1 \oplus \pi_2) \cong c(\pi_1) \smile c(\pi_2),
+\]
+or equivalently,
+\[
+c_k(\pi_1 \oplus \pi_2) = \sum_{i+j = k}c_i(\pi_1) \smile c_j(\pi_2).
+\]
+\end{Prop}
+\begin{proof}
+First observe that by the exercises we have $B(U(n) \times U(m)) \simeq BU(n+m)$. We then consider the map
+\[
+\omega \colon B(U(n) \times U(m)) \simeq BU(n) \times BU(m) \to BU(n+m)
+\]
+induced by $U(n) \times U(m) \to U(n+m)$. One can show that\footnote{Here is an idea of one way to do this. Let $T(n) = U(1) \times \cdots U(1)$, a product of $n$-copies of $S^1$. The canonical map $T(n) \to U(n)$ induces $\mu_n \colon BT(n) \to BU(n)$. We have $H^*(BT(n)) \cong \bbZ[x_1,\ldots,x_n]$ for $|x_i|  = 2$, and $\mu^*$ is a monomorphism determined by $\mu_n^*(c_k) \cong \sigma_k(x_1,\ldots, x_n)$, the $k$-th elementary symmetric polynomial in $x_1,\ldots,x_n$. This allows us to reduce to a computation with $BT(n)$, and some diagram chasing. The details can be found, for example, in Corollary 2.44 in Kochman's book `Bordism, stable homotopy, and the Adams spectral sequence.' }
+\[
+\omega^*(c_k) = \sum_{i+j = k}c_i \otimes c_j.
+\]
+It follows that
+\[
+\begin{split}
+c_k(\pi_1 \oplus \pi_2) & = c_k(\Delta^\ast(\pi_1 \times \pi_2)) \\
+& \cong \Delta^*c_k(\pi_1 \times \pi_2) \\
+& = \Delta^*(f^*_{\pi_1 \times \pi_2}(c_k))
+\end{split}
+\]
+Now we note that the classifying map for $\pi_1 \times \pi_2$ regarded as a $U(n+m)$-bundle is $\omega \circ (f_{\pi_1} \times f_{\pi_2})$. Therefore, we continue:
+\[
+\begin{split}
+c_k(\pi_1 \oplus \pi_2) & \cong \Delta^*(f^*_{\pi_1} \times f^*_{\pi_2})(\omega^*(c_k)) \\
+& \cong \sum_{i+j=k} \Delta^*(f^*_{\pi_1}(c_i) \times f^*_{\pi_2}(c_j)) \\
+& \cong \sum_{i+j=k} \Delta^*(c_i(\pi_1) \times c_j(\pi_2)) \\ 
+& \cong \sum_{i+j=k} c_i(\pi_1) \smile c_j(\pi_2) 
+\end{split}
+\]
+as required.
+\end{proof}
+\begin{Cor}[Stability of Chern classes]
+Let $\epsilon^1$ denote the trivial $U(1)$-bundle, then $c(\pi \oplus \epsilon^1) \cong c(\pi)$. 
+\end{Cor}
+\begin{proof}
+This follows from the proposition and \Cref{cor:chern-classes-trivial-bundle}. 
+\end{proof}
+\begin{Rem}
+It turns out that Chern classes are completely determined by four axioms:   
+\end{Rem}
+\begin{axioms}
+    \item To each principal $U(n)$-bundle $\pi \colon E \to X$ there exists a sequence of classes $c_i(\pi) \in H^{2i}(X;\bbZ)$ such that $c_0(\pi) = 1 \in H^0(X;\bbZ)$ and $c_i(\pi) = 0$ for $i> n$. \label{a1-chern}
+    \item Naturality: If $f \colon Y \to X$ is a continuous map, then $c_k(f^*(\pi)) \cong f^*(c_k(\pi))$.  \label{a2-chern}
+    \item Whitney sum formula: $c(\pi_1\oplus\pi_2) = c(\pi_1) \smile c(\pi_2)$.  \label{a3-chern}
+    \item Normalization: Let $x$ be the generator of $H^2(\bbC P^n;\bbZ) \cong \bbZ$, then the total Chern class of the tautological line bundle (see \Cref{exa:tautological-bundle}) over $S^2 \cong \bbC P^1$ is $1+x$.\sidenote{Or $1-x$, depending on convention.}\label{a4-chern}
+    \end{axioms}
+\begin{Thm}\label{thm:uniqueness-of-chern-classes}
+There exists at most one correspondence $\pi \mapsto c(\pi)$ which assigns to each complex vector bundle over a paracompact base space a sequence of cohomology classes satisfying the above four axioms. 
+\end{Thm}
+The proof uses the following (very important) splitting principle for complex vector bundles.\sidenote{For example, the splitting principle can also reduce the proof of the Whitney sum formula to line bundles.}
+\begin{Prop}\label{prop:splitting-principle-complex}
+For each complex vector bundle $\pi \colon E \to X$ there exists a space $F(E)$ and a map $p \colon F(E) \to X$ such that the pull-back $p^*F(E) \to F(E)$ splits as a direct (Whitney) sum of line bundles and $p^* \colon H^*(X;\bbZ) \to H^*(F(E);\bbZ)$ is injective. 
+\end{Prop}
+\begin{Rem}
+There is a similar result for real vector bundles if we use $\bbZ/2$ coefficients. 
+\end{Rem}
+\begin{proof}[Sketch proof]
+By induction, it will suffice to find a map $p' \colon F'(E) \to X$ such that $(p')^*(\pi) \cong E' \oplus L$ with $L$ a complex line bundle, and $p^* \colon H^*(X;\bbZ) \to H^*(F'(E);\bbZ)$ injective, as we can then inductively apply the same argument to $E'$. 
+
+We use the projective bundle construction of \Cref{def:projective-bundle}, and set $F'(E) \coloneqq P(E)$ with $p' \colon P(E) \to X$. Then there is an injective map
+\[
+\phi \colon L_E \to (p')^*(E), \quad (\ell,v) \mapsto (\ell,v)
+\]
+where $L_E$ is a line bundle. Because $X$ is compact, we can choose a Hermitian inner product on $E$ inducing one on $(p')^*$, and hence take $E'$ to be the orthogonal complement of $\phi(L_E)$ in $(p')^*(E)$. Therefore, $(p')^*(E) \cong L_E \oplus E'$, as required. The claim about cohomology follows from the Leray--Hirsch theorem \footnote{\url{https://en.wikipedia.org/wiki/Leray\%E2\%80\%93Hirsch_theorem}} - $H^*(P(E);\bbZ)$ is the free $H^*(X;\bbZ)$-module with basis $1,x,\ldots,x^{n-1}$; in particular, the map $H^*(X;\bbZ) \to H^*(P(E);\bbZ)$ is injective since one of the basis elements is 1. 
+\end{proof}
+\begin{proof}[Proof of \cref{thm:uniqueness-of-chern-classes}]
+Let $\pi \mapsto c(\pi),\tilde c(\pi)$ be two sets of Chern classes. By Axioms \ref{a1-chern} and \ref{a4-chern} for the canonical line bundle $\gamma^1_1$ over $\bbC P^1$ we have
+\[
+c(\gamma^1_1) = \tilde c(\gamma^1_1) = 1+x. 
+\]
+Using the embedding $\bbC P^{1} \to \bbC P^{\infty}$ we deduce that
+\[
+c(\gamma_1) = \tilde c(\gamma_1) = 1+x. 
+\]
+for $\gamma_1$ the canonical line bundle over $\bbC P^{\infty}$ by Axioms \ref{a1-chern} and \ref{a2-chern}. Then, for $\xi = \gamma_1 \oplus \cdots \oplus \gamma_1$ we deduce that
+\[
+c(\xi) = \tilde c(\xi)
+\]
+by Axiom \ref{a3-chern}. 
+
+Now, let $\pi \colon E \to X$ be arbitrary, and $p \colon F(E) \to X$ the map that exists by the splitting principle (\Cref{prop:splitting-principle-complex}). Then we have
+\begin{align*}
+p^*c(\pi) & \cong c(p^*\pi)  & (Axiom~\ref{a2-chern}) \\
+&\cong c(\lambda_1 \oplus \cdots \oplus \lambda_n) & (\Cref{prop:splitting-principle-complex}) \\
+& \cong \tilde c(\lambda_1 \oplus \cdots \oplus \lambda_n) \\
+& \cong \tilde c(p^*\pi) & \\
+& \cong p^* \tilde c(\pi)
+\end{align*} 
+Because $p^*$ is injective, we deuce that $c(\pi) \cong \tilde c(\pi)$, as required. 
+\end{proof}
+\begin{Rem}
+This shows that there is \emph{at most} one theory of Chern classes. We omit the proof that Chern classes do actually exist with the required properties (we are almost there; we have just not shown \Cref{a4-chern}). 
+\end{Rem}
+\begin{Exa}[Chern classes of the dual bundle]\label{exa:dual-bundle}
+Given a complex vector bundle $\pi \colon E \to M$ its dual bundle is the Hom bundle (\Cref{def:hom-bundle}) $\Hom(\pi,\bbC \times M)$, i.e. the hom bundle from $\pi$ to the trivial bundle $\bbC \times M \to M$. We denote this bundle by $\pi^* \colon E^* \to M$. The fibers of this bundle are the dual spaces to the fiber of $\pi$. Let $L$ be a complex line bundle, then one can check that $L \otimes L^* = \Hom(L,L)$ is a trivial bundle. Moreover, $c_1(L \otimes L^*) = c_1(L) + c_1(L^*)$, so that $c_1(L) = -C_1(L^*)$. 
+
+Now suppose that   $E = L_1 \oplus \cdots \oplus L_n$ is a sum of line bundles. By the Whitney sum formula
+\[
+c(E^*) = c(L_1) \smile \cdots \smile c(L_n) = (1+c_1(L_1)) \cdots (1+c_n(L_n)).
+\]
+Similarly, $E^* = L_1^* \oplus \cdots \oplus L_n^*$, and
+\[
+c(E) = c(L_1^*) \smile \cdots \smile c(L_n^*) = (1-c_1(L_1)) \cdots (1-c_n(L_n)).
+\]
+By comparing coefficients,\footnote{Use the bimonial formula if you need} we have $c_q(E^*) = (-1)^qc_q(E)$. By the splitting principle, this holds for all complex vector bundles. 
+\end{Exa}
+\section{Stiefel--Whitney classes for real vector bundles}
+Analogous to Chern classes for complex vector bundles, we have a good theory of Stiefel--Whitney classes for real vector bundles, where we replace $BU(n)$ with $BO(n)$. 
+\begin{Prop}\label{prop:cohomology-of-bon}
+\[
+H^*(BO(n);\bbZ/2) \cong \bbZ/2[w_1,\ldots,w_n]
+\]
+with $|w_i| = i$. 
+\end{Prop}
+\begin{proof}
+This is very similar to \Cref{prop:cohomology-of-bun}. For example, we can use induction using the Serre spectral sequence of the fibration
+\[
+O(n)/O(n-1) \cong S^{n-1} \to BO(n-1) \to BO(n)
+\]
+and $BO(1) \simeq \bbR P^{\infty}$ with $H^*(\bbR P^{\infty}) \cong \bbZ/2[w_1]$. 
+\end{proof}
+\begin{Def}
+The generators $w_1,\ldots,w_n$ are called the universal Stiefel--Whitney classes of $O(n)$-bundles. 
+\end{Def}
+\begin{Rem}
+Recall that given a principal $O(n)$-bundle $\pi \colon E \to X$, there exists a map $f_{\pi} \colon X \to BO(n)$ such that $\pi \cong f^*_{\pi}(\pi_{U(n)})$. 
+\end{Rem}
+\begin{Def}
+The $i$-th Stiefel--Whitney class of the $O(n)$-bundle $\pi \colon E \to X$ is defined as $w_i(\pi) \coloneqq f_{\pi}^*(w_i) \in H^{i}(X;\bbZ/2)$. 
+\end{Def}
+Using identical proofs as in the complex case, Stiefel--Whitney classes are characterized by four axioms:
+\begin{axioms}
+    \item To each principal $O(n)$-bundle $\pi \colon E \to X$ there exists a sequence of classes $c_i(\pi) \in H^{i}(X;\bbZ/2)$ such that $w_0(\pi) = 1 \in H^0(X;\bbZ)$ and $w_i(\pi) = 0$ for $i> n$. \label{a1-sw}
+    \item Naturality: If $f \colon Y \to X$ is a continuous map, then $w_k(f^*(\pi)) \cong f^*(w_k(\pi))$.  \label{a2-sw}
+    \item Whitney sum formula: $w(\pi_1\oplus\pi_2) = w(\pi_1) \smile w(\pi_2)$.  \label{a3-sw}
+    \item Normalization: Let $x$ be the non-zero element of of $H^2(\bbR P^n;\bbZ/2) \cong \bbZ/2$, then the total Chern class of the tautological line bundle (see \Cref{exa:tautological-bundle}) over $S^1 \cong \bbR P^1$ is $1+x$.\label{a4-sw}
+    \end{axioms}
+\begin{Thm}\label{thm:uniqueness-of-sw-classes}
+There exists at most one correspondence $\pi \mapsto w(\pi)$ which assigns to each real vector bundle over a paracompact base space a sequence of cohomology classes satisfying the above four axioms. 
+\end{Thm}
+\begin{Rem}
+Given a real vector bundle $\pi \colon E \to X$ we can consider its complexificaiton $\pi \otimes \bbC$, the complex vector bundles with transition functions $\Phi_{\alpha\beta} \colon U_{\alpha} \cap U_{\beta} \to O(n) \subseteq U(n)$ and fiber $\bbR^n \otimes \bbC \cong \bbC^n$. 
+
+Now if $\pi' \colon E' \to X$ is a complex vector bundle, we can always make a conjugate bundle $\overline{\pi'}$. Note that the dual bundle of $\pi'$ is isomorphic to the conjugate bundle, but the choice of isomorphism is non-canonical unless $E'$ has a hermitian product. The transition functions of the conjugate bundle are given as the composite
+\[
+\overline{\Phi}_{\alpha\beta} \colon U_{\alpha} \cap U_{\beta} \xrightarrow{\Phi_{\alpha\beta}} U(n) \xrightarrow{(-)^\dagger} U(n)
+\]
+where the last map takes the complex conjugate of a unitary matrix. In any case, we have the following.
+\end{Rem}
+\begin{Lem}\label{lem:real-bundle-complexification}
+Let $\pi$ be a real vector bundle, then $\overline{\pi \otimes \bbC} \cong \pi \otimes \bbC$. 
+\end{Lem}
+\begin{proof}
+Just observe that the transition functions for $\pi \otimes \bbC$ are real-valued; they land in $O(n) \subseteq U(n)$, and so they are also the transition functions for $\overline{\pi \otimes \bbC}$. 
+\end{proof}
+\begin{Prop}\label{prop:chern-classes-of-complexification}
+\[
+ c_k(\pi \otimes \bbC) \cong c_k(\overline{\pi \otimes \bbC}) \cong (-1)^k  c_k(\pi \otimes \bbC)
+\]
+In particular, if $k$ is odd, then $c_k(\pi \otimes \bbC)$ is an integral cohomology class of order 2. 
+\end{Prop}
+\begin{proof}
+This follows from \Cref{exa:dual-bundle,lem:real-bundle-complexification}.
+\end{proof}
+Given a complex vector bundle $\omega$, we let $\omega_{\bbR}$ denote the underlying real vector bundle. 
+\begin{Prop}\label{prop:real-of-a-complex}
+If $\omega$ is a complex vector bundle, then 
+\[
+\omega_{\bbR} \otimes \bbC \cong \omega \oplus \overline{\omega}.
+\]
+\end{Prop}
+\begin{proof}
+We prove the statement at the level of vector-spaces; the proof passes to vector bundles as well. To that end, let $L$ be a complex vector space, and $L_{\bbR}$ its underlying real vector space, then we claim that $L_{\bbR} \otimes \bbC \cong L \oplus \overline{L}$. To see this, let 
+\[
+J \colon L_{\bbR} \otimes \bbC \to L_{\bbR} \otimes \bbC 
+\]
+by given by multiplication by $i$. Because $J^2 = -\text{id}$, we have an eigenvalue decomposition
+\[
+L_{\bbR} \otimes \bbC \cong \text{eigen}(i) \oplus \text{eigen}(-i). 
+\]
+We have a map
+\[
+P_i \colon L \to L_{\bbR} \to L_{\bbR} \otimes \bbC \to \text{eigen}(i),
+\]
+which is $\bbR$-linear, but is in fact $\bbC$-linear because $P_iJ(\ell) = iP_i(\ell)$ for all $\ell \in L$. This composite is therefore an isomorphism by a dimension count. Similarly, 
+\[
+P_{-i} \colon L \to \text{eigen}(-i)
+\]
+is a $\bbC$-\emph{anti}linear isomorphism, and so $\text{eigen}(i) \cong \overline{L}$. 
+\end{proof}
+\begin{Cor}
+For a complex vector bundle $\omega$ we have
+\[
+c(\omega_R \otimes \bbC) \cong c(\omega)\cdot c(\overline{\omega}),
+\]
+or equivalently,
+\[
+c_k(\omega_R \otimes\bbC) = \sum_{i+j = k}(-1)^j c_i(\omega) \cdot c_j(\omega).
+\]
+\end{Cor}
+\begin{Rem}
+Note that if $k$ is odd, then this sum is always zero. 
+\end{Rem}
+\begin{exercise}{}{}
+Let $\pi_{\bbR}$ denote the underlying real bundle of a complex bundle; $\pi$ note that if $\pi$ has rank $n$ as a complex bundle, then $\pi_{\bbR}$ has rank $2n$ as a real bundle. Via the map $\bbZ \to \bbZ/2$ the class $c_i(\pi) \in H^{2i}(X;\bbZ)$ determines a cohomology class $\overline{c}_i(\pi) \in H^{2i}(X;\bbZ/2)$. Show that the Stiefel--Whitney classes of $\pi_{\bbR}$ are computed as follows:
+\begin{enumerate}
+    \item $\omega_{2i}(\pi_{\bbR}) = \overline{c}_i(\pi)$ for $0 \le i \le n$.
+    \item $\omega_{2i+1}(\pi_{\bbR}) = 0$ for any integer $i$. 
+\end{enumerate}
+\end{exercise}
+\begin{Rem}
+Here is a hint: Let $\mu_n \colon U(n) \to O(2n)$ be the inclusion, then the classifying map of $\pi_R$ is the composite $X \xrightarrow{f} BU(n) \xrightarrow{\mu_n} BO(2n)$, where $f$ is the classifying map for $\pi$. So you should try and compute
+\[
+\mu_n^* \colon H^*(BO(2n);\bbZ/2)  \cong \bbZ/2[w_1,w_2,\ldots,w_{2n}] \to H^*(BU(n);\bbZ/2) \cong \bbZ/2[\overline{c}_1,\overline{c}_2,\ldots,\overline{c}_n].
+\]
+\end{Rem}
+\section{Applications of Stiefel--Whitney classes}
+Stiefel--Whitney classes are useful in the study of smooth manifolds. Indeed, if $M$ is smooth, then we recall (\Cref{exa:tangent-bundle-smooth}) that the tangent bundle $\pi \colon TM \to M$ is a real vector bundle, and hence corresponds to an $O(n)$-bundle (which by our conventions, we use the same notation for). 
+\begin{Def}
+The Stiefel--Whitney classes of a smooth manifold $M$ are defined as the Stiefel--Whitney classes of the corresponding $O(n)-bundle$: $w_i(M) \coloneqq w_i(TM)$. 
+\end{Def}
+\begin{Rem}
+In order, for this to be a reasonable notion, we should prove that these are homotopy invariants. Fortunately, we have the following theorem.\sidenote{The proof of the following is beyond the scope of this course, but here is the idea: One can give an alternative construction of the Stiefel--Whitney classes in terms of \href{https://en.wikipedia.org/wiki/Steenrod_algebra}{Steenrod operations}; this implies that the the Stiefel--Whitney classes of $M$ are determined entirely in terms of the mod 2 cohomology ring along with its structure under the Steenrod algebra (which is preserved by homotopy equivalences). So in fact, the theorem doesn't even need homotopy equivalence, but only a mod 2 cohomology isomorphism over the Steenrod algebra.}
+\end{Rem}
+\begin{Thm}[Wu] Stiefel--Whitney classes are homotopy invariants, i.e., if $h \colon M_1 \to M_2$ is a homotopy equivalence, then $h^*w_i(M_2) = w_i(M_1)$ for any $i \ge 0$. 
+\end{Thm}
+We now turn to an application of Stiefel--Whitney classes to the embedding problem. We begin with the following algebraic lemma.
+\begin{Lem}\label{lem:inverting-classes}
+Suppose that $E \oplus E' \simeq \epsilon^n$ is a trivial bundle, then there exists a unique polynomial $q_i$ such that 
+\[
+\omega_i(E') = q_i(\omega_1(E),\omega_2(E),\ldots,\omega_i(E)). 
+\]
+\end{Lem}
+\begin{proof}
+Induction on $i$. When $i = 1$ we have
+\[
+\begin{split}
+0 = \omega_1(\epsilon^n) &= \omega_0(E) \smile \omega_1(E')+ \omega_1(E) \smile \omega_0(E')\\
+&=  1 \smile \omega_1(E') + \omega_1(E) \smile 1,
+\end{split}
+\]
+and hence 
+\[
+\omega_1(E') = -\omega_1(E) = \omega_1(E),
+\]
+since we work over $\bbZ/2$. 
+
+Supposing we have proved the claim up to $i-1$. Then,
+\[
+\begin{split}
+0 = \omega_i(\epsilon^n) &= \sum_{k+j=i} \omega_k(E) \smile \omega_j(E') \\
+&= \omega_i(E') + \sum_{k+j=1, j < i} \omega_k(E) \smile \omega_j(E') \\
+& = \omega_i(E') + \sum_{k+j=1, j < i} \omega_k(E) \smile q_j(\omega_1(E),\ldots,\omega_j(E)).
+\end{split}
+\]
+Therefore,
+\[
+\omega_i(E') = q_i(\omega_1(E),\ldots,\omega_i(E)) \coloneqq \sum_{k+j=i,j<i} \omega_k(E) \smile q_j(\omega_1(E),\ldots,\omega_j(E)).
+\]
+\end{proof}
+\begin{Def}
+We write $\overline{w}_i(E)$ for $q_i(\omega_1(E),\ldots,\omega_i(E))$. These are the dual Stiefel--Whitney classes.
+\end{Def}
+\begin{Rem}
+Let $f \colon M^{m} \to N^{m+k}$ be an embedding of smooth manifolds.\sidenote{When we use superscripts, we refer to the dimension of the manifolds. So, we may also write $f \colon M \to N$.} Let $f^*TN$ denote the pullback of the tangent bundle $TN \to N$ along $f$. The normal bundle is defined by the short exact sequence 
+\[
+0 \to TM \to f^*TN \to \nu \to 0,
+\]
+which splits, i.e., $f^*TN \simeq TM \oplus \nu$ where $\nu$ has rank $k$. So, using the Whitney sum formula we have
+\[
+f^*\omega(N)= \omega(M) \smile \omega(\nu). 
+\]
+\end{Rem}
+\begin{Exa}
+Let $S^n \subseteq \bbR^{n+1}$, then the normal bundle $\nu$ is trivial. Indeed, if we write
+\[
+\nu({S}^n) = \bigcup_{p \in S^n} T_p\bbR^{n+1}/T_pS^n
+\]
+then an explicit isomorphism is given by the map $\Phi$ sending
+\[
+[v] \in \nu_p({S}^n) \text{ to } (p,\langle v,p \rangle) \in S^n \times \bbR,
+\]
+with inverse $\Psi$ sending $(q,t) \mapsto [tq] \in \nu_q({S}^n)$.\sidenote{For example, $(\Phi \circ \Psi)(p,t) = \Phi([tp]) = (p,\langle tp,p \rangle) = (p,t\langle p,p\rangle) = (p,t)$.} In other words,
+\[
+TS^n \oplus \nu \simeq \epsilon^{n+1} \simeq TS^n \oplus \epsilon^1 \simeq \epsilon^{n+1}. 
+\]
+Since trivial bundles do not change Stiefel--Whitney classes, we deduce that $\omega_i(S^n) = 0$ for all $i > 0$, and the Stiefel--Whitney classes of $TS^n$ are the same as the trivial bundle (and recall that we have seen that $p \colon TS^2 \to S^2$ is not a trivial bundle - in fact this is true for every even sphere).\sidenote{There is a `moral' reason for this: the only possible Stiefel--Whitney classes in positive degrees is the top one, as $H^i(S^n;\bbZ/2)$ is non-zero only when $i = 0,n$. This top class is the image of the \emph{Euler class} in $H^n(S^n;\bbZ)$ under the natural homomorphism $H^i(S^n;\bbZ) \to H^i(S^n;\bbZ/2) $ - see Milnor--Stasheff, Property 9.5. But the Euler class of the sphere is $e(TS^n) = 2[S^n]$ is $0$ modulo $2$.  }
+\end{Exa}
+\begin{Exa}
+Suppose that $N = \bbR^{m+k}$, then using \Cref{lem:inverting-classes} (and the hopefully obvious observation that the tangent bundle is trivial: $T\bbR^{m+k} \simeq \bbR^{m+k} \times \bbR^{m+k}$), then we deduce that
+\begin{equation}\label{eq:embedding-formula}
+\omega_i(\nu) = \overline{\omega}_i(TM). 
+\end{equation}
+\end{Exa}
+The following calculation is important for our applications. We postpone the proof until after the applications. 
+\begin{Thm}\label{thm:sw-rpm}
+\[\omega(\bbR P^m) \cong (1+x)^{m+1}\]
+where $x \in H^1(\bbR P^m;\bbZ/2)$ is a generator. 
+\end{Thm}
+\begin{Exa}
+Can we give an embedding of $\bbR P^9$ into $\bbR^{9+k}$? Let us note that
+\[
+\omega(\bbR P^9) = (1+x)^{10} = (1+x)^8(1+x)^2 = (1+x^8)(1+x^2) = 1+x^2+x^8
+\]
+because $H^*(\bbR P^m;\bbZ/2) \cong \bbZ/2[x]/(x^{m+1})$. Therefore,\footnote{We can check this: $(1+x^2+x^8)(1+x^2+x^4+x^6) = 1+ 2x^2 + 2x^4 + 2x^6 +2x^8 + x^{10} +x^{12} + x^{14} \equiv 1$ in the ring $\bbZ/2[x]/(x^{10})$.}
+\[
+\overline{\omega}(\bbR P^9) = 1+x^2+x^4+x^6
+\]
+Therefore by \eqref{eq:embedding-formula} we must have,
+\[
+\omega(\nu) = 1 + x^2 + x^4 + x^6,
+\]
+and in particular, $\omega_6(\nu) \ne 0$. Now note that $\nu$ is a bundle of rank $k$, and hence we have $\omega_i(\nu) = 0$ for $i > k$. Therefore, we must have $k \ge 6$. We deduce that $\bbR P^9$ cannot be embedded into $\bbR^{14}$. Note that this doesn't say anything about when it \emph{can} be embedded into $\bbR^{9+k}$. In fact, this bound is sharp: $\bbR P^9$ can be embedded into $\bbR^{15}$.\sidenote{Sanderson, B. J. Immersions and embeddings of projective spaces. Proc. London Math. Soc. (3) 14 (1964), 137--153. }
+\end{Exa}
+\begin{Exa}
+Let $m = 2^r$, then 
+\[
+\omega(\bbR P^{2^r}) = (1+x)^{2^r+1} = (1+x)^{2^r}(1+x) = (1+x^{2^r})(1+x) = 1+x+x^{2^r}
+\]
+Arguing as in the previous example, we have
+\[
+\omega(\nu) = \overline{\omega}(\bbR P^{2^r}) = 1+x+x^2 + \cdots + x^{2^r-1},
+\]
+and so $k \ge 2^r-1  = m-1$, i.e., $\bbR P^{2^r}$ cannot be embedded into $\bbR^{2^{r+1}-1}$. In particular, $\bbR P^8$ cannot be embedded into $\bbR^{15}$. Again, this bound is sharp: there exists an embedding of $\bbR P^8$ into $\bbR^{16}$, by the Whitney embedding theorem. 
+\end{Exa}
+We now return to the proof of \Cref{thm:sw-rpm}.
+\begin{proof}[Proof of \Cref{thm:sw-rpm}]
+Let $[x] \in \bbR P^m$ and $\nu \in [x]$. As usual, we let $\gamma_1$ denote the canonical line bundle over $\bbR P^m$, i.e., $\gamma_1 = \{ ([x],\nu) \in \bbR P^m \times \bbR^{m+1} \mid [x] \in \bbR P^m, \nu \in [x] \}$. Define $L_x$ to to be the line in $\bbR^{m+1}$ joining $x$ and $-x$, and let $L_x^{\perp}$ be its orthogonal complement in $\bbR P^m \times \bbR^{m+1}$. 
+
+For each $(x,\nu) \in T \bbR P^n$ we have a linear map
+\[
+\ell(x,\mu) \colon L_x \to L_x^{\perp}
+\]
+defined by $\ell(x,\mu)(x) = \nu$, which is well defined because $\ell(x,\mu)(-x) = -\nu$. This gives us a fiberwise isomorphism $T_{[x]}\bbR P^m \to \Hom(L_x,L_x^{\perp})$, by sending $(x,\nu)$ to $T(x,\nu)$. Now a continuous map between vector bundles over the same base space $B$ is an isomorphism if it is a fiberwise linear isomorphism.\sidenote{See, Lemma 1.1 of \url{https://pi.math.cornell.edu/~hatcher/VBKT/VB.pdf} for example.} Therefore, we have $T \bbR P^m \cong \Hom(\gamma_1,\gamma_1^{\perp})$.
+
+Now we make the following observation: the bundle $\Hom(\gamma_1,\gamma_1)$ is just the trivial line bundle $\epsilon^1$. Indeed, the transition map is $\phi_{\alpha\beta}\phi_{\alpha\beta}^{-1} = \text{id}$ (this is special about line bundles: the transpose of a $1 \times 1$ matrix is the same matrix!). Therefore,
+\begin{align*}
+T\bbR P^m \oplus \epsilon^1 &\cong \Hom(\gamma_1,\gamma_1^{\perp}) \oplus \Hom(\gamma_1,\gamma_1) \\
+& \cong  \Hom(\gamma_1,\gamma_1^{\perp} \oplus \gamma_1) \\
+& \cong \Hom(\gamma_1,\epsilon^{m+1}) \\
+& \cong \Hom(\gamma_1,\epsilon^1)^{m+1}
+\end{align*}
+However, $\Hom(\gamma_1,\epsilon^1) \cong \gamma_1$, and so
+\[
+T\bbR P^m \oplus \epsilon^1 \cong \gamma_1^{\oplus m+1}. 
+\]
+Therefore, we have
+\[
+\begin{split}
+\omega(\bbR P^m) \cong \omega(T \bbR P^m \oplus \epsilon^1) & \cong \omega(\gamma_1^{\oplus m+1})\\
+& \cong \omega(\gamma_1)^{\smile(m+1)} \\
+& \cong (1+x)^{m+1}.
+\end{split}
+\]
+Here we have used the stability of Stiefel--Whitney classes, the previous discussion, the Whitney sum formula, and the normalization axiom. 
+\end{proof}
+\begin{Rem}
+In other words, we have
+\[
+\omega_i(\bbR P^m) = \binom{m+1}{i}x^i,
+\]
+where the binomial coefficient is taken modulo 2. 
+\end{Rem}
+\begin{Def}
+A manifold is parallelizable if its tangent bundle is trivial. 
+\end{Def}
+\begin{Cor}
+The total Stiefel--Whitney class $\omega(\bbR P^m) =1$ if and only if $m + 1 = 2^r$ for some $r$. In particular, if $\bbR P^m$ is parallelizable, then $m+1 = 2^r$ for some $r$.\sidenote{A deeper theorem of Adams is that it is parallelizable only when $m = 1,3,7$.}
+\end{Cor}
+\begin{proof}
+If $m + 1 = 2^r$, then 
+\[
+\omega(\bbR P^m) = (1+x)^{2^r} = 1+x^{2^r} = 1+x^{m+1} = 1,
+\]
+since $x^{m+1} = 0$. Conversely, if $m+1=2^rk$ where $k>1$ is odd, then 
+\[
+\omega(\bbR P^m) = [(1+x)^{2^r}]^k = (1+x^{2^r})^k = 1+kx^{2^r} + \cdots \ne 1,
+\]
+since $x^{2^r} \ne 0$. The final statement follows, as $\omega(\bbR P^m) = 1$ whenever $\bbR P^m$ is parallelizable, by definition. 
+\end{proof}
+\section{Pontryagin classes}
+\begin{Not}
+Let us fix some notation throughout this section: we let $\pi$ denote a real vector bundle (equivalently, a principal $O(n)$-bundle), while $\omega$ will denote a complex vector bundle (equivalently, a $U(n)$-bundle). 
+\end{Not}
+The reader may want to refresh the statements of \Cref{prop:chern-classes-of-complexification} and \Cref{prop:real-of-a-complex} in order to appreciate the following definitions. 
+\begin{Def}
+Let $\pi \colon E \to X$ be a real vector bundle of rank $n$. The $i$-th Pontryagin class of $\pi$ is defined as
+\[
+p_i(\pi) \coloneqq (-1)^ic_{2i}(\pi \otimes \bbC) \in H^{4i}(X;\bbZ)
+\]
+If $\omega$ is a complex vector bundle of rank $n$ we define its $i$-th Pontryagin class as 
+\[
+p_i(\omega) \coloneqq p_i(\omega_{\bbR}) = (-1)^ic_{2i}(\omega \oplus \overline{\omega})
+\]
+\end{Def}
+\begin{Rem}
+Note that $p_i(\pi) = 0$ for all $i > n/2$. 
+\end{Rem}
+\begin{Def}
+The total Pontryagin class is
+\[
+p(\pi) = 1 + p_1(\pi) + \cdots \in H^*(X;\bbZ)
+\]
+\end{Def}
+\begin{Rem}
+We would Pontryagin classes to satisfy a product formula. Since we have ignored odd degree classes, this is a bit more complicated to state. 
+\end{Rem}
+\begin{Thm}\label{thm:whitney-sum-pont}
+If $\pi_1$ and $\pi_2$ are real vector bundles on a space $X$, then
+\[
+p(\pi_1 \oplus \pi_2) = p(\pi_1) \smile p(\pi_2) \text{ mod $2$-torsion}.
+\]
+\end{Thm}
+\begin{proof}
+We have 
+\[
+(\pi_1 \oplus \pi_2) \otimes \bbC \cong (\pi_1 \otimes \bbC) \oplus (\pi_2 \otimes \bbC).
+\]
+Therefore,
+\begin{align*}
+    p_i(\pi_1 \oplus \pi_2) & = (-1)^i c_{2i}((\pi_1 \oplus \pi_2) \otimes \bbC) \\
+    & = (-1)^{i}c_{2i}((\pi_1 \otimes \bbC) \oplus (\pi_2 \otimes \bbC)).
+\end{align*}
+Now we compute that 
+\[
+\begin{split}
+c_{2i}((\pi_1 \otimes \bbC) \oplus (\pi_2 \otimes \bbC)) &= \sum_{k+ \ell = 2i} c_k(\pi_1 \otimes \bbC) \smile c_{\ell}(\pi_2 \otimes \bbC) \\
+&= \sum_{a + b = i} c_{2a}(\pi_1 \otimes \bbC) \smile c_{2b}(\pi_2 \otimes \bbC)
+\end{split}
+\]
+where both statements hold modulo 2-torsion. The result follows. 
+\end{proof}
+\begin{Def}
+If $M$ is a real smooth manifold we define
+\[
+p(M) \coloneqq p(TM)
+\]
+If $M$ is a complex manifold, we define
+\[
+p(M) \coloneqq p((TM)_{\bbR}).
+\]
+\end{Def}
+\begin{Thm}\label{thm:pont-cpn}
+The total Chern classes and Pontryagin classes of the complex projective space $\bbC P^n$ are given by
+\[
+c(\bbC P^n) = (1+c)^{n+1}
+\]
+and
+\[
+p(\bbC P^n) = (1+c^2)^{n+1}
+\]
+where $c \in H^2(\bbC P^n;\bbZ)$ is a generator. 
+\end{Thm}
+\begin{proof}
+The computation of $c(\bbC P^n)$ is very similar to that of $w(\bbR P^n)$ (\Cref{thm:sw-rpm}): we first show that
+\[
+T\bbC P^n \oplus \epsilon^1 \simeq \gamma_1^{\oplus n+1}
+\]
+where $\epsilon^1$ is the trivial complex line bundle on $\bbC P^n$ and $\gamma_1$ is the canonical line bundle over $\bbC P^n$. This map is classified by the inclusion map $\bbC P^n \to \bbC P^{\infty}$ and so $c_1(\gamma_1) = c$, the generator of $H^2(\bbC P^{\infty};\bbZ) = H^2(\bbC P^n;\bbZ)$. Using the Whitney sum formula we have
+\[
+c(\bbC P^n) = c(T \bbC P^n \oplus \epsilon^1) = c(T\bbC P^n) = c(\gamma_1)^{n+1} = (1+c)^{n+1}
+\]
+or in other words, that 
+\[
+c_i(\bbC P^n) = \binom{n+1}{i}c^i.
+\]
+It follows that 
+\[
+c(\overline {\bbC P^n})  = (1-c)^{n+1}. 
+\]
+Therefore,
+\[
+\begin{split}
+c((T \bbC P^n)_{\bbR} \otimes \bbC) & = c(T \bbC P^n \oplus \overline {T\bbC P^n}) \\
+&= c(T\bbC P^n) \smile c(\overline{T \bbC P^n}) \\
+& = (1-c^2)^{n+1}.
+\end{split}
+\]
+In particular, 
+\[
+p_i(\bbC P^n) = (-1)^ic_{2i}(T \bbC P^n \oplus \overline {T\bbC P^n}) = \binom{n+1}{i}c^{2i}.
+\]
+so that
+\[
+p(\bbC P^n) = (1+c^2)^{n+1}. \qedhere
+\]
+
+\end{proof}
+We now return to the embedding problem. 
+\begin{Prop}
+There is no embedding of $\bbC P^2$ into $\bbR^5$.
+\end{Prop}
+\begin{proof}
+Note that after forgetting the complex structure, $\bbC P^2$ is a $4$-dimensional real dimensional manifold. We will use Pontryagin classes to find a minimal $k$ for which there can be an emedding $\bbC P^2 \to \bbR^{4+k}$. Let $T(\bbC P^2)_{\bbR}$ be the realization of the tangent bundle for $\bbC P^2$, then then any embedding would give a normal real bundle $\nu^k$ of rank $k$ such that
+\[
+T(\bbC P^2)_{\bbR} \oplus \nu^k \cong \epsilon^{4+k}
+\]
+By \Cref{thm:pont-cpn} we have
+\[
+p(\bbC P^2) = (1+c^2)^3 = 1+3c^2 \in H^*(\bbC P^2;\bbZ) \cong \bbZ[c]/(c^3).
+\]
+Using that $H^*(\bbC P^2;\bbZ)$ has no 2-torsion, we see from \Cref{thm:whitney-sum-pont}
+\[
+p(\bbC P^2)\cdot p(\nu^k) = 1,
+\]
+so that
+\[
+p(\nu^k) = 1-3c^2.
+\]
+In particular, $p_1(\nu^k) \ne 0$. Finally, we observe that if $p_1(\nu^k) = 0$, then $1 \le k/2$, i.e., $k \ge 2$, so that the minimal possible embedding is $\bbC P^2 \to \bbR^6$.
+\end{proof}
+\end{document}
