@@ -54,7 +54,7 @@ The $i$-th Chern class of the $U(n)$-bundle $\pi \colon E \to X$ is defined as $
 \begin{Prop}[Functoriality of Chern classes]\label{prop:functoriality-of-chern-classes}
 If $f \colon Y \to X$ is a continuous map, and $\pi \colon E \to X$ is a $U(n)$-bundle, then $c_i(f^*\pi) \cong f^*(c_i(\pi))$ for any $i$.\sidenote{Note that $f^*$ has a dual role here: once as a pullback bundle, and once as the pullback of a cohomology class.}
 \end{Prop}
-\begin{exercise}{}{}
+\begin{exercise}
 Prove \Cref{prop:functoriality-of-chern-classes}. 
 \end{exercise}
 \begin{Cor}\label{cor:chern-classes-trivial-bundle}
@@ -302,19 +302,13 @@ c_k(\omega_R \otimes\bbC) = \sum_{i+j = k}(-1)^j c_i(\omega) \cdot c_j(\omega).
 \begin{Rem}
 Note that if $k$ is odd, then this sum is always zero. 
 \end{Rem}
-\begin{exercise}{}{}
-Let $\pi_{\bbR}$ denote the underlying real bundle of a complex bundle; $\pi$ note that if $\pi$ has rank $n$ as a complex bundle, then $\pi_{\bbR}$ has rank $2n$ as a real bundle. Via the map $\bbZ \to \bbZ/2$ the class $c_i(\pi) \in H^{2i}(X;\bbZ)$ determines a cohomology class $\overline{c}_i(\pi) \in H^{2i}(X;\bbZ/2)$. Show that the Stiefel--Whitney classes of $\pi_{\bbR}$ are computed as follows:
+\begin{exercise}\label{exercise:underlying-real}
+Let $\pi_{\bbR}$ denote the underlying real bundle of a complex bundle; $\pi$ note that if $\pi$ has rank $n$ as a complex bundle, then $\pi_{\bbR}$ has rank $2n$ as a real bundle. Via the map $\bbZ \to \bbZ/2$ the class $c_i(\pi) \in H^{2i}(X;\bbZ)$ determines a cohomology class $\overline{c}_i(\pi) \in H^{2i}(X;\bbZ/2)$. Show that the Stiefel--Whitney classes of $\pi_{\bbR}$ are computed as follows:\footnote{Here is a hint: Let $\mu_n \colon U(n) \to O(2n)$ be the inclusion, then the classifying map of $\pi_R$ is the composite $X \xrightarrow{f} BU(n) \xrightarrow{\mu_n} BO(2n)$, where $f$ is the classifying map for $\pi$. So you should try and compute the map on cohomology induced by $\mu_n$.}
 \begin{enumerate}
     \item $\omega_{2i}(\pi_{\bbR}) = \overline{c}_i(\pi)$ for $0 \le i \le n$.
     \item $\omega_{2i+1}(\pi_{\bbR}) = 0$ for any integer $i$. 
 \end{enumerate}
 \end{exercise}
-\begin{Rem}
-Here is a hint: Let $\mu_n \colon U(n) \to O(2n)$ be the inclusion, then the classifying map of $\pi_R$ is the composite $X \xrightarrow{f} BU(n) \xrightarrow{\mu_n} BO(2n)$, where $f$ is the classifying map for $\pi$. So you should try and compute
-\[
-\mu_n^* \colon H^*(BO(2n);\bbZ/2)  \cong \bbZ/2[w_1,w_2,\ldots,w_{2n}] \to H^*(BU(n);\bbZ/2) \cong \bbZ/2[\overline{c}_1,\overline{c}_2,\ldots,\overline{c}_n].
-\]
-\end{Rem}
 \section{Applications of Stiefel--Whitney classes}
 Stiefel--Whitney classes are useful in the study of smooth manifolds. Indeed, if $M$ is smooth, then we recall (\Cref{exa:tangent-bundle-smooth}) that the tangent bundle $\pi \colon TM \to M$ is a real vector bundle, and hence corresponds to an $O(n)$-bundle (which by our conventions, we use the same notation for). 
 \begin{Def}
@@ -362,6 +356,9 @@ Therefore,
 \begin{Def}
 We write $\overline{w}_i(E)$ for $q_i(\omega_1(E),\ldots,\omega_i(E))$. These are the dual Stiefel--Whitney classes.
 \end{Def}
+\begin{exercise}
+Show that there is no bundle $E \to \bbR P^{\infty}$ such that $E \oplus \gamma_1 \cong \epsilon^n$, the trivial rank $n$ bundle.\sidenote{\textbf{Hint: } Compute the total Chern class of $E$.}
+\end{exercise}
 \begin{Rem}
 Let $f \colon M^{m} \to N^{m+k}$ be an embedding of smooth manifolds.\sidenote{When we use superscripts, we refer to the dimension of the manifolds. So, we may also write $f \colon M \to N$.} Let $f^*TN$ denote the pullback of the tangent bundle $TN \to N$ along $f$. The normal bundle is defined by the short exact sequence 
 \[
@@ -457,9 +454,9 @@ Here we have used the stability of Stiefel--Whitney classes, the previous discus
 \end{proof}
 \begin{Rem}
 In other words, we have
-\[
+\begin{equation}\label{eq:sw-rpn}
 \omega_i(\bbR P^m) = \binom{m+1}{i}x^i,
-\]
+\end{equation}
 where the binomial coefficient is taken modulo 2. 
 \end{Rem}
 \begin{Def}
@@ -479,6 +476,155 @@ since $x^{m+1} = 0$. Conversely, if $m+1=2^rk$ where $k>1$ is odd, then
 \]
 since $x^{2^r} \ne 0$. The final statement follows, as $\omega(\bbR P^m) = 1$ whenever $\bbR P^m$ is parallelizable, by definition. 
 \end{proof}
+\subsection*{The boundary problem}
+We consider the following problem: When is a closed $n$-dimensional manifold $M$ the boundary of a smooth compact manifold of dimension $n+1$? For what follows, let $\mu_M \in H_n(M;\bbZ/2)$ be the fundamental class, i.e., a choice of generator of $H_m)(M;\bbZ/2) \cong \bbZ/2$. 
+\begin{Def}[Stiefel--Whitney numbers]
+Let $\alpha = (\alpha_1,\ldots,\alpha_n)$ be a tuple of non-negative integers such that $\sum_{i= 1}^n i\alpha_i = n$. Set
+\[
+\omega^{[\alpha]}(M) \coloneqq \omega_1(M)^{\alpha_1} \smile \cdots \smile \omega_n(M)^{\alpha_n} \in H^n(M;\bbZ/2)
+\]
+The Stiefel--Whiney number of $M$ with index $\alpha$ is defined as 
+\[
+\omega_{(\alpha)}(M) \coloneqq \langle \omega^{[\alpha]}(M),\mu_M \rangle \in \bbZ/2
+\]
+where $\langle -,-\rangle \colon H^n(M;\bbZ/2) \times H_n(M;\bbZ/2) \to \bbZ/2$ is the evaluation pairing.\sidenote{Recall that there is a pairing defined by evaluating a cocycle $\varphi$ on a cycle $\sigma$.}
+\end{Def}
+\begin{Exa}
+We can always find a tuple $(\alpha_1,\ldots,\alpha_n)$ for which $\omega_{[\alpha]}(\bbR P^{2k})  = 1 \ne 0$. Indeed, by \eqref{eq:sw-rpn} we have
+\[
+\omega_{2k}(\bbR P^{2k}) = x^{2k}
+\]
+and so we can take $\alpha = (0,\ldots,0,1)$. On the other hand, the following example shows that there is no choice of $\alpha$ for which $\omega_{[\alpha]}(\bbR P^{2k-1})$ is non-zero. 
+\end{Exa}
+\begin{exercise}
+Suppose $n$ is odd. Show that all Stiefel–Whitney numbers of $\bbR P^n$ are zero.\sidenote{ \href{https://en.wikipedia.org/wiki/Lucas\%27s_theorem}{Lucas's theorem} may be useful.}
+\end{exercise}
+\begin{Thm}[Pontryagin]
+If $B$ is a compact smooth $(n+1)$-manifold with boundary $M$, then all the Stiefel--Whitney numbers of $M$ are zero.
+\end{Thm}
+\begin{proof}
+Let $i \colon M \hookrightarrow B$ be the inclusion of the boundary. There is a long exact sequence in homology 
+\[
+H_{n+1}(M;\bbZ/2) \xrightarrow{i_*} H_{n+1}(B;\bbZ/2) \to H_{n+1}(B,M;\bbZ/2) \xrightarrow{\partial} H_n(M;\bbZ/2)\xrightarrow{i_*} H_{n}(B;\bbZ/2) \to \cdots 
+\]
+If $\mu_B$ denotes the fundamental class of $(B,M)$, i.e., the generator of $H_{n+1}(B,M;\bbZ/2) $, then by Poincar\'{e} duality we have $\partial(\mu_B) = \mu_M$. 
+
+
+We have $i^*TB \cong TM \oplus \nu^1$ where $\nu^1$ is the rank 1 normal bundle of $M$ in $B$. Note that $\nu^1$ is a line bundle, and line bundles are trivial if and only if they have a non-vanishing section. We can choose a Euclidean metric on $TB$, and construct a non-vanishing section by taking the unique inward-pointing normal vector at each point. In other words, we have $i^*TB \cong TM \oplus \epsilon^1$. Therefore, 
+\[
+\omega_k(M) = i^*\omega_k(B)
+\]
+for $k = 1,\ldots,n$ so that $\omega^{[\alpha]}(M) = i^*\omega^{[\alpha]}(B)$ for any $n$-tuple $\alpha$. Therefore we have
+\begin{align*}
+\omega_{[\alpha]}(M) &= \langle \omega^{[\alpha]}(M),\nu_M \rangle \\
+&= \langle i^*\omega^{[\alpha]}(B), \partial(\mu_B) \rangle \\ 
+&=  \langle \delta(i^*\omega^{[\alpha]}(B)),\mu_B \rangle 
+\end{align*}
+where $\delta \colon H^n(M;\bbZ/2) \to H^{n+1}(B,M;\bbZ/2)$ is the coboundary map. But this is zero, as $\delta \circ i^* = 0$ by the long exact sequence in cohomology. 
+\end{proof}
+\begin{Rem}\label{rem:thom-theorem}
+In fact, the converse of this statement also holds, and is due to Thom. This part is much more difficult to show.\sidenote{This was part of Thom's PhD thesis, for which he was (in part) awarded the Fields medal.} In fact, say that two manifolds $M_1$ and $M_2$ are \emph{cobordant} if there is a manifold $W$ such that $\partial W = M_1 \coprod M_2$. Then two manifolds are cobordant if and only if all of their corresponding Stiefel--Whitney numbers are equal. 
+\end{Rem}
+\begin{Exa}
+Suppose $M = X \coprod X$, i.e., $M$ is the disjoint union of two copies of a closed $n$-dimensional manifold $X$. Then for any $\alpha$ we have $\omega_{(\alpha)}(M) = 2\omega_{(\alpha)}(X) = 0$. This is consistent with the fact that $X \coprod X$ is a the boundary of the cylinder $X \times [0,1]$. 
+\end{Exa}
+\begin{Exa}
+In the next example we will use Thom's theorem to show that $\bbR P^2 \times \bbR P^2$ is cobordant to $\bbC P^2$ by showing that they have the same Stiefel--Whitney numbers. We recall that 
+\[
+\omega(\bbC P^2) = 1+x + x^2 \in H^*(\bbR P^2;\bbZ/2). 
+\]
+Now in general, the tangent bundle $T(M \times N) \cong p_1^*TM \oplus p_2^*TN$, where $p_1,p_2$ are the projection maps $M \times N \to M,M \times N \to N$. Writing $H^*(\bbR P^2 \times \bbR P^2;\bbZ/2) \cong \bbZ/2[x,y]/(x^3,y^3)$ (by the K\"{u}nneth formula) it follows from the Whitney sum formula that 
+\[
+\omega(\bbR P^2 \times \bbR P^2) = (1+x+x^2)(1+y+y^2) = 1 + (x+y) +(x^2+xy+y^2) + (x^2y+xy^2)+ x^2y^2.
+\]
+By \Cref{exercise:underlying-real} and \Cref{thm:pont-cpn} below we have
+\[
+\omega((\bbC P^2)_{\bbR}) = 1 + a+ a^2
+\]
+where $a \in H^2(\bbC P^2;\bbZ/2)$ is a generator. We must compute the Stiefel--Whitney numbers for each 4-tuple $(\alpha_1,\alpha_2,\alpha_3,\alpha_4)$ with $\sum_{i=1}^4i\alpha_i = 4$. There are five such tuples, and we give the corresponding Stiefel--Whitney numbers in \Cref{Tab:Tcr}.
+\begin{table}[]
+\caption{Stiefel--Whitney numbers}
+\begin{tabular}{@{}lll@{}}
+\toprule
+tuple     & SW-number of $\bbR P^2 \times \bbR P^2$ & SW-number of $\bbC P^2$ \\ \midrule
+(4,0,0,0) & 0                                       & 0                       \\
+(1,0,1,0) & 0                                       & 0                       \\
+(0,2,0,0) & 1                                       & 1                       \\
+(2,1,0,0) & 0                                       & 0                       \\
+(0,0,0,1) & 1                                       & 1                       \\ \bottomrule
+\end{tabular}
+\label{Tab:Tcr}
+\end{table}
+Here we have used that $\langle a^i,\mu_{\bbC P^2} \rangle = 1$ and $\langle x^i,\mu_{\bbR P^2} \rangle = 1$. For example, for the partition $\alpha = (1,0,1,0)$ we have $(x+y)(x^2+xy+y^2) = x^3 + y^3 +2x^2y +2 y^2x$, so that 
+\[
+\omega_{(\alpha)}(\bbR P^2 \times \bbR P^2) = \langle x^3+y^3+2x^2y+2y^2x,\mu_{\bbR P^2 \times \bbR P^2} \rangle = 0
+\]
+(remember, this class is either 0 or 1, i.e., it lands in the group $\bbZ/2$). The result follows from Thom's theorem.\sidenote{More generally, $\bbR P^n \times \bbR P^n$ is cobordant to $\bbC P^n$. This is proved in Lemma 7 of Wall, Charles TC. "Determination of the cobordism ring." \emph{Annals of Mathematics} (1960): 292-311.}
+\end{Exa}
+\subsection*{Orientations}
+We now discuss the notion of an oriented bundle. We begin with a discussion on oriented vector spaces. 
+\begin{Rem}
+An orientation of a real $n$-dimensional vector space is an equivalence class of basis for $V$, where two bases $\{ v_1,\ldots,v_n \}$ and $\{ w_1,\ldots, w_n \}$ are equivalent if the change of basis matrix $A = (a_{ij})$ where $w_i = \sum a_{i,j} v_j$ has positive determinant. 
+\end{Rem}
+\begin{Exa}
+The standard basis on $\bbR^n$ provides the \emph{standard orientation} on $\bbR^n$. We will also assume $\bbR^n$ is oriented with the standard orientation. 
+\end{Exa}
+\begin{Def}
+An orientation for a real vector bundle $\pi \colon E \to M$ is a choice of orientation for each fiber $E_x$ such that the local trivializations $\Phi \colon U \to U \times \bbR^m$ are fiberwise orientation preserving, i.e., $E_x \to \{ x \} \times \bbR^m$ for $x \in U$ preserves orientations (the determinant is greater than 0). 
+\end{Def}
+\begin{Rem}
+A vector space always admits an orientation, but a bundle may not. If it does, it is called orientable. For example, it should hopefully be clear that the M\"obius bundle does not admit an orientation (if you are not convinced, see \Cref{cor:sw-classes-orientation} below). 
+\end{Rem}
+\begin{Def}
+A manifold $M$ is orientable if $TM \to M$ is orientable. 
+\end{Def}
+\begin{Prop}
+A real vector bundle $\pi \colon E \to B$ is orientable if and only if the classifying map $f_{\pi} \colon B \to BO(n)$ admits a lift to $BSO(n)$, i.e., if we let $\iota \colon SO(n) \hookrightarrow O(n)$ denote the inclusion, then there exists $\tilde f_{\pi} \colon B \to BSO(n)$ such that the diagram
+% https://q.uiver.app/?q=WzAsMyxbMCwxLCJYIl0sWzEsMSwiQk8obikiXSxbMSwwLCJCU08obikiXSxbMCwxLCJmX3tcXHBpfSJdLFswLDIsIlxcZXhpc3RzIFxcdGlsZGUgZl97XFxwaX0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMiwxLCJCXFxpb3RhIl1d
+\[\begin{tikzcd}[ampersand replacement=\&]
+    \& {BSO(n)} \\
+    X \& {BO(n)}
+    \arrow["{f_{\pi}}", from=2-1, to=2-2]
+    \arrow["{\exists \tilde f_{\pi}}", dashed, from=2-1, to=1-2]
+    \arrow["B\iota", from=1-2, to=2-2]
+\end{tikzcd}\]
+commutes. 
+\end{Prop}
+
+\begin{Rem}
+We do not prove this, as it could alternatively be seen as a \emph{definition} of an oriented bundle. This allows us to define `higher' notions of orientability. For example, $BSO(n)$ is the universal cover of $BO(n)$; the 2-connected cover is called $BSpin$ and the 3-connected cover is called $BString$. One then defines a manifold to be spin (respectively, string) if the structure group of its tangent bundle admits a lift to $BSpin$ (respectively, $BString$). 
+\end{Rem}
+\begin{Cor}\label{cor:sw-classes-orientation}
+Let $M$ be a CW-complex, then a real vector bundle $\pi \colon E \to M$ is orientable if and only if $\omega_1(\pi) = 0$. In particular, a manifold $M$ is orientable if and only if $\omega_1(M) = 0$, and so simply-connected manifolds are always orientable. 
+\end{Cor}
+\begin{proof}
+We have isomorphisms
+\begin{equation}\label{eq:orientation}
+\begin{split}
+H^1(M;\bbZ/2) &\xrightarrow{\sim} \Hom(H_1(M;\bbZ),\bbZ/2)  \\
+&\xrightarrow{\sim} \Hom(\pi_1(M)^{ab},\bbZ/2) 
+\xrightarrow{\sim}  \Hom(\pi_1(M),\bbZ/2).
+\end{split}
+\end{equation}
+Here we have used (in order) the universal coefficient theorem, the Hurewicz theorem, and the observation that $\bbZ/2$ is abelian, and that the functor $(-)^{ab}$ from groups to abelian groups is left adjoint to the inclusion. 
+
+We first consider the universal case $EO(n) \to BO(n)$. We have $H^1(BO(n);\bbZ/2) \cong \bbZ/2$ generated by the universal first Stifel--Whitnney class $\omega_1(triv)$, and under the equivalences of \eqref{eq:orientation} this maps to the identity map $\bbZ/2 \cong \pi_1(BO(n)) \to \bbZ/2$.
+
+Let $f_{\pi} \colon M\to BO(n)$ denote the classifying map for the bundle $\pi$. The isomorphism \eqref{eq:orientation} is natural in $M$, and so 
+\[
+f_{\pi}^*(\omega_1(triv)) \in H^1(M;\bbZ/2)
+\]
+corresponds under \eqref{eq:orientation} to the composite $(f_{\pi})_* \colon \pi_1(M) \to \pi_1(BO(n))  \xrightarrow{\cong} \bbZ/2$. Therefore,
+\begin{align*}
+\omega_1(M) = 0 & \iff (f_{\pi})_* \text{ is trivial in degree } 1 \\
+& \iff f_{\pi} \text{ lifts to the universal cover of } BO(n) \\
+& \iff \pi \text{ is orientable.    }
+\end{align*}
+ The rest of the corollary follows from the definitions. 
+\end{proof}
+\begin{Rem}
+It is also true that an oriented manifold $M$ is a spin manifold iff $\omega_2(M) = 0$. For string manifolds, it is a little more complicated. 
+\end{Rem}
 \section{Pontryagin classes}
 \begin{Not}
 Let us fix some notation throughout this section: we let $\pi$ denote a real vector bundle (equivalently, a principal $O(n)$-bundle), while $\omega$ will denote a complex vector bundle (equivalently, a $U(n)$-bundle). 

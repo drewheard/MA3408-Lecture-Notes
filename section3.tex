@@ -192,7 +192,7 @@ A & 0 \\
 0 & 1 
 \end{pmatrix}  $ and the second takes $B$ to $Bu$ for $u \in S^{n-1}$ some unit vector. In particular, this identifies $S^{n-1}$ as an orbit space $S^{n-1} \cong O(n)/O(n-1)$. 
 \end{Exa}
-\begin{exercise}{}{}
+\begin{exercise}
 Use the fibrations
 \[
 O(n-k) \to O(n) \to V_k(\mathbb{R}^n)
@@ -322,7 +322,7 @@ Note that the structure group is not unique. For example, a bundle with structur
 \]
 This operation is called the change of structure group. 
 \end{Rem}
-\begin{exercise}{}{}
+\begin{exercise}
 Show that a trivial bundle has trivial structure group. Conversely, if the structure group can be reduced to the trivial group then the bundle is (isomorphic to) a trivial bundle. 
 \end{exercise}
 \begin{Exa}
@@ -799,7 +799,7 @@ Let $\pi \colon E \to B$ be a locally trivial bundle. For continuous map $f \col
 \begin{Lem}\label{lem:pullback-2}
 Let $p \colon E \to B$ be a locally trivial bundle, then $\text{id}_B^*(E) \simeq E$. 
 \end{Lem}
-\begin{exercise}{}{}
+\begin{exercise}
 Show that the pullback of a trivial bundle is a trivial bundle. 
 \end{exercise}
 \begin{Rem}\label{rem:g-equivariant}
@@ -867,7 +867,9 @@ and so descends to a map on orbit spaces $f \colon X \to Y$. As usual, we omit t
 \begin{Rem}
 For a \emph{principal} $G$-bundle, the condition of having a section is extremely strong: 
 \end{Rem}
-
+\begin{exercise}
+Show that a principal $G$-bundle is trivial if and only if it has a section.
+\end{exercise}
 \begin{Lem}\label{lem:pullback-lemma-3}
 Let $\pi \colon E \to X \times I$ be a principal $G$-bundle, and let $\pi_0 \coloneqq i_0^*\pi \colon E_0 \to X$ be the pullback of $\pi$ under the map $i_0 \colon X \to X \times I$. Then $\pi \cong (\text{pr}_1)^*\pi_0 \cong \pi_0 \times \text{id}_I$, where $\text{pr}_1 \colon X \times I \to X$ is the projection map. 
 % https://q.uiver.app/?q=WzAsNixbMSwwLCJFXzAiXSxbMiwwLCJFIl0sWzAsMCwiXFx0ZXh0e3ByfV8xXiooRV8wKSJdLFswLDEsIlggXFx0aW1lcyBJIl0sWzEsMSwiWCJdLFsyLDEsIlggXFx0aW1lcyBJIl0sWzIsM10sWzMsNCwiXFx0ZXh0e3ByfV8xIiwyXSxbNCw1LCJpXzAiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDBdLFswLDFdLFswLDQsIlxccGlfMCJdLFsxLDUsIlxccGkiXV0=
@@ -932,8 +934,8 @@ Let $H \colon X \times I \to B$ be a homotopy between $f$ and $g$, and consider 
 \end{tikzcd}\]
 By \Cref{lem:pullback-1} we have $f^*\pi \cong i_0^*H^*\pi$. By \Cref{lem:pullback-lemma-3} $H^*\pi \cong \text{pr}_1^*(f^*\pi) \cong \text{pr}_1^*(g^*\pi)$, and so $f^*\pi \cong i_0^*H^*\pi \cong i_0^*\text{pr}_1^*(g^*\pi) \cong g^*\pi$. 
 \end{proof}
-\begin{exercise}{}{}
-Show that a principal $G$-bundle is trivial if and only if it has a section.
+\begin{exercise}
+Show that a fibre bundle over a contractible base space is trivial. 
 \end{exercise}
 \section{Classification of principal $G$-bundles}
 We now move to the most important part of this part of the course, which is the classification theorem for principal $G$-bundles. 
@@ -1033,7 +1035,7 @@ the cone on $X$. If $Y = \{ y_1,y_2 \} = S^0$ is two points, then $X \ast Y \con
 
 Now, we let $G^{\ast (k+1)} \coloneqq G \ast \cdots \ast G$, the join of $k+1$-copies of $G$. This has a free $G$-action, given by the diagonal action on the copies of $G$, and trivial action on $I$. Let $\cat J(G) \coloneqq \colim_k G^{\ast(k+1)}$. Then, in fact $\cat J(G)$ has a free $G$-action and $\cat J(G) \to \cat J(G)/G$ is a universal principal $G$-bundle. The rough idea is that as we join more and more copies of $G$, the space becomes more and more connective, and in the colimit, (weakly) contractible. 
 \end{Rem}
-\begin{exercise}{}{}
+\begin{exercise}
 Show that $B(G \times H) \simeq BG \times BH$ (whenever this makes sense). 
 \end{exercise}
 \begin{Rem}
@@ -1120,7 +1122,7 @@ Isomorphism classes of principal $S^1$-bundles over $S^2$ are given by $[S^2,BS^
 It turns out that this map is the inclusion $\bbC P^{1} \hookrightarrow \bbC P^{\infty}$, and so $H^*(f) \colon H^*(\bbC P^{\infty}) \to H^*(\bbC P^1)$ sends $\omega$ to $\omega$. In particular, $c_1(H) \ne 0$, and $c_1(H)$ generates $H^2(\bbC P^{1})$ as a cyclic group. 
 \end{Exa}
 The following exercise gives another way to compute this Chern class (using \Cref{ex:hopf_fibration,exa:hopf-fibration-2})
-\begin{exercise}{}{}
+\begin{exercise}
 Let $\pi \colon E \to X$ be a principal $S^1$-bundle over a simply-connected space $X$. Let $a \in H^1(S^1;\mathbb{Z})$ be a generator. Show that 
 \[
 c_1(\pi) = d_2(a)
